@@ -1,18 +1,23 @@
-\documentclass[a4paper,12pt]{article}
-\usepackage[latin1]{inputenc}
+\documentclass[a4paper,12pt]{report}
+\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[english]{babel}
 \usepackage{lmodern}
+
+%Package required to use figures
 \usepackage{graphicx}
+
+%Our chapters are called sections
+\def\chapterautorefname{Section}
 
 \begin{document}
 
 %Code for title page
 \begin{titlepage}
 \centering
-\includegraphics[width=0.20\textwidth]{./logo_poli}\par
+\includegraphics[width=0.20\textwidth]{./pictures/logo_poli}\par
 	\vspace{1.5cm}
-	{\Large {Power Enjoy \\ 
+	{\Large {PowerEnJoy \\ 
 		Software Engineering II} \par}
 	\vspace{1.5cm}
 	{\LARGE \textbf{Requirements Analysis and Specification Document} \par}
@@ -23,5 +28,12 @@
 	% Bottom of the page
 	{\large \today \par}
 \end{titlepage}
+
+%Make the table of contents
+\tableofcontents
+
+%INTRODUCTION
+\chapter{Introduction}
+\label{ch:Introduction}
 
 \end{document}
