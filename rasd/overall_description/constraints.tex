@@ -1,0 +1,33 @@
+\subsection{Regulatory policies}
+The system must be allowed by the user to collect, process and store personal data. Furthermore the system is capable to delete all the personal data on user request and to keep track of each payment.
+
+The user has the responsibility to use the system properly in order to comply with the local laws and policies.
+
+\subsection{Hardware limitations} \label{ssec:hlimit}
+The system should met the following limitations:
+\begin{itemize}
+\item Mobile application:
+	\begin{itemize}
+	\item[>] 3G UMTS connection at its maximum speed of 2 Mb/s
+	\item[>] 50 MB of available space
+	\item[>] 1 GB of RAM
+	\item[>] GPS module
+	\end{itemize}
+\item Web application:
+	\begin{itemize}
+	\item[>] Internet connection at 7 Mb/s
+	\item[>] 800x600 screen resolution
+	\end{itemize}
+\end{itemize}
+
+\subsection{Parallel operation}
+The system must support parallel operations from different users and the DBMS relies heavily on concurrent transactions.
+
+\subsection{Reliability requirements}
+The system reliability, that is the probability to operate without a failure for a specific period of time, must be 99\%.
+
+\subsection{Criticality of the application}
+Life-critical applications do not concern the system to be developed.
+
+\subsection{Safety and security consideration}
+The user must have a valid driving license in order to take advantage of the car sharing service. The license number is asked and stored by the system for security reason. The locations and the travels performed by the users must be kept private.
