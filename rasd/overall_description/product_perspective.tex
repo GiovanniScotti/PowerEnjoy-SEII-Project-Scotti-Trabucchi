@@ -9,15 +9,13 @@ The web application can be executed on any general purpose computer that complie
 
 The mobile application has to exchange data with the GPS module located on any recent smart-phone. Moreover it has to access the mobile broadband in order to communicate with the main system server.
 
-An on-board computer is set up in each electric car and it talks to the vehicle control unit through the CAN bus and to the system server via the mobile broadband. Also, the cars are equipped with a thermographic camera, used to detect the number of passengers, drivers included.
+An on-board computer is already set up in each electric car and it talks to the vehicle control unit through the CAN bus and to the system server via the mobile broadband. All sensors and hardware components needed to support the functionalities of the system are already installed on the vehicles.
 
 \subsection{Software interfaces}
 The web based application must support the main browsers such as IE, Google Chrome and Mozilla Firefox.
 
 The mobile application has to be compatible with iOS and Android. The server side of the application, that is the system back-end, stores data in a relational DBMS and runs on any web server supporting Java.
 
-The on-board computers run a Linux-based OS that provides advanced features such as GPS/sat-nav, car monitoring and user identification and access.
+The on-board computers run a customized Linux-based kernel and provide adequate APIs for the developers to communicate easily with the existing vehicle systems. This is to make communication between the system-to-be and the existing software easier.
 
 The back-end has mainly to deal with the rental service and data management, essentially aimed towards keeping track of transactions and customers information.
-
-%insert sum-up architecture picture (draw.io) [see picture by Gio]
