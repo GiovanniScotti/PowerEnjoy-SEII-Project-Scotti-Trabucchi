@@ -1,0 +1,49 @@
+\subsection{User interface}
+The peculiarity of the user interface must be the user-friendliness offered by the different applications he/she has to access the system. The following constraints have to be satisfied by the web and the mobile applications:
+\begin{itemize}
+\item The first page must ask the user to login or register to the service;
+\item The main page must show a map depicting the location of all the available cars in the Safe Area;
+\item The interface must offer the possibility to choose the language between Italian and English;
+\item A toolbar must be visible in every screen except the first page;
+\item The toolbar must offer a quick and simple overview of the main system functionalities (reserve a car, reservations history, modify personal information...);
+\item The user interface must dynamically adapt itself to the screen size;
+\item In order to simplify the user's experience, the web application and the mobile one must use the same graphical elements and layouts.
+\end{itemize}
+With respect to the on-board computer application, the restrictions are the following:
+\begin{itemize}
+\item after the car has been unlocked, the first screen always allows to input the user's PIN in order to start the ride;
+\item once the ride stars, the screen must show the current charge;
+\item when the car is available, the screen is always off.
+\end{itemize}
+Some mock-ups that give an overall idea of the interface structure of the applications are provided in the next section (RIFERIMENTO a FUNCTIONAL REQUIREMENTS).
+In addition to that are provided several application-dependent constraints:
+\begin{itemize}
+\item Web application
+	\begin{itemize}
+	\item[] All the web pages must abide by the W3C standards to ensure a long-term growth of the application and take the full advantage of HTML5 markup language and CSS.
+	\end{itemize}
+\item Mobile application
+	\begin{itemize}
+	\item[] Both the Android and iOS versions must follow the design guidelines provided by the respective platform manufacturers.
+	\end{itemize}
+\item Server application
+	\begin{itemize}
+	\item[] The server application must be easily configurable via a XML file and use the APIs provided by the payment handler to interface with its information system.
+	\end{itemize}
+\end{itemize}
+
+\subsection{Hardware interface}
+The most relevant aspect to highlight, in addition to section (INSERIRE RIFERIMENTO ad hardware interface, section 2), is the ability of the system-to-be to communicate with the car systems via the embedded computer located in the car itself that takes the advantage of the on-board computer application to be developed. The on-board computer can communicate with the mobile broadband thanks to a SIM and provides a GPS module exploitable by the car-side of the application.
+
+\subsection{Software interface}
+The server side of the application, that represents the back-end of the system-to-be, requires the following software products:
+\begin{itemize}
+\item Java SE 8 - \url{http://www.oracle.com/technetwork/java/javase/overview/index.html}
+\item MySQL 5.7 - \url{http://dev.mysql.com/}
+\end{itemize}
+
+The embedded on-board computer located in each car provides a Linux OS that is capable to run C/C++ programs. Moreover the car-side of the application can use specific software libraries provided by the manufacturer to access the car systems the computer is connected with.
+
+\subsection{Communication interface}
+The clients communicate with the server via HTTPS protocol by using TCP and default port 443.
+Moreover a safe and stable connection is also established between the server and the payment handler whenever the user performs a payment.
