@@ -10,14 +10,39 @@ Mike would like to rent a car for having a ride in a beautiful sunny day. In ord
 Bill wants to take the advantage of the \emph{PowerEnJoy} service. He opens the home page and he is asked for his e-mail address and password. He is aware of his e-mail address, but he does not remember the password. After some time spent trying to recall his personal password, Bill inputs his e-mail address and decides to click on "forgot password?". Right away the system sends a new password to the specified e-mail address. Bill can now enter the system using the new password.
 
 \subsubsection{Use-case}
-\begin{table}
-
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{p{0.3\textwidth} | p{0.7\textwidth}}
+\hline
+Actor & User\\
+\hline
+Goal & Goal 1\\
+\hline
+Input Condition & The user is already registered to the system and wants to login.\\
+\hline
+Event Flow & 
+\begin{enumerate}
+\item The user opens the \emph{PowerEnJoy} home page or the mobile application and the system shows the login page;
+\item The user enters his/her e-mail address and password.
+\end{enumerate} \\
+\hline
+Output Condition & The system lets the user to log in if the provided credentials are valid and loads his/her personal home page.\\
+\hline
+Exception & 
+If the e-mail address provided by the user has never been registered to the system or if the password does not correspond to the entered e-mail, the system notifies the user with an error message. If the user enters wrong credentials three times in a row, the system will prevent any attempt for the following 30 seconds.\\
+\hline
+\end{tabular}
+\end{center}
 \caption{Login use-case}
 \label{login_uc}
 \end{table}
 
 \subsubsection{Statechart diagram}
-
+\begin{figure}[!h]
+	\centering
+		\includegraphics[width=\textwidth]{./specific_requirements/features/diagrams/login_statechart.png}
+		\caption{Statechart of the login process}
+\end{figure}
 
 \subsubsection{Functional requirements}
 \begin{enumerate}
