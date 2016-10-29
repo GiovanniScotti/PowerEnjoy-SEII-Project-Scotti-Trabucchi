@@ -1,0 +1,17 @@
+\subsubsection{Purpose}
+The request car feature is a key service of \emph{PowerEnJoy}. Its main purpose is that of allowing users to choose a nearby car from the ones marked as available on the map, hence signaling their intention of reserving it for an hour. The service can be accessed from the home page of both the web and mobile applications, clicking on the corresponding icon on the toolbar.
+
+The reservation screen shows the user only available cars, based on the information provided by the server. The user can either search for an available car using the mobile application - that is, based on its GPS position - or using the web application, indicating an address around which he wishes to search for a vehicle.
+
+Only one car should be rented at a time, so the system will prevent the user of trying to reserve several cars simultaneously.
+
+\subsubsection{Scenario 1}
+Alice is logged in to the \emph{PowerEnJoy} service with her laptop, because she wants to find a car to go meet a friend downtown. To do so, she clicks on the reservation icon and opens the city map. She inputs her address, to indicate that she wants a car not far from her house. The system proceeds to mark the vehicles within the desired location. Alice finds a car that she thinks is reasonably close and clicks on it. The system prompts her asking: \emph{"Do you want to reserve this car?"}. She clicks on the \emph{"Yes"} button, hence forwarding the request of the specific car to the system.
+
+\subsubsection{Scenario 2}
+Bob is in town and has just finished shopping. He wants to go back home, but does not want to catch a crowded subway train during the rush hour. For this reason he has logged in to the \emph{PowerEnJoy} application and taps on the reservation icon. The system opens a map that shows the GPS position - provided by Bob's smartphone - and several icons marking nearby available cars. He chooses a vehicle just around the corner and properly confirms his intention of reserving the car for some time; by doing so, his request is forwarded to the server. A few minutes later, he meets a friend that offers him a ride, and decides to accept. So, he logs in to his account again and opens the reservation function. He taps on the \emph{"Release Reservation"} button and the system processes his request by marking the car as available again.
+
+\subsubsection{Scenario 3}
+Carla is in need of a car after work, and decides to use a \emph{PowerEnJoy} one. She is looking at the reservation screen and decides to reserve a vehicle by selecting it. Since she is not sure that she will be able to reach the vehicle easily, she tries to reserve a second one after a few minutes. At that point, the system shows her the error message: \emph{"You can only reserve one vehicle at a time. Release your current reservation if you wish to rent this car."}. So she is redirected to the home page again, and the system does not process her second request.
+
+\subsubsection{Scenario 4}
