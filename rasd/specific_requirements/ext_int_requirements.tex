@@ -1,22 +1,23 @@
 \subsection{User interface}
-The peculiarity of the user interface must be the user-friendliness offered by the different applications he/she has to access the system. The following constraints have to be satisfied by the web and the mobile applications:
+The user interfaces must be strongly user-friendly, in order to provide an easy and intuitive way to access the system. The following constraints have to be satisfied by the web and mobile applications:
 \begin{itemize}
-\item The first page must ask the user to login or register to the service;
-\item The main page must show a map depicting the location of all the available cars in the Safe Area;
-\item The interface must offer the possibility to choose the language between Italian and English;
+\item The first page must always ask the user to login or register to the service;
+\item The main page must show a map with a marker for all the locations of all nearby available cars inside the Safe Area;
+\item The interface must offer the possibility to choose between a set of different languages;
 \item A toolbar must be visible in every screen except the first page;
 \item The toolbar must offer a quick and simple overview of the main system functionalities (reserve a car, reservations history, modify personal information...);
-\item The user interface must dynamically adapt itself to the screen size;
-\item In order to simplify the user's experience, the web application and the mobile one must use the same graphical elements and layouts.
+\item The user interface must dynamically adapt to the screen size;
+\item In order to simplify the user experience, the web application and the mobile one must use the same graphical elements and layouts.
 \end{itemize}
 With respect to the on-board computer application, the restrictions are the following:
 \begin{itemize}
-\item after the car has been unlocked, the first screen always allows to input the user's PIN in order to start the ride;
-\item once the ride stars, the screen must show the current charge;
-\item when the car is available, the screen is always off.
+\item After the car has been unlocked, the display of the on-board computer must turn on and show a screen thats allows the user to input his/her PIN in order to start the ride;
+\item Once the ride starts, the screen must clearly show the current charges;
+\item Similarly, during the ride, the screen must clearly show the nearby charging spots and visually signal the Safe Area boundaries;
+\item When the car is available, the screen must always be off.
 \end{itemize}
 Some mock-ups that give an overall idea of the interface structure of the applications are provided in the next section (RIFERIMENTO a FUNCTIONAL REQUIREMENTS).
-In addition to that are provided several application-dependent constraints:
+In addition to that several application-dependent constraints are provided:
 \begin{itemize}
 \item Web application
 	\begin{itemize}
@@ -30,6 +31,10 @@ In addition to that are provided several application-dependent constraints:
 	\begin{itemize}
 	\item[] The server application must be easily configurable via a XML file and use the APIs provided by the payment handler to interface with its information system.
 	\end{itemize}
+\item On-board computers application
+	\begin{itemize}
+	\item[] The application mounted on on-board computers must use the APIs provided by the vehicle manufacturer to interface with the cars.
+	\end{itemize}
 \end{itemize}
 
 \subsection{Hardware interface}
@@ -39,6 +44,7 @@ The most relevant aspect to highlight, in addition to section (INSERIRE RIFERIME
 The server side of the application, that represents the back-end of the system-to-be, requires the following software products:
 \begin{itemize}
 \item Java SE 8 - \url{http://www.oracle.com/technetwork/java/javase/overview/index.html}
+% Java SE? Non EE? Forse più tardi lo modifichiamo...
 \item MySQL 5.7 - \url{http://dev.mysql.com/}
 \end{itemize}
 
