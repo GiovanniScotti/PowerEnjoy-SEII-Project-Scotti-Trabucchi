@@ -7,6 +7,7 @@
 %Figure progressive enumeration
 \usepackage{chngcntr}
 \counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
 
 %package used to enumerate figures
 \usepackage[labelfont=bf]{caption}
@@ -98,7 +99,7 @@
 \section{External Interface Requirements}
 \input{./specific_requirements/ext_int_requirements.tex}
 
-\section{Functional Requirements}
+\section{Functional Requirements} \label{fun_req}
 \input{./specific_requirements/functional_requirements.tex}
 
 \appendix
