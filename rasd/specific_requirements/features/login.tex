@@ -4,13 +4,14 @@ The main purpose of the login feature is to grant the access of the \emph{PowerE
 In addition to that, the login screen offers the chance to recover a forgotten password. The user clicks on "forgot password?", a new one is sent to his e-mail address immediately and he/she can carry out the login procedure with the new password provided by the system.
 
 \subsubsection{Scenario 1}
-Mike would like to rent a car for having a ride in a beautiful sunny day. In order to do that he needs to access the system by means of his credentials. He opens the \emph{PowerEnJoy} home page and enters his e-mail address and his password. Then Mike clicks on "login" and, due to the fact everything is correct, he obtains the access as a logged user.
+Mike would like to rent a car for having a ride in a beautiful sunny day. In order to do that he needs to access the system by means of his credentials. He opens the \emph{PowerEnJoy} home page and enters his e-mail address and his password. Then Mike clicks on "login" and, due to the fact that everything is correct, he obtains the access as a logged user.
 
 \subsubsection{Scenario 2}
 Bill wants to take the advantage of the \emph{PowerEnJoy} service. He opens the home page and he is asked for his e-mail address and password. He is aware of his e-mail address, but he does not remember the password. After some time spent trying to recall his personal password, Bill inputs his e-mail address and decides to click on "forgot password?". Right away the system sends a new password to the specified e-mail address. Bill can now enter the system using the new password.
 
 \subsubsection{Use-case}
-\begin{table}[!h]
+
+\begin{table}[H]
 \begin{center}
 \begin{tabular}{p{0.3\textwidth} | p{0.7\textwidth}}
 \hline
@@ -38,10 +39,11 @@ If the e-mail address provided by the user has never been registered to the syst
 \end{table}
 
 \subsubsection{Statechart diagram}
-\begin{figure}[!h]
+
+\begin{figure}[H]
 	\centering
 		\includegraphics[width=\textwidth]{./specific_requirements/features/diagrams/login_statechart.png}
-		\caption{Statechart of the login process}
+		\caption{Statechart of the login process from the server application point of view}
 \end{figure}
 
 \subsubsection{Functional requirements}
@@ -53,3 +55,15 @@ If the e-mail address provided by the user has never been registered to the syst
 \item After requesting a new password, the system must allow the user login with the new provided password;
 \item After three times the entered password is wrong, the system allows a new attempt 30 seconds later.
 \end{enumerate}
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=0.8\textwidth]{./specific_requirements/features/diagrams/web_login.png}
+		\caption{Concept of the login webpage}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=0.4\textwidth]{./specific_requirements/features/diagrams/mobile_login.png}
+		\caption{Concept of the mobile version of the login screen}
+\end{figure}
