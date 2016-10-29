@@ -1,9 +1,30 @@
 \subsubsection{Purpose}
+The main purpose of the login feature is to grant the access of the \emph{PowerEnJoy} service to any registered user. The system requires a valid e-mail address and password to login without generating any error.
 
-\subsubsection{Scenario}
+In addition to that, the login screen offers the chance to recover a forgotten password. The user clicks on "forgot password?", a new one is sent to his e-mail address immediately and he/she can carry out the login procedure with the new password provided by the system.
+
+\subsubsection{Scenario 1}
+Mike would like to rent a car for having a ride in a beautiful sunny day. In order to do that he needs to access the system by means of his credentials. He opens the \emph{PowerEnJoy} home page and enters his e-mail address and his password. Then Mike clicks on "login" and, due to the fact everything is correct, he obtains the access as a logged user.
+
+\subsubsection{Scenario 2}
+Bill wants to take the advantage of the \emph{PowerEnJoy} service. He opens the home page and he is asked for his e-mail address and password. He is aware of his e-mail address, but he does not remember the password. After some time spent trying to recall his personal password, Bill inputs his e-mail address and decides to click on "forgot password?". Right away the system sends a new password to the specified e-mail address. Bill can now enter the system using the new password.
 
 \subsubsection{Use-case}
+\begin{table}
+
+\caption{Login use-case}
+\label{login_uc}
+\end{table}
 
 \subsubsection{Statechart diagram}
 
+
 \subsubsection{Functional requirements}
+\begin{enumerate}
+\item The user must be already registered to the system in order to perform a successful login;
+\item The user must be aware of his e-mail address and password to successfully obtain the system access;
+\item The password provided by the user must correspond to the specified e-mail address;
+\item The system sends a new password to the specified e-mail address if and only if the specified e-mail address is valid, registered to the system and the user clicks on "forgot password?";
+\item After requesting a new password, the system must allow the user login with the new provided password;
+\item After three times the entered password is wrong, the system allows a new attempt 30 seconds later.
+\end{enumerate}
