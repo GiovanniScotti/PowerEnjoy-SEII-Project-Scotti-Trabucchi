@@ -13,6 +13,36 @@ Unfortunately he forgets to fill in his own tax code and the system does not all
 
 \subsubsection{Use-case}
 
+The use-case of the registration procedure is analyzed in Table \ref{register_uc}.
+
+\subsubsection{Statechart diagram}
+
+The statechart diagram of the registration procedure is shown in Figure \ref{register_st}.
+
+\subsubsection{Functional requirements}
+\begin{enumerate}
+\item The user must not enter an already registered e-mail address to perform the registration process;
+\item The user must provide the following personal information:
+	\begin{itemize}
+	\item e-mail address
+	\item name
+	\item surname
+	\item ID card number
+	\item tax code
+	\item license ID number
+	\item address
+	\item phone number
+	\item credit/prepaid card or \emph{PayPal\textsuperscript{TM}} account credentials
+	\end{itemize}
+\item There must not be another subscribed user with the same identity card number, tax code or license ID;
+\item If the user does not agree the service Terms and Conditions, the registration process is canceled;
+\item The system must send an e-mail containing PIN and password to the e-mail address specified by the user when he/she clicks on "Submit" button and all the required information has been entered;
+\item The system allows the user to exit the registration process at any time;
+\item The system must allow the user to provide either a valid credit/prepaid card number or \emph{PayPal\textsuperscript{TM}} account credentials to perform the payments;
+\item The PIN provided by the system in the confirmation e-mail is made by only digits and has a length of 6;
+\item The password provided by the system in the confirmation e-mail is made by both digits and letters (capital and not) and has a length of 8.
+\end{enumerate}
+
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{p{0.3\textwidth} | p{0.7\textwidth}}
@@ -41,29 +71,20 @@ The registration process is aborted when the user decides not to carry it out co
 \end{tabular}
 \end{center}
 \caption{Register use-case}
-\label{login_uc}
+\label{register_uc}
 \end{table}
 
-\subsubsection{Functional requirements}
-\begin{enumerate}
-\item The user must not enter an already registered e-mail address to perform the registration process;
-\item The user must provide the following personal information:
-	\begin{itemize}
-	\item e-mail address
-	\item name
-	\item surname
-	\item identity card number
-	\item tax code
-	\item license ID
-	\item address
-	\item phone number
-	\item credit/prepaid card or \emph{PayPal} account credentials
-	\end{itemize}
-\item There must not be another subscribed user with the same identity card number, tax code or license ID;
-\item If the user does not agree the service Terms and Conditions, the registration process is canceled;
-\item The system must send an e-mail containing PIN and password to the e-mail address specified by the user when he/she clicks on "Submit" button and all the required information has been entered;
-\item The system allows the user to exit the registration process at any time;
-\item The system must allow the user to provide either a valid credit/prepaid card number or \emph{PayPal} account credentials to perform the payments;
-\item The PIN provided by the system in the confirmation e-mail is made by only digits and has a length of 6;
-\item The password provided by the system in the confirmation e-mail is made by both digits and letters (capital and not) and has a length of 8.
-\end{enumerate}
+\begin{figure}[H]
+\begin{center}
+		\includegraphics[width=\textwidth]{./specific_requirements/features/diagrams/registration_statechart.png}
+		\caption{Statechart of the registration process from the system point of view}
+		\label{register_st}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+		\includegraphics[width=0.8\textwidth]{./specific_requirements/features/diagrams/web_registration.png}
+		\caption{Concept of the sign up webpage}
+\end{center}
+\end{figure}

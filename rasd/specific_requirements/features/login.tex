@@ -11,6 +11,23 @@ Bill wants to take the advantage of the \emph{PowerEnJoy} service. He opens the 
 
 \subsubsection{Use-case}
 
+The login use-case is analyzed in Table \ref{login_uc}.
+
+\subsubsection{Statechart diagram}
+
+The login statechart diagram is shown in Figure \ref{login_st}.
+
+\subsubsection{Functional requirements}
+\begin{enumerate}
+\item The user must be already registered to the system in order to perform a successful login;
+\item The user must be aware of his e-mail address and password to successfully obtain the system access;
+\item The password provided by the user must correspond to the specified e-mail address;
+\item Wrong credentials prevent the user to access the system;
+\item The system sends a new password to the specified e-mail address if and only if the specified e-mail address is valid, registered to the system and the user clicks on "forgot password?";
+\item After requesting a new password, the system must allow the user login with the new provided password;
+\item After three times the entered password is wrong, the system allows a new attempt 30 seconds later.
+\end{enumerate}
+
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{p{0.3\textwidth} | p{0.7\textwidth}}
@@ -38,33 +55,24 @@ If the e-mail address provided by the user has never been registered to the syst
 \label{login_uc}
 \end{table}
 
-\subsubsection{Statechart diagram}
-
 \begin{figure}[H]
-	\centering
+\begin{center}
 		\includegraphics[width=\textwidth]{./specific_requirements/features/diagrams/login_statechart.png}
 		\caption{Statechart of the login process from the server application point of view}
+		\label{login_st}
+\end{center}
 \end{figure}
 
-\subsubsection{Functional requirements}
-\begin{enumerate}
-\item The user must be already registered to the system in order to perform a successful login;
-\item The user must be aware of his e-mail address and password to successfully obtain the system access;
-\item The password provided by the user must correspond to the specified e-mail address;
-\item Wrong credentials prevent the user to access the system;
-\item The system sends a new password to the specified e-mail address if and only if the specified e-mail address is valid, registered to the system and the user clicks on "forgot password?";
-\item After requesting a new password, the system must allow the user login with the new provided password;
-\item After three times the entered password is wrong, the system allows a new attempt 30 seconds later.
-\end{enumerate}
-
 \begin{figure}[H]
-	\centering
+\begin{center}
 		\includegraphics[width=0.8\textwidth]{./specific_requirements/features/diagrams/web_login.png}
 		\caption{Concept of the login webpage}
+\end{center}
 \end{figure}
 
 \begin{figure}[H]
-	\centering
+\begin{center}
 		\includegraphics[width=0.4\textwidth]{./specific_requirements/features/diagrams/mobile_login.png}
 		\caption{Concept of the mobile version of the login screen}
+\end{center}
 \end{figure}
