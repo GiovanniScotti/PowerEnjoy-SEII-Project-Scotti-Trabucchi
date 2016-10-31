@@ -13,9 +13,13 @@ Bill wants to take the advantage of the \emph{PowerEnJoy} service. He opens the 
 
 The login use-case is analyzed in Table \ref{login_uc}.
 
-\subsubsection{Statechart diagram}
+\subsubsection{Activity diagram}
 
-The login statechart diagram is shown in Figure \ref{login_st}.
+The login activity diagram is shown in Figure \ref{login_act}.
+
+\subsubsection{Sequence diagram}
+
+The login sequence diagram is shown in Figure \ref{login_se}.
 
 \subsubsection{Functional requirements}
 \begin{enumerate}
@@ -47,7 +51,7 @@ Event Flow &
 Output Condition & The system lets the user to log in if the provided credentials are valid and loads his/her personal home page.\\
 \hline
 Exception & 
-If the e-mail address provided by the user has never been registered to the system or if the password does not correspond to the entered e-mail, the system notifies the user with an error message. If the user enters wrong credentials three times in a row, the system will prevent any attempt for the following 30 seconds.\\
+If the e-mail address provided by the user has never been registered to the system or if the password does not correspond to the entered e-mail, the system notifies the user with an error message. If the user enters wrong credentials three times in a row, the system will prevent any attempt for the following 30 seconds informing the user.\\
 \hline
 \end{tabular}
 \end{center}
@@ -57,9 +61,17 @@ If the e-mail address provided by the user has never been registered to the syst
 
 \begin{figure}[H]
 \begin{center}
-		\includegraphics[width=\textwidth]{./specific_requirements/features/diagrams/login_statechart.png}
-		\caption{Statechart of the login process from the server application point of view}
-		\label{login_st}
+		\includegraphics[width=0.8\textwidth]{./specific_requirements/features/diagrams/login_activity.png}
+		\caption{Activity of the login process from the system point of view}
+		\label{login_act}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+		\includegraphics[width=0.8\textwidth]{./specific_requirements/features/diagrams/login_sequence.png}
+		\caption{Sequence diagram of the login process}
+		\label{login_se}
 \end{center}
 \end{figure}
 
