@@ -18,14 +18,14 @@ Carla is in need of a car after work, and decides to use a \emph{PowerEnJoy} one
 A more detailed use-case diagram is provided in order to model the possibility of releasing an existing reservation. The detail of the use-case diagram is shown in Figure \ref{request_car_uc}.
 
 The use-case for the standard procedure needed to request a car is analyzed in Table \ref{reserve_car_uc}.
-The use-case for the procedure needed to release an existing reservation is analyzed in Table \ref{reserve_car_uc_alt}
+The use-case for the procedure needed to release an existing reservation is analyzed in Table \ref{reserve_car_uc_alt}.
 
 \subsubsection{Sequence diagram}
 The diagram for the standard behavior of the system in case of a car reservation is shown in Figure \ref{reserve_car_sd}.
 
 \subsubsection{Functional Requirements}
 \begin{enumerate}
-\item The system must not accept as a valid address one outside the Safe Area, either if it is esplicitly requested by the user or if it is detected by the GPS position;
+\item The system must not accept as a valid address one outside the Safe Area, either if it is explicitly requested by the user or if it is detected by the GPS position;
 \item The system must provide the position of all nearby vehicles in a radius of 2 km precisely for every address that was considered valid;
 \item The system must mark as available only cars that are not already reserved or out-of-service;
 \item If a user tries to reserve a car, but that car has been reserved by another user during the visualization of the available vehicles, the system must notify it with an error message;
