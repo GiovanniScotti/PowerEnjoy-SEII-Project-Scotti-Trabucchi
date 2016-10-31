@@ -1,12 +1,12 @@
 \subsubsection{Purpose}
 The reserve car feature is a key service of \emph{PowerEnJoy}. Its main purpose is that of allowing users to choose a nearby car from the ones marked as available on the map, hence signaling their intention of reserving it for an hour. The service can be accessed from the home page of both the web and mobile applications, clicking on the corresponding icon on the toolbar.
 
-The reservation screen shows the user only available cars, based on the information provided by the server. The user can either search for an available car using the mobile application - that is, based on its GPS position - or using the web application, indicating an address around which he wishes to search for a vehicle.
+The reservation screen shows the user only available cars, based on the information provided by the server. The user can either search for an available car using the mobile application or the web application, indicating an address around which he wishes to search for a vehicle. If the user is logged in through the mobile application, he/she can also choose to use his/her GPS position - as provided by the mobile device - instead of a specific address.
 
 Only one car should be rented at a time, so the system will prevent the user from trying to reserve several cars simultaneously.
 
 \subsubsection{Scenario 1}
-Alice is logged in to the \emph{PowerEnJoy} service with her laptop, because she wants to find a car to go meet a friend downtown. To do so, she clicks on the reservation icon and opens the city map. She inputs her address, to indicate that she wants a car not far from her house. The system proceeds to mark the vehicles within the desired location. Alice finds a car that she thinks is reasonably close and clicks on it. The system prompts her asking: \emph{"Do you want to reserve this car?"}. She clicks on the \emph{"Yes"} button, hence forwarding the request of the specific car to the system.
+Alice is logged in to the \emph{PowerEnJoy} service with her laptop, because she wants to find a car to go meet a friend downtown. To do so, she clicks on the reservation icon and opens the city map. She inputs her address, to indicate that she wants a car not far from her house. The system proceeds to mark the vehicles within the desired location. Alice finds a car that she thinks is reasonably close and clicks on it. The system prompts her asking: \emph{"Do you really want to reserve this car?"}. She clicks on the \emph{"Confirm"} button, hence forwarding the request of the specific car to the system.
 
 \subsubsection{Scenario 2}
 Bob is in town and has just finished shopping. He wants to go back home, but does not want to catch a crowded subway train during the rush hour. For this reason he has logged in to the \emph{PowerEnJoy} application and taps on the reservation icon. The system opens a map that shows the GPS position - provided by Bob's smartphone - and several icons marking nearby available cars. He chooses a vehicle just around the corner and properly confirms his intention of reserving the car for some time; by doing so, his request is forwarded to the server. A few minutes later, he meets a friend that offers him a ride, and decides to accept. So, he logs in to his account again and opens the reservation function. He taps on the \emph{"Release Reservation"} button and the system processes his request by marking the car as available again.
@@ -25,7 +25,9 @@ The diagram for the standard behavior of the system in case of a car reservation
 
 \subsubsection{Functional Requirements}
 \begin{enumerate}
-\item The system must not accept as a valid address one outside the Safe Area, either if it is explicitly requested by the user or if it is detected by the GPS position;
+\item Only addresses within a distance of 2 km from the Safe Area boundaries must be considered valid;
+\item If a user inputs a non-valid address, the system must notify him/her with an error message saying that he/she is too far from the Safe Area to locate a car nearby;
+\item The system must only show cars as available if they are within the Safe Area;
 \item The system must provide the position of all nearby vehicles in a radius of 2 km precisely for every address that was considered valid;
 \item The system must mark as available only cars that are not already reserved or out-of-service;
 \item If a user tries to reserve a car, but that car has been reserved by another user during the visualization of the available vehicles, the system must notify it with an error message;
@@ -48,7 +50,7 @@ The diagram for the standard behavior of the system in case of a car reservation
 \begin{center}
 		\includegraphics[width=\textwidth]{./specific_requirements/features/diagrams/reserve_car_sd.png}
 		\caption{Sequence diagram that describes the event flow of a standard reservation request}
-		\label{request_car_sd}
+		\label{reserve_car_sd}
 \end{center}
 \end{figure}
 
@@ -68,14 +70,14 @@ Event Flow &
 \item The user inputs the desired location: specific address or current GPS location;
 \item The system loads a map of the Safe Area, marking every available vehicle near the desired location;
 \item The user clicks or taps on the car he/she wants to rent;
-\item The user clicks or taps on the \emph{"Reserve this car"} button;
+\item The user clicks or taps on the \emph{"Confirm"} button when asked if he actually wants to rent the car;
 \item The system saves the registration in its database and logs it;
 \item The system confirms the reservation to the user, reminding him/her of the fact that the reservation will expire in an hour of time with a small fee if the car is not actually used.
 \end{enumerate} \\
 \hline
 Output Condition & The system notifies the user that the reservation was successful and marks the chosen car as reserved and not available.\\
 \hline
-Exception & If the user tries to reserve more than one car, the system notifies him/her that this action is forbidden. This happens when the following requirements are not satisfied: .
+Exception & If the user tries to reserve more than one car, the system notifies him/her that this action is forbidden.
 
 If the user changes his/her mind and decides not to reserve a car, the event flow stops at the point in which the map was shown. No car will be reserved in this eventuality.\\
 \hline
