@@ -1,0 +1,11 @@
+The following performance requirements must be satisfied by the system-to-be in order to guarantee the best user experience:
+\begin{itemize}
+\item The system must not have an upper-bound as far as the total number of registered users is concerned;
+\item The system must handle at least 1000 active reservations at the same time;
+\item The system must simultaneously support at least 1000 logged users who want to take the advantage of the service performing any kind of operation;
+\item 90\% of car unlock requests shall be processed in less than 1 s;
+\item 100\% of car unlock requests shall be processed in less than 2 s;
+\item 100\% of any other kind of requests shall be processed in less than 5 s.
+
+Since the performance is essentially bound by the internet connection, the above timing constraints are to be intended from when the system receives the request to the dispatch of the reply.
+\end{itemize}

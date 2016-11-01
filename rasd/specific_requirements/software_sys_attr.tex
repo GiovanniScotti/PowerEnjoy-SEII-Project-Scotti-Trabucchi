@@ -1,0 +1,21 @@
+\subsubsection{Reliability}
+The reliability of the system depends on several factors. First of all it is related to the reliability of the servers that run the back-end application. In addition to that, the reliability of the on-board computers must be also taken into account. Therefore the probability of failure of the devices mentioned above heavily affects the overall system reliability, that can be evaluated as $\emph{Reliability} = 1-\emph{Probability of failure}$.
+
+\subsubsection{Availability}
+The system must offer an availability of 99\%. The remaining 1\% shall take into account the time spent for ordinary maintenance sessions.
+
+\subsubsection{Security}
+\begin{itemize}
+\item All the connections established between users and server must use the HTTPS protocol;
+\item All the communications between the server and the payment handler shall be encrypted;
+\item The users' passwords are stored in the database using a proper hashing mechanism;
+\item The system keeps track of all the login attempts storing the corresponding IP addresses.
+\end{itemize}
+
+\subsubsection{Maintainability}
+The code of the whole software-to-be-developed must be thoroughly documented in order to let future developers easily know how the system works and how it has been designed. A version control system must be used to manage and organize all the different code revisions.
+
+\subsubsection{Portability}
+The server-side of the application shall be written in Java. Therefore it can be executed on any platform that supports the Java Virtual Machine and runs JEE. The web application must support the latest version of the main browsers like IE, Google Chrome and Firefox. The mobile application must be developed for both Android and iOS architectures.
+The car-side of the application is designed to run on the existing on-board computers. 
+
