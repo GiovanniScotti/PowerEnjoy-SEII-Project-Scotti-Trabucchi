@@ -7,7 +7,7 @@ The purpose of the functionality is that of allowing the user to unlock the car 
 Damian reserved a \emph{PowerEnJoy} car and is walking towards the vehicle location. When he reaches the car, he takes out his smartphone and opens the \emph{"Reserve Car"} function of the mobile app. The system shows the current reservation: since Damian is close enough to the car and the GPS is active on his mobile device, the \emph{"Unlock car"} button has been activated. He taps on the button and the car unlocks, enabling him to enter it.
 
 \subsubsection{Scenario 2}
-Elsa stayed out later than usual to study for her exams, and decided to rent a \emph{PowerEnJoy} car with her laptop. Her smartphone has low battery, so she decided to turn the GPS off to make the battery last longer. Once she gets to the car, she tries to unlock it by making the system detect her proximity. Since the button does not activate, she remembers that the GPS is off and decides to input the car code into the mobile app; she then looks at the code on the car windshield, opens the right function by tapping on the \emph{"Unlock with car code"} button and inputs the code. The system processes the request and, having verified that the user who inserted the code is the same who reserved the car, properly unlock the vehicle and lets Elsa enter it.
+Elsa stayed out later than usual to study for her exams, and decided to rent a \emph{PowerEnJoy} car with her laptop. Her smartphone has low battery, so she decided to turn the GPS off to make the battery last longer. Once she gets to the car, she tries to unlock it by making the system detect her proximity. Since the button does not activate, she remembers that the GPS is off and decides to input the car code into the mobile app; she then looks at the code on the car windshield, opens the right function by tapping on the \emph{"Unlock with car code"} button and inputs the 8-digit code. The system processes the request and, having verified that the user who inserted the code is the same who reserved the car, properly unlock the vehicle and lets Elsa enter it.
 
 \subsubsection{Use-case}
 A detail of the use-case is provided in Table \ref{unlock_car_uc}
@@ -18,6 +18,7 @@ A detail of the use-case is provided in Table \ref{unlock_car_uc}
 \item The system must guarantee to recognize the proximity of the user if he/she is within a 2 m radius from the car and has the GPS active on a mobile device;
 \item The system must always guarantee the possibility for the user to unlock the vehicle he/she reserved by inserting the code on the windshield instead of using the GPS proximity detection system;
 \item Upon every code insertion, the system must check that the code is the one associated with the car that the user who inserted the code reserved;
+\item The code on the windshield is unique for each car and it has a length of 8 digits.
 \end{enumerate}
 
 \begin{table}[H]
@@ -50,3 +51,11 @@ If the user inputs a wrong code when trying to unlock the car, the system will n
 \caption{Unlock car use-case}
 \label{unlock_car_uc}
 \end{table}
+
+\begin{figure}[H]
+\begin{center}
+		\includegraphics[width=0.4\textwidth]{./specific_requirements/features/diagrams/mobile_unlock.png}
+		\caption{Mockup of the mobile unlock feature accessible from the reservation screen.}
+		\label{mobile_unlock}
+\end{center}
+\end{figure}
