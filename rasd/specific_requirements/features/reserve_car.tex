@@ -30,7 +30,9 @@ The diagram for the standard behavior of the system in case of a car reservation
 \item The system must only show cars as available if they are within the Safe Area;
 \item The system must provide the position of all nearby vehicles in a radius of 2 km precisely for every address that was considered valid;
 \item The system must mark as available only cars that are not already reserved or out-of-service;
-\item If a user tries to reserve a car, but that car has been reserved by another user during the visualization of the available vehicles, the system must notify it with an error message;
+\item The system must check that only available vehicle can be rented;
+\item An available car can be rented by only one registered user at a time;
+\item If a user tries to reserve an car, but that car has been reserved by another user during the visualization of the available vehicles, the system must notify it with an error message;
 \item The system must allow to reserve cars only users that do not have an active reservation, that is to say a reservation not older than an hour;
 \item If a user has an active reservation, the system must show as first screen - upon the selection of the reservation function - the recap of said active reservation, including time of expiration and car location;
 \item If a user has an active reservation, the system must allow him/her to renounce to it by clicking on the \emph{"Release reservation"} button and confirming his/her intentions;
@@ -119,8 +121,16 @@ Exception & If the user changes his/her mind and wants to keep the current reser
 
 \begin{figure}[H]
 \begin{center}
-		\includegraphics[width=\textwidth]{./specific_requirements/features/diagrams/web_reserve_car.png}
+		\includegraphics[width=0.9\textwidth]{./specific_requirements/features/diagrams/web_reserve_car.png}
 		\caption{Mockup of the reservation web page}
 		\label{web_reserve_car}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+		\includegraphics[width=0.9\textwidth]{./specific_requirements/features/diagrams/web_recap_reserv.png}
+		\caption{Mockup of the reservation web page with an active reservation pending.}
+		\label{web_recap_reserv}
 \end{center}
 \end{figure}
