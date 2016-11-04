@@ -1,0 +1,39 @@
+\subsubsection{Purpose}
+As soon as a ride ends, the systems computes the charge that has to be applied to the driver. The system takes into accounts discounts and additional charges as well as regular charges for the car utilization. After that, the system can manage the payment by sending a request to the payment handler (see subsubsection \ref{man_pay}). If no errors occur, the system updates the payment and the ride history of the user.
+
+\subsubsection{Scenario 1}
+
+\subsubsection{Use-case}
+The apply charges use-case is shown in Table \ref{apply_charges_uc}.
+
+\subsubsection{Functional requirements}
+\begin{enumerate}
+\item The system must take into account discounts and additional charges when the final charge is calculated;
+\item The system shall apply charges to the user after the end of the ride.
+\end{enumerate}
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{p{0.3\textwidth} | p{0.7\textwidth}}
+\hline
+Actor & Logged user\\
+\hline
+Goal & Goal 6\\
+\hline
+Input Condition & The user's ride comes to an end.\\
+\hline
+Event Flow & 
+\begin{enumerate}
+\item The system calculate the amount of money the driver has to pay taking into account discounts and additional charges;
+\item The system manages the payment.
+\end{enumerate} \\
+\hline
+Output Condition & The system updates rides and payments history of the user.\\
+\hline
+Exception & If an error occurs at point 2 of the Event Flow, the system does not update the payments history and waits for the user's payment.\\
+\hline
+\end{tabular}
+\end{center}
+\caption{Apply charges use-case}
+\label{apply_charges_uc}
+\end{table}
