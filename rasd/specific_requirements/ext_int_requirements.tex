@@ -1,20 +1,20 @@
-\subsection{User interface}
+\subsection{User interfaces}
 The user interfaces must be strongly user-friendly, in order to provide an easy and intuitive way to access the system. To achieve this, the following constraints have to be satisfied by the web and mobile applications:
 \begin{itemize}
 \item The first page must always ask the user to login or register to the service;
 \item The main page must show a map with a search box in order to find all nearby available cars with respect to the specified address;
 \item The interface must offer the possibility to choose between a set of different languages;
-\item A toolbar must be visible in every screen except the first page;
+\item A toolbar must be accessible from every screen except the login/register page;
 \item The toolbar must offer a quick and simple overview of the main system functionalities (reserve a car, show personal information area, log out...);
 \item The user interface must dynamically adapt to the screen size;
 \item In order to enhance the user experience, the web application and the mobile one must use the same graphical elements and layouts.
 \end{itemize}
 With respect to the on-board computer application, the restrictions are the following:
 \begin{itemize}
-\item After the car has been unlocked, the display of the on-board computer must turn on and show a screen thats allows the user to input his/her PIN in order to start the ride;
+\item After the car has been unlocked, the display of the on-board computer must turn on and show a screen thats allows the user to perform the provided authentication method in order to start the ride;
 \item Once the ride starts, the screen must clearly show the current charges;
 \item Similarly, during the ride, the screen must clearly show the nearby charging spots and visually signal the Safe Area boundaries;
-\item When the car is available, the screen must always be off.
+\item When the car is locked, the screen must always be off.
 \end{itemize}
 Some mock-ups that give an overall idea of the interface structure of the applications are provided in the next section (\ref{fun_req}).
 In addition to that, several application-dependent constraints are provided:
@@ -37,10 +37,10 @@ In addition to that, several application-dependent constraints are provided:
 	\end{itemize}
 \end{itemize}
 
-\subsection{Hardware interface}
-The most relevant aspect to highlight, in addition to section \ref{hw_int}, is the ability of the system-to-be to communicate with the car systems via the embedded computer located in the car itself that takes the advantage of the on-board computer application to be developed. The on-board computer can communicate with the mobile broadband thanks to a SIM and provides a GPS module exploitable by the car-side of the application.
+\subsection{Hardware interfaces}
+The most relevant aspect to highlight, in addition to section \ref{hw_int}, is the ability of the system-to-be to communicate with the car systems via the embedded computer located in the car itself that takes the advantage of the on-board computer application to be developed. The on-board computer can communicate with the mobile broadband and provides a GPS module exploitable by the car-side of the application.
 
-\subsection{Software interface}
+\subsection{Software interfaces}
 The server side of the application, that represents the back-end of the system-to-be, requires the following software products:
 \begin{itemize}
 \item Java EE 8 - \url{http://www.oracle.com/technetwork/java/javaee/overview/index.html}
@@ -49,6 +49,6 @@ The server side of the application, that represents the back-end of the system-t
 
 The embedded on-board computer located in each car provides a Linux OS that is capable to run C/C++ programs. Moreover the car-side of the application can use specific software libraries provided by the manufacturer to access the car systems the computer is connected with.
 
-\subsection{Communication interface}
+\subsection{Communication interfaces}
 The clients communicate with the server via HTTPS protocol by using TCP and default port 443.
-Moreover a safe and stable connection is also established between the server and the payment handler whenever the user performs a payment. The systems talks to the maintenance technicians via SMTP protocol and simple auto-generated e-mail messages.
+Moreover a safe and stable connection is also established between the server and the payment handler whenever the user performs a payment. The existing maintenance system accesses the database of the system-to-be with an equally safe and stable connection.
