@@ -27,10 +27,11 @@ The diagram for the standard behavior of the system in case of a car reservation
 \begin{enumerate}
 \item Only addresses within a distance of 2 km from the Safe Area boundaries must be considered valid;
 \item If a user inputs a non-valid address, the system must notify him/her with an error message saying that he/she is too far from the Safe Area to locate a car nearby;
-\item The system must only show cars as available if they are within the Safe Area;
+\item The system must only show available cars if they are within the Safe Area;
 \item The system must provide the position of all nearby vehicles in a radius of 2 km precisely for every address that was considered valid;
 \item The system must mark as available only cars that are not already reserved or out-of-service;
 \item The system must check that only available vehicle can be rented;
+\item The system must mark as reserved any rented vehicle;
 \item An available car can be rented by only one registered user at a time;
 \item If a user tries to reserve an car, but that car has been reserved by another user during the visualization of the available vehicles, the system must notify it with an error message;
 \item The system must allow to reserve cars only users that do not have an active reservation, that is to say a reservation not older than an hour;
@@ -60,7 +61,7 @@ The diagram for the standard behavior of the system in case of a car reservation
 \begin{center}
 \begin{tabular}{p{0.3\textwidth} | p{0.7\textwidth}}
 \hline
-Actor & User\\
+Actor & Logged user\\
 \hline
 Goal & Goal 3\\
 \hline
@@ -77,7 +78,7 @@ Event Flow &
 \item The system confirms the reservation to the user, reminding him/her of the fact that the reservation will expire in an hour of time with a small fee if the car is not actually used.
 \end{enumerate} \\
 \hline
-Output Condition & The system notifies the user that the reservation was successful and marks the chosen car as reserved and not available.\\
+Output Condition & The system notifies the user that the reservation was successful and marks the chosen car as reserved.\\
 \hline
 Exception & If the user tries to reserve more than one car, the system notifies him/her that this action is forbidden.
 
@@ -93,7 +94,7 @@ If the user changes his/her mind and decides not to reserve a car, the event flo
 \begin{center}
 \begin{tabular}{p{0.3\textwidth} | p{0.7\textwidth}}
 \hline
-Actor & User\\
+Actor & Logged User\\
 \hline
 Goal & Goal 3\\
 \hline
@@ -130,7 +131,7 @@ Exception & If the user changes his/her mind and wants to keep the current reser
 \begin{figure}[H]
 \begin{center}
 		\includegraphics[width=0.9\textwidth]{./specific_requirements/features/diagrams/web_recap_reserv.png}
-		\caption{Mockup of the reservation web page with an active reservation pending.}
+		\caption{Mockup of the reservation web page with a pending active reservation.}
 		\label{web_recap_reserv}
 \end{center}
 \end{figure}
