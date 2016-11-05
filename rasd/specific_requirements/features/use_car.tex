@@ -12,8 +12,10 @@ The on-board computer application will detect the beginning and end of the ride,
 This feature triggers the notifications sent to the existing maintenance system, as it includes the detection of out-of-service vehicles.
 
 \subsubsection{Scenario 1}
+Vincent reserved a \emph{PowerEnJoy} car to reach a far destination within his city. He reaches the vehicle and unlocks the car with his smartphone's GPS. Once aboard, he performs the authentication procedure and turns the car on, then starts his ride. Arrived at his destination, Vincent pulls over and checks that he did not park outside the Safe Area: since he did not, he turns the engine on and gets off the car. The system locks the car and applies all charges, initiating the automatic payment process.
 
 \subsubsection{Scenario 2}
+Wanda decided to rent a shared car instead of taking the subway train home. She reserved one on \emph{PowerEnJoy} and is now walking towards it. She unlocks the car properly and gets on it; after proper authentication, she starts driving. Her house is a the opposite border of the Safe Area, so she drives for a long time before arriving to her destination. Once she stops the engine, the system recognizes that the battery level is below 20\%: it immediately proceeds to check the vicinity for charging stations. The system does not find any nearby so, after 5 minutes, it marks the car as "out-of-service", and Wanda is charged the correct amount of money for the ride.
 
 \subsubsection{Use-case}
 A general use-case analysis is provided in Table \ref{use_car_uc}. The subparts are detailed in the following subsections as specified in "Purpose" above. \\
@@ -51,7 +53,7 @@ Event Flow &
 \item The system applies all charges, including additional ones and eventual discounts (see detail in section \ref{apply_charges_section});
 \end{enumerate} \\
 \hline
-Output Condition & The car is marked as available again.\\
+Output Condition & After the end of the ride and a 5 minute period used to perform eventual additional checks, the user ends the use of the service.\\
 \hline
 Exception & If the ride ends and the battery is more than 80\% empty, the vehicle is marked as "out-of-order" instead of "available".
 
