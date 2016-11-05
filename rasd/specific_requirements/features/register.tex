@@ -1,7 +1,7 @@
 \subsubsection{Purpose}
-The user who wants to subscribe to the \emph{PowerEnJoy} service can carry out the registration process through the mobile application or the web one. First of all the user has to fill a registration form with his/her personal information and accept the Terms and Conditions of use otherwise the procedure will be aborted.
+Anyone who wants to subscribe to the \emph{PowerEnJoy} service can carry out the registration process through the mobile application or the web one. First of all the guest has to fill a registration form with his/her personal information and accept the Terms and Conditions of use otherwise the procedure will be aborted.
 
-As soon as the user submits the data, the system checks all the information and sends a confirmation e-mail to the specified e-mail address including the password to access the service and the information about the provided authentication method required to start the car engine.
+As soon as the guest submits the data, the system checks all the information and sends a confirmation e-mail to the specified e-mail address including the password to access the service and the information about the provided authentication method required to start the car engine.
 
 \subsubsection{Scenario 1}
 Marta would like to register to the \emph{PowerEnJoy} rental service from her computer. She opens the browser and loads the registration page by clicking on the \emph{"sign up"} button located in the \emph{PowerEnJoy} login page. She fills in the registration form and agrees the service Terms and Conditions. Then Marta submits everything to the system, that checks the personal data. Authentication information is sent to Marta in a confirmation e-mail notifying the successful registration.
@@ -36,9 +36,9 @@ The activity diagram of the registration procedure is shown in Figure \ref{regis
 	\item favourite payment method
 	\end{itemize}
 \item There must not be another subscribed user with the same identity card number, tax code or license ID;
-\item Until the user does not accept the Terms and Conditions of use, the registration process must not be concluded by the system;
-\item The system must send an e-mail containing authentication information to the e-mail address specified by the user when he/she clicks on \emph{"Submit"} button and all the required information has been entered;
-\item The system allows the user to exit the registration process at any time;
+\item Until the guest does not accept the Terms and Conditions of use, the registration process must not be concluded by the system;
+\item The system must send an e-mail containing authentication information to the e-mail address specified by the guest when he/she clicks on \emph{"Submit"} button and all the required information has been entered;
+\item The system allows the guest to exit the registration process at any time;
 \end{enumerate}
 
 \begin{figure}[H]
@@ -53,26 +53,26 @@ The activity diagram of the registration procedure is shown in Figure \ref{regis
 \begin{center}
 \begin{tabular}{p{0.3\textwidth} | p{0.7\textwidth}}
 \hline
-Actor & User\\
+Actor & Guest\\
 \hline
 Goal & Goal 1\\
 \hline
-Input Condition & The user wants to subscribe to the service.\\
+Input Condition & A person wants to subscribe to the service.\\
 \hline
 Event Flow & 
 \begin{enumerate}
-\item The user opens the \emph{PowerEnJoy} home page or the mobile application and clicks or taps on the "Sign up" button;
-\item The registration form is loaded and the user fills in all the fields with his/her personal information;
-\item The user agrees the service Terms and Conditions by checking the corresponding box;
-\item The user clicks on \emph{"Submit"} button;
+\item The guest opens the \emph{PowerEnJoy} home page or the mobile application and clicks or taps on the "Sign up" button;
+\item The registration form is loaded and the guest fills in all the fields with his/her personal information;
+\item The guest agrees the service Terms and Conditions by checking the corresponding box;
+\item The guest clicks on \emph{"Submit"} button;
 \item The system saves the data in its database and sends a confirmation e-mail containing the authentication information to the newly registered user.
 \end{enumerate} \\
 \hline
 Output Condition & The system tells the user he/she is successfully subscribed and lets him/her to log in with the provided credentials.\\
 \hline
-Exception & When some exceptions occur, the system reloads the registration form and goes back to step 2 of Event Flow notifying the user about the error. This happens when the following requirements are not satisfied: 1, 2, 3.
+Exception & When some exceptions occur, the system reloads the registration form and goes back to step 2 of Event Flow notifying the guest about the error. This happens when the following requirements are not satisfied: 1, 2, 3.
 
-The registration process is aborted when the user decides not to carry it out completely or when requirement 4 generates an exception.\\
+The registration process is aborted when the guest decides not to carry it out completely or when requirement 4 generates an exception.\\
 \hline
 \end{tabular}
 \end{center}
