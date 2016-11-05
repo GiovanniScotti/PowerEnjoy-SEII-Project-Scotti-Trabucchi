@@ -19,8 +19,10 @@ A detail of the use-case is provided in Table \ref{end_ride_uc}
 \begin{enumerate}
 \item The system must verify that every passenger - driver included - got off the cars before locking them;
 \item The sytem must verify that the engine is turned off before ending the ride;
-\item The system must check that the vehicle is stopped within the Safe Area before ending the ride, and must notify the user if this is not the case;
-\item The system must check whether a car that was left in a charging spot was plugged to the power grid or not and memorize this information as an additional detail about the ride.
+\item The system must check that the vehicle is stopped within the Safe Area before ending the ride;
+\item The system must notify the user he/she didn't park the vehicle within the Safe Area;
+\item The system must not allow to end a ride outside the Safe Area;
+\item The system must keep charging the user if he/she tries to end the ride outside the Safe Area;
 \end{enumerate}
 
 \begin{table}[H]
@@ -40,13 +42,11 @@ Event Flow &
 \item The system locks the car.
 \end{enumerate} \\
 \hline
-Output Condition & The car is locked and marked as available again, the ride ended.\\
+Output Condition & The car is locked and marked as "available" again, the ride ends.\\
 \hline
 Exception & If a user tries to end a ride outside the Safe Area, he/she is notified that he/she is not allowed to and keeps being charged for the ride until he reaches the Safe Area and stops there.
 
-If a user does not turn the car engine off and gets off the car, the ride continues and he/she keeps being charged by the system.
-
-If a user leaves the car in a charging spot, the system checks whether he/she actually plugs the vehicle to the power grid or not and memorizes this information.\\
+If a user does not turn the car engine off and gets off the car, the ride continues and he/she keeps being charged by the system.\\
 \hline
 \end{tabular}
 \end{center}
