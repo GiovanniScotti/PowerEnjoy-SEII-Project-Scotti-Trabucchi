@@ -1,15 +1,15 @@
 \subsubsection{Purpose}
 The user who wants to subscribe to the \emph{PowerEnJoy} service can carry out the registration process through the mobile application or the web one. First of all the user has to fill a registration form with his/her personal information and accept the Terms and Conditions of use otherwise the procedure will be aborted.
 
-As soon as the user submits the data, the system checks all the information and sends a confirmation e-mail to the specified e-mail address including the password to access the service and the personal PIN required to start the car engine.
+As soon as the user submits the data, the system checks all the information and sends a confirmation e-mail to the specified e-mail address including the password to access the service and the information about the provided authentication method required to start the car engine.
 
 \subsubsection{Scenario 1}
-Marta would like to register to the \emph{PowerEnJoy} rental service from her computer. She opens the browser and loads the registration page by clicking on the \emph{"sign up"} button located in the \emph{PowerEnJoy} login page. She fills in the registration form and agrees the service Terms and Conditions. Then Marta submits everything to the system, that checks the personal data. Personal PIN and password are sent to Marta in a confirmation e-mail notifying the successful registration.
+Marta would like to register to the \emph{PowerEnJoy} rental service from her computer. She opens the browser and loads the registration page by clicking on the \emph{"sign up"} button located in the \emph{PowerEnJoy} login page. She fills in the registration form and agrees the service Terms and Conditions. Then Marta submits everything to the system, that checks the personal data. Authentication information is sent to Marta in a confirmation e-mail notifying the successful registration.
 
 \subsubsection{Scenario 2}
 Yuri cannot afford a car and therefore decides to take advantage of the \emph{PowerEnJoy} service. He accesses the login page from his mobile phone and taps the \emph{"sign up"} button since he is not a registered user. Then he fills in the form and accepts the Terms and Conditions of use.
 
-Unfortunately he forgets to fill in his own tax code and the system does not allow him to carry out a successful registration notifying the forgetfulness. Afterwards Yuri completes the procedure by filling the whole form. The system communicates the successful registration and sends him a confirmation e-mail containing PIN and password.
+Unfortunately he forgets to fill in his own tax code and the system does not allow him to carry out a successful registration notifying the forgetfulness. Afterwards Yuri completes the procedure by filling the whole form. The system communicates the successful registration and sends him a confirmation e-mail containing authentication information.
 
 \subsubsection{Use-case}
 
@@ -22,8 +22,8 @@ The activity diagram of the registration procedure is shown in Figure \ref{regis
 
 \subsubsection{Functional requirements}
 \begin{enumerate}
-\item The user must not enter an already registered e-mail address to perform the registration process;
-\item The user must provide the following personal information:
+\item The system must not accept an already registered e-mail address for the registration process;
+\item The system must request for the following mandatory personal information:
 	\begin{itemize}
 	\item e-mail address
 	\item name
@@ -33,21 +33,18 @@ The activity diagram of the registration procedure is shown in Figure \ref{regis
 	\item license ID number
 	\item address
 	\item phone number
-	\item credit/prepaid card or \emph{PayPal\textsuperscript{TM}} account credentials
+	\item favourite payment method
 	\end{itemize}
 \item There must not be another subscribed user with the same identity card number, tax code or license ID;
-\item If the user does not agree the Terms and Conditions of use, the registration process is canceled;
-\item The system must send an e-mail containing PIN and password to the e-mail address specified by the user when he/she clicks on \emph{"Submit"} button and all the required information has been entered;
+\item Until the user does not accept the Terms and Conditions of use, the registration process must not be concluded by the system;
+\item The system must send an e-mail containing authentication information to the e-mail address specified by the user when he/she clicks on \emph{"Submit"} button and all the required information has been entered;
 \item The system allows the user to exit the registration process at any time;
-\item The system must allow the user to provide either a valid credit/prepaid card number or \emph{PayPal\textsuperscript{TM}} account credentials to perform the payments;
-\item The PIN provided by the system in the confirmation e-mail is made by only digits and has a length of 6;
-\item The password provided by the system in the confirmation e-mail is made by both digits and letters (capital and not) and has a length of 8.
 \end{enumerate}
 
 \begin{figure}[H]
 \begin{center}
 		\includegraphics[width=0.9\textwidth]{./specific_requirements/features/diagrams/registration_proc_uc.png}
-		\caption{Detailed use-case diagram of the registration process.}
+		\caption{Detailed use-case diagram of the registration process.\\Note: the authentication information includes both password and the detailed explanation of the provided authentication method used to unlock cars}
 		\label{register_det_uc}
 \end{center}
 \end{figure}
@@ -68,14 +65,14 @@ Event Flow &
 \item The registration form is loaded and the user fills in all the fields with his/her personal information;
 \item The user agrees the service Terms and Conditions by checking the corresponding box;
 \item The user clicks on \emph{"Submit"} button;
-\item The system saves the data in its database and sends a confirmation e-mail containing PIN and password to the new registered user.
+\item The system saves the data in its database and sends a confirmation e-mail containing the authentication information to the newly registered user.
 \end{enumerate} \\
 \hline
 Output Condition & The system tells the user he/she is successfully subscribed and lets him/her to log in with the provided credentials.\\
 \hline
 Exception & When some exceptions occur, the system reloads the registration form and goes back to step 2 of Event Flow notifying the user about the error. This happens when the following requirements are not satisfied: 1, 2, 3.
 
-The registration process is aborted when the user decides not to carry it out completely or when requirement 4 generate an exception.\\
+The registration process is aborted when the user decides not to carry it out completely or when requirement 4 generates an exception.\\
 \hline
 \end{tabular}
 \end{center}
@@ -94,6 +91,6 @@ The registration process is aborted when the user decides not to carry it out co
 \begin{figure}[H]
 \begin{center}
 		\includegraphics[width=0.8\textwidth]{./specific_requirements/features/diagrams/web_registration.png}
-		\caption{Mockup of the sign up webpage.}
+		\caption{Mockup of the sign up webpage.\\Note: the \emph{"Payment Method"} field contains an example of possible choices that will be defined in the implementation phase.}
 \end{center}
 \end{figure}
