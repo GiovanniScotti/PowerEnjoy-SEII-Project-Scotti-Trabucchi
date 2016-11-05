@@ -1,5 +1,5 @@
 \subsubsection{Purpose}
-The system is able to incentivize virtuous users and discourage bad ones thanks to discounts and additional charges that are applied in the context of a specific ride. Whenever the system detects one or more of these situations, it notifies the user and updates the ride current charges.
+The system is able to incentivize virtuous users and discourage bad ones thanks to discounts and additional charges that are applied in the context of a specific ride. Whenever the system detects one or more of these situations, it notifies the user and updates the current charges for the ride.
 
 \subsubsection{Scenario 1}
 
@@ -9,14 +9,14 @@ The apply discount use-case is shown in Table \ref{apply_discounts_uc}.
 
 \subsubsection{Functional requirements}
 \begin{enumerate}
-\item The system must be aware of a set of virtuous and additional-charges situations;
+\item The system must refer to a given of a set of virtuous and additional-charges situations;
 \item The system must memorize, in the context of the current ride, the discounts and additional charges in order to correctly charge the user at the end of the ride;
 \item The system must notify the user whenever a discount/additional charge situation is detected;
 \item The system shall be aware of the number of people inside a rented car;
 \item The system shall be aware of the battery level of any rented car;
-\item The system must recognize if, at the end of a ride, the user puts the plug in the car;
-\item The system must know about the location of power grid stations in the Safe Area;
-\item If the system detects two or more virtuous situations, only the one with the biggest discount will be applied;
+\item The system must recognize if, within 5 minutes from the end of a ride, the user plugs the car to the grid;
+\item The system must be able to identify the location of power grid stations near the car position;
+\item If the system detects two or more virtuous situations, only the largest discount will be applied;
 \item If the system detects two or more situations of additional charges, all their effects on the current charge will be applied.
 \end{enumerate}
 
@@ -35,7 +35,7 @@ Event Flow &
 \item The system memorizes the additional charge and links it to the user current ride;
 \end{enumerate} \\
 \hline
-Output Condition & The system notifies the user about the incoming additional charge.\\
+Output Condition & The system notifies the user about the additional charge.\\
 \hline
 Exception & None.\\
 \hline
@@ -53,18 +53,18 @@ Actor & Virtuous user\\
 \hline
 Goal & Goal 9\\
 \hline
-Input Condition & In the context of the current ride, the system detects a situation that results in discount.\\
+Input Condition & In the context of the current ride, the system detects a situation that results in a discount.\\
 \hline
 Event Flow & 
 \begin{enumerate}
 \item The system checks for a pending discount on the current user ride;
-\item If there is any, the system compares it with the new one and keeps the higher discount;
-\item The system memorizes the discount and links it to the user current ride;
+\item If there is any, the system compares it with the new one and keeps the highest one;
+\item The system memorizes the highest discount and links it to the user current ride;
 \end{enumerate} \\
 \hline
-Output Condition & The system notifies the user about the incoming discount on the current charge.\\
+Output Condition & The system notifies the user about the discount on the current charge.\\
 \hline
-Exception & If a higher discount is detected at point 2, the user is notified about the new discount percentage.\\
+Exception & None.\\
 \hline
 \end{tabular}
 \end{center}

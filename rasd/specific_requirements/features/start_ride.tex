@@ -1,31 +1,32 @@
 \subsubsection{Purpose}
 This sub-part of the "Use Car" functionality focuses on the sub-functionalities concerned with the interaction between the user and the on-board application in order to allow the user to turn the engine on.
 
-The system will interact with the user prompting him/her after the car has been unlocked and asking to input his/her PIN. This process will grant access to the car systems, hence allowing the user to start the ride.
+The system will interact with the user prompting him/her after the car has been unlocked and asking to proceed with the specified authentication method. This process will grant access to the car systems, hence allowing the user to start the ride.
 
 Right after the engine has been ignited, the on-board application will also start charging the user, all while showing him/her the current charges on the screen, along with the sat-nav that is also going to signal nearby charging stations and the boundaries of the Safe Area.
 
 \subsubsection{Scenario 1}
-Francis just unlocked the car he reserved using the \emph{PowerEnJoy} service. He sits on the driver's side and closes the door. The screen of the on-board computer is turned on and the system prompts Francis to insert his PIN. He inserts the 6-digit code correctly; the message \emph{"You can now turn the engine on. Once you do so, the system will start charging you based on the duration of the ride."} appears on the screen. Francis turns the engine on and the system shows him his current charges; he then proceeds to drive the car, starting his ride.
+Francis just unlocked the car he reserved using the \emph{PowerEnJoy} service. He sits on the driver's side and closes the door. The screen of the on-board computer is turned on and the system prompts Francis to authenticate. He performs the authentication procedure correctly; the message \emph{"You can now turn the engine on. Once you do so, the system will start charging you based on the duration of the ride."} appears on the screen. Francis turns the engine on and the system shows him his current charges; he then proceeds to drive the car, starting his ride.
 
 \subsubsection{Scenario 2}
-Graham mounted on a \emph{PowerEnJoy} vehicle he just reserved and unlocked. When he inputs the PIN after being prompted by the system, he mistypes one of the 6 digits. The system then shows an error message saying: \emph{"The inserted code is either wrong or does not correspond to the person who reserved this car. Please, retry or use the correct PIN."}. Graham then inserts his code again; this time it is correct, and the system allows him to drive the car.
+Graham mounted on a \emph{PowerEnJoy} vehicle he just reserved and unlocked. When he authenticates after being prompted by the system, he makes an error. The system then shows an error message. Graham then repeats the procedure properly; this time it is correct, and the system allows him to drive the car.
 
 \subsubsection{Use-case}
 A detail of the use-case is provided in Table \ref{start_ride_uc}
 
 \subsubsection{Functional Requirements}
 \begin{enumerate}
-\item The system must check that the code inserted by the user is correct, which is to say that it corresponds to the right user;
+\item The system must check that the authentication method is followed properly;
 \item The system must start charging the user only after he/she turned the engine on;
 \item The system must always notify the user about his/her current charges;
+\item The system must mark the car as "in-use" as soon as the engine is ignited;
 \end{enumerate}
 
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{p{0.3\textwidth} | p{0.7\textwidth}}
 \hline
-Actor & User\\
+Actor & Logged user\\
 \hline
 Goal & Goal 7\\
 \hline
@@ -33,14 +34,15 @@ Input Condition & The user unlocked the car\\
 \hline
 Event Flow & 
 \begin{enumerate}
-\item The user inputs his/her PIN code on the on-board screen;
-\item The system analyzes the code and verifies that the code is correct;
+\item The user performs the authentication procedure interacting with the on-board screen;
+\item The system analyzes the procedure correctness;
 \item The system opens the possibility for the user to ignite the engine and start his/her ride.
+\item The user ignites the engine and starts the ride;
 \end{enumerate} \\
 \hline
-Output Condition & The ride started, the system started charging the user\\
+Output Condition & The ride starts, the system starts charging the user. The car status becomes "in-use"\\
 \hline
-Exception & If the user inputs a wrong PIN, the system will notify it and report an error message; in this case, the car still can not be turned on.\\
+Exception & If the user makes an error while authenticating, the system will notify it and report an error message; in this case, the car still can not be turned on.\\
 \hline
 \end{tabular}
 \end{center}
