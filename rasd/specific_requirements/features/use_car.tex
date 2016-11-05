@@ -16,7 +16,8 @@ This feature triggers the notifications sent to the existing maintenance system,
 \subsubsection{Scenario 2}
 
 \subsubsection{Use-case}
-A general use-case analysis is provided in Table \ref{use_car_uc}. The subparts are detailed in the following subsections as specified in "Purpose" above.
+A general use-case analysis is provided in Table \ref{use_car_uc}. The subparts are detailed in the following subsections as specified in "Purpose" above. \\
+A statechart of the possible states of a car is shown in Figure \ref{use_car_sc}.
 
 \subsubsection{Functional Requirements}
 The requirements listed below do not include the ones covered within the sub-parts mentioned above. To have a detailed overview of all the requirements related to the sub-functionalities, see the subsections mentioned in "Purpose".
@@ -63,3 +64,11 @@ If more than 15 minutes pass between a car being unlocked and it being turned on
 \caption{Use car general use-case}
 \label{use_car_uc}
 \end{table}
+
+\begin{figure}[H]
+\begin{center}
+		\includegraphics[width=\textwidth]{./specific_requirements/features/diagrams/use_car_sc.png}
+		\caption{Statechart of the car usage.}
+		\label{use_car_sc}
+\end{center}
+\end{figure}
