@@ -12,6 +12,9 @@ Elsa stayed out later than usual to study for her exams, and decided to rent a \
 \subsubsection{Use-case}
 A detail of the use-case is provided in Table \ref{unlock_car_uc}
 
+\subsubsection{Sequence diagram}
+A UML sequence diagram is provided to detail the alternative flows that can occur in case the user tries to unlock the car with the vehicle-specific code mentioned above. The diagram is shown in Figure \ref{unlock_sd}
+
 \subsubsection{Functional requirements}
 \begin{enumerate}
 \item Upon every try, the system must check that the user trying to unlock the car is the same that reserved it;
@@ -21,6 +24,14 @@ A detail of the use-case is provided in Table \ref{unlock_car_uc}
 \item The vehicle-specific code must be unique for each car.
 \item The reservation expiration timer must stop as soon as the car is unlocked;
 \end{enumerate}
+
+\begin{figure}[H]
+\begin{center}
+		\includegraphics[width=\textwidth]{./specific_requirements/features/diagrams/unlock_car_sd.png}
+		\caption{Sequence diagram for the unlock process in case the user decides to input the car code.}
+		\label{unlock_sd}
+\end{center}
+\end{figure}
 
 \begin{table}[H]
 \begin{center}

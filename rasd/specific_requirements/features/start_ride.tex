@@ -14,6 +14,9 @@ Graham mounted on a \emph{PowerEnJoy} vehicle he just reserved and unlocked. Whe
 \subsubsection{Use-case}
 A detail of the use-case is provided in Table \ref{start_ride_uc}
 
+\subsubsection{Sequence diagram}
+A UML sequence diagram is provided to detail the standard behavior of the system upon performance of the authentication method. The diagram is in Figure \ref{start_sd}.
+
 \subsubsection{Functional Requirements}
 \begin{enumerate}
 \item The system must check that the authentication method is followed properly;
@@ -21,6 +24,14 @@ A detail of the use-case is provided in Table \ref{start_ride_uc}
 \item The system must always notify the user about his/her current charges;
 \item The system must mark the car as "in-use" as soon as the engine is ignited;
 \end{enumerate}
+
+\begin{figure}[H]
+\begin{center}
+		\includegraphics[width=\textwidth]{./specific_requirements/features/diagrams/start_ride_sd.png}
+		\caption{Sequence diagram for the process of starting a ride in a standard situation.}
+		\label{start_sd}
+\end{center}
+\end{figure}
 
 \begin{table}[H]
 \begin{center}
