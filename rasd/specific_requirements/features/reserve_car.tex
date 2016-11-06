@@ -15,9 +15,9 @@ Bob is in town and has just finished shopping. He wants to go back home, but doe
 Carla is in need of a car after work, and decides to use a \emph{PowerEnJoy} one. She is looking at the reservation screen and decides to reserve a vehicle by selecting it. Since she is not sure that she will be able to reach the vehicle easily, she tries to reserve a second one after a few minutes. At that point, the system shows a visual recap of her current reservation. Carla tries to access the city map, but the system prevents her to do so, unless she cancels her current reservation. So she renounces to the second reservation and the system does not change anything about the active reservation status.
 
 \subsubsection{Use-case}
-A more detailed use-case diagram is provided in order to model the possibility of releasing an existing reservation. The detail of the use-case diagram is shown in Figure \ref{request_car_uc}.
+A more detailed use-case diagram is provided in order to model the possibility of releasing an existing reservation. The detail of the use-case diagram is shown in Figure \ref{request_car_uc}. \\
 
-The use-case for the standard procedure needed to request a car is analyzed in Table \ref{reserve_car_uc}.
+The use-case for the standard procedure needed to request a car is analyzed in Table \ref{reserve_car_uc}. \\
 The use-case for the procedure needed to release an existing reservation is analyzed in Table \ref{reserve_car_uc_alt}.
 
 \subsubsection{Sequence diagram}
@@ -61,11 +61,11 @@ The diagram for the standard behavior of the system in case of a car reservation
 \begin{center}
 \begin{tabular}{p{0.3\textwidth} | p{0.7\textwidth}}
 \hline
-Actor & Logged user\\
+Actor & User\\
 \hline
 Goal & Goal 3\\
 \hline
-Input Condition & The user is logged in and has no active reservations\\
+Input Condition & The user has no active reservations\\
 \hline
 Event Flow & 
 \begin{enumerate}
@@ -94,11 +94,11 @@ If the user changes his/her mind and decides not to reserve a car, the event flo
 \begin{center}
 \begin{tabular}{p{0.3\textwidth} | p{0.7\textwidth}}
 \hline
-Actor & Logged User\\
+Actor & User\\
 \hline
 Goal & Goal 3\\
 \hline
-Input Condition & The user is logged in and has an active reservation not older than an hour\\
+Input Condition & The user has an active reservation not older than an hour\\
 \hline
 Event Flow & 
 \begin{enumerate}

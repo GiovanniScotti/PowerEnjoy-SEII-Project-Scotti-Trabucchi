@@ -1,7 +1,7 @@
 \subsubsection{Purpose}
-Both the mobile application and the web one provide the chance to any registered and logged user to view and update the personal profile information. The system is able to provide also information about the reservations and rides history as well as the respective payments.
+Both the mobile application and the web one provide the chance to any user to view and update the personal profile information. The system is able to provide also information about the reservations and rides history as well as the respective payments.
 
-Moreover the logged user is allowed to delete his/her account if the service is no longer needed.
+Moreover the user is allowed to delete his/her account if the service is no longer needed.
 
 \subsubsection{Scenario 1}
 Anna has already carried out the registration process, but she does not like the password the system provided her because it is hard to remember. Therefore she decides to log in from her mobile phone and access the personal information area through the designated toolbar.
@@ -14,11 +14,6 @@ Flavio has recently renewed his identity card. In order to take the advantage of
 Then he access his personal information area and clicks \emph{"Edit Profile"}. He fills in the gap corresponding to the ID card number and, as soon as Flavio is ready, he clicks on the \emph{"Confirm"} button and the system confirms the ID card number has been successfully updated.
 
 \subsubsection{Scenario 3}
-Diana has carried out the subscription to \emph{PowerEnJoy} providing her credit card number. She creates a \emph{PayPal\textsuperscript{TM}} account and wants to use it as payment method whenever she rents a car. In order to do that, she logs in from her browser and accesses her personal information area.
-
-Diana selects \emph{"Edit Profile"} and changes the payment method from credit card to \emph{PayPal\textsuperscript{TM}}. The system immediately asks for her \emph{PayPal\textsuperscript{TM}} credentials which will be used to perform payments automatically. She provides the information and confirms the change. The system informs her that the payment method has been successfully modified.
-
-\subsubsection{Scenario 4}
 Emma wants to delete her \emph{PowerEnJoy} account because she does not need the service anymore. She logs in from her mobile phone and enters her personal information area. She selects \emph{"Edit Profile"}, taps \emph{"Delete Account"} and confirms her choice twice. The system removes immediately all Emma's information from the database. From now on she needs a new account in order to access the system again.
 
 \subsubsection{Use-case}
@@ -29,13 +24,13 @@ The use-case of delete profile procedure is analyzed in Table \ref{delete_profil
 
 \subsubsection{Functional requirements}
 \begin{enumerate}
-\item The system allows logged user to view his/her profile. When the user enters his/her personal information area, the system must display:
+\item The system allows the user to view his/her profile. When the user enters his/her personal information area, the system must display:
 	\begin{itemize}
 	\item all the user's personal information that has been entered during the registration process;
 	\item the rides and reservations history;
 	\item the payments history.
 	\end{itemize}
-\item The system allows logged user to modify his/her personal information as needed:
+\item The system allows user to modify his/her personal information as needed:
 	\begin{itemize}
 	\item the system allows to change any information except e-mail address and authentication method related ones when the user selects \emph{"Edit Profile"};
 	\item the system asks the user to enter the old password and two times the new one whenever he/she needs to change it;
@@ -63,11 +58,11 @@ The use-case of delete profile procedure is analyzed in Table \ref{delete_profil
 \begin{center}
 \begin{tabular}{p{0.3\textwidth} | p{0.7\textwidth}}
 \hline
-Actor & Logged user\\
+Actor & User\\
 \hline
 Goal & Goal 2\\
 \hline
-Input Condition & The user is already authenticated and wants his/her profile information to be displayed.\\
+Input Condition & The authenticated user wants his/her profile information to be displayed.\\
 \hline
 Event Flow & 
 \begin{enumerate}
@@ -90,11 +85,11 @@ None.\\
 \begin{center}
 \begin{tabular}{p{0.3\textwidth} | p{0.7\textwidth}}
 \hline
-Actor & Logged user\\
+Actor & User\\
 \hline
 Goal & Goal 2\\
 \hline
-Input Condition & The user is already authenticated and wants to edit his/her profile information.\\
+Input Condition & The authenticated user wants to edit his/her profile information.\\
 \hline
 Event Flow & 
 \begin{enumerate}
@@ -119,11 +114,11 @@ Exception & Every time the user does not satisfy one of the requirements listed 
 \begin{center}
 \begin{tabular}{p{0.3\textwidth} | p{0.7\textwidth}}
 \hline
-Actor & Logged user\\
+Actor & User\\
 \hline
 Goal & Goal 2\\
 \hline
-Input Condition & The user is already authenticated and wants to delete completely his/her profile.\\
+Input Condition & The authenticated user wants to delete completely his/her profile.\\
 \hline
 Event Flow & 
 \begin{enumerate}
