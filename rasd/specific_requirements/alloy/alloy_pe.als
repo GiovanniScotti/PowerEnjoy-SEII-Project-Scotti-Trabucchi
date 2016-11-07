@@ -11,28 +11,53 @@ sig User {
 	phoneNumber: one Int,
 	paymentMethod: one PaymentMethod,
 	isAccountLocked: one Bool,
-}
-
-sig Car {
-	carcode: one Int,
-	status: one CarStatus,
-}
-
-sig Reservation {
-	user: one User,
-	reservedCar: one Car,
-	reservationExpiration: one Int,
-} {
-	reservationExpiration >= 0 and reservationExpiration < 60
-}
-
-sig Ride {
-	originLocation: one Position,
-	finalLocation: lone Position,
-	driver: one User,
+	userPosition: lone Position,
 }
 
 sig PaymentMethod {}
+
+sig Car {
+	carCode: one Int,
+	status: one CarStatus,
+	batteryLevel: one Int,
+	isLocked: Bool,
+	isEngineOn: Bool,
+	isOnCharge: Bool,
+} {
+	batteryLevel >= 0 and batteryLevel <= 100
+	carCode > 0
+}
+
+abstract sig CarStatus {}
+one sig AVAILABLE extends CarStatus {}
+one sig OUTOFSERVICE extends CarStatus {}
+one sig RESERVED extends CarStatus {}
+one sig INUSE extends CarStatus {}
+
+sig Reservation {
+	reservedCar: one Car,
+	reservedUser: one User,
+	reservationTime: one Int,
+	expirationTime: one Int,
+	unlockTime: lone Int,
+	isActive: Bool,
+	isExpired: Bool,
+} {
+	reservationTime < expirationTime
+	unlockTime < expirationTime
+	unlockTime > reservationTime
+}
+
+sig Ride {
+	reservation: one Reservation,
+	startTime: one Int,
+	endTime: lone Int,
+	originLocation: one Position,
+	finalLocation: lone Position,
+	driver: one User,
+} {
+	startTime < endTime
+}
 
 sig Float {}
 
@@ -43,14 +68,10 @@ sig Position {
 
 //The Safe Area is unique
 one sig SafeArea {
-	coverage: some Position,
+	coverage: set Position,
+} {
+	#coverage>0
 }
-
-abstract sig CarStatus {}
-one sig AVAILABLE extends CarStatus {}
-one sig OUTOFSERVICE extends CarStatus {}
-one sig RESERVED extends CarStatus {}
-one sig INUSE extends CarStatus {}
 
 fact UniqueUser {
 	no u1, u2: User | (u1 != u2 and
@@ -58,23 +79,34 @@ fact UniqueUser {
 		u1.taxCode = u2.taxCode or u1.licenseIdNumber = u2.licenseIdNumber))
 }
 
+//no two cars reserved by the same user
+fact UniqueReservation {
+	no res1, res2: Reservation | (res1 != res2 and
+		(res1.reservedUser = res2.reservedUser and res1.isActive = True
+		and res2.isActive = True))
+}
+
 //no users con account bloccato hanno active reservations
+fact NoBlockedUserReservation {
+	no res: Reservation | (res.reservedUser.isAccountLocked = True)
+}
 
 fact UniqueCarCode {
-	no c1, c2: Car | (c1 != c2 and c1.carcode = c2.carcode)
+	no c1, c2: Car | (c1 != c2 and c1.carCode = c2.carCode)
 }
 
-assert  noCarReservedWithReservetionExpiration {
-	all c: Car, res: Reservation | (c.status = RESERVED and res.reservedCar = c)
-		implies (res.reservationExpiration > 0)
+fact AvailableForRentCar {
+	all c: Car | (c.status = AVAILABLE
+		implies (c.batteryLevel > 20 and c. isLocked = True and c.isEngineOn = False
+			and no r: Reservation | (r.reservedCar = c)))
 }
 
-check noCarReservedWithReservetionExpiration
-
-pred show() {
-	#User >= 2
-	#Ride >= 1
-	#Car >= 2
+fact ReservedCar {
+	all c: Car | (c.status = RESERVED
+		implies ((one res: Reservation | res.reservedCar = c) and 
+			c.batteryLevel > 20 and c. isLocked = True and c.isEngineOn = False))
 }
+
+pred show() {}
 
 run show for 5
