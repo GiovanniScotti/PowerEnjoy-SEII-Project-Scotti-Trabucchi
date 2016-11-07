@@ -1,16 +1,11 @@
 \subsubsection{Purpose}
-This sub-part of the "Use Car" functionality focuses on allowing the user to conclude the current ride and assuring that, after the vehicles were used, they are properly locked and secured, ready to be rented and reserved again.
-
-This function of the system may trigger the activation of those related to the communication with the maintenance system, in order to assure the fact that every issue that may arise after the use of a car is promptly solved.
+This sub-part of the "Use Car" functionality focuses on allowing the user to conclude the current ride and assuring that, after the vehicles were used, they are parked within the Safe Area, properly locked and secured, ready to be rented and reserved again.
 
 \subsubsection{Scenario 1}
 Helen is driving a \emph{PowerEnJoy} car in her city with her friend Irina. Once they arrive at their destination within the Safe Area, Helen pulls aside and parks the vehicle. She turns the engine off, and the system recognizes that the car is inside the Safe Area, so it stops charging her and marks the current ride as finished. Helen gets off the vehicle and closes the door; the system detects that there still are people on board the car and waits. When Irina gets off as well, the system detects that the car is now empty and proceeds to lock the car. The system marks the car as available again and Helen's current ride and its relevant data including the final cost are stored by the server.
 
 \subsubsection{Scenario 2}
 Lauren is outside the Safe Area, driving a \emph{PowerEnJoy} car. She decides to end her ride, so she finds a spot where it is safe to leave the car. She stops and turns the engine off, but the on-board application warns her that, due to the fact that the car is outside the Safe Area, she is still being charged for the ride. Then, she turns the engine on again and moves towards the Safe Area to find a suitable parking spot.
-
-\subsubsection{Scenario 3}
-Mark is driving around on a vehicle he got via the \emph{PowerEnJoy} service. When he got to his destination, he looks at the on-board screen and notes that there is a charging spot very close to his current position. He drives towards it and parks there. The system recognizes the current position as a charging spot and invites Mark to plug the car to the grid after finishing the ride. Once he got off the vehicle and the system locked it, he grabs the plug from the charging station and plugs the car to the power grid. The system detects that he did so and saves the fact that the car was put on charge.
 
 \subsubsection{Use-case}
 A detail of the use-case is provided in Table \ref{end_ride_uc}
@@ -43,7 +38,7 @@ Event Flow &
 \item The system locks the car.
 \end{enumerate} \\
 \hline
-Output Condition & The car is locked and marked as "available" again, the ride ends.\\
+Output Condition & The car is locked and the ride ends.\\
 \hline
 Exception & If a user tries to end a ride outside the Safe Area, he/she is notified that he/she is not allowed to and keeps being charged for the ride until he reaches the Safe Area and stops there.
 

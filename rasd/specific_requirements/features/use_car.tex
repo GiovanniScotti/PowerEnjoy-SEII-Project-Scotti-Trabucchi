@@ -28,7 +28,8 @@ The requirements listed below do not include the ones covered within the sub-par
 \item The system must keep track of the position of all vehicles in use;
 \item The system must mark as "out-of-service" every vehicle that broke down;
 \item The system must mark as "out-of-service" every vehicle that ran out of battery charge;
-\item The system must mark as "out-of-service" the vehicles that were parked with more than 80\% of the battery empty and is not plugged into a power grid;
+\item The system must mark as "out-of-service" the vehicles that were parked with more than 80\% of the battery empty;
+\item If a car is plugged into a power grid and has a battery level greater than 20\%, the system must mark it as "available" again;
 \item The system must mark as "available" the vehicles that were parked with more than 20\% of the battery still full;
 \item As soon as a vehicle is marked as "out-of-service", a notification is sent over to the maintenance system.
 \item If more than 15 minutes pass between a car being unlocked and it being turned on, the system must mark the vehicle as "out-of-service" and prevent it from being used;
@@ -53,7 +54,7 @@ Event Flow &
 \item The system applies all charges, including additional ones and eventual discounts (see detail in section \ref{apply_charges_section});
 \end{enumerate} \\
 \hline
-Output Condition & After the end of the ride and a 5 minute period used to perform eventual additional checks, the user ends the use of the service.\\
+Output Condition & The car is marked as "available" again; after the end of the ride and a 5 minute period used to perform eventual additional checks, the user ends the use of the service.\\
 \hline
 Exception & If the ride ends and the battery is more than 80\% empty, the vehicle is marked as "out-of-order" instead of "available".
 
