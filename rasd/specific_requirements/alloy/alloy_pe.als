@@ -14,6 +14,10 @@ sig User {
 	paymentMethod: one PaymentMethod,
 	isAccountLocked: Bool,
 	userPosition: lone Position,
+} {
+	email > 0
+	idCardNumber > 0
+	taxCode > 0
 }
 
 sig PaymentMethod {}
@@ -53,9 +57,9 @@ sig Reservation {
 	isActive: Bool,
 	isExpired: Bool,
 } {
-	reservationTime + 3600 = expirationTime
-	unlockTime < expirationTime
-	unlockTime > reservationTime
+//	reservationTime + 3600 = expirationTime
+//	unlockTime < expirationTime
+//	unlockTime > reservationTime
 }
 
 sig Ride {
@@ -73,14 +77,13 @@ sig Ride {
 
 sig Float {}
 
+sig PowerGridStation {
+	location: Position,
+}
+
 sig Position {
 	latitude: one Float,
 	longitude: one Float,
-}
-
-//no two coinciding but distinct positions
-fact NoPositionOverlapping {
-	no disj p1, p2: Position | (p1.latitude = p2.latitude and p1.longitude = p2.longitude)
 }
 
 //The Safe Area is unique
@@ -88,6 +91,11 @@ one sig SafeArea {
 	coverage: set Position,
 } {
 	#coverage>0
+}
+
+//no two coinciding but distinct positions
+fact NoPositionOverlapping {
+	no disj p1, p2: Position | (p1.latitude = p2.latitude and p1.longitude = p2.longitude)
 }
 
 //No utenti uguali nel sistema
@@ -167,6 +175,11 @@ fact NoOverlappingRidesPerUser {
 		(r1.endTime < r2.startTime or r2.endTime < r1.startTime))
 }
 
+fact PowerGridInsideSafeArea {
+	all pgs: PowerGridStation | pgs.location in SafeArea.coverage
+}
+
+
 //Quando lo stato della ride e' authenticated, la ride puo' iniziare (una posizione iniziale,
 // ma non ancora una finale (posizione + time)
 
@@ -174,4 +187,4 @@ fact NoOverlappingRidesPerUser {
 
 pred show() {}
 
-run show for 5
+run show for 4
