@@ -16,6 +16,8 @@ sig User {
 
 sig PaymentMethod {}
 
+//isLocked = True sblocca la macchina se e solo se l'utente è in prossimità
+//isEngineOn serve davvero? (forse per dire che isOnCharge implies (isEngineOn = false)
 sig Car {
 	carCode: one Int,
 	status: one CarStatus,
@@ -23,6 +25,7 @@ sig Car {
 	isLocked: Bool,
 	isEngineOn: Bool,
 	isOnCharge: Bool,
+	carPosition: one Position,
 } {
 	batteryLevel >= 0 and batteryLevel <= 100
 	carCode > 0
@@ -34,6 +37,11 @@ one sig OUTOFSERVICE extends CarStatus {}
 one sig RESERVED extends CarStatus {}
 one sig INUSE extends CarStatus {}
 
+//Da usare per capire quando inizia e finisce una ride
+abstract sig RideStatus {}
+one sig AUTHENTICATED extends RideStatus{}
+one sig COMPLETED extends RideStatus{}
+
 sig Reservation {
 	reservedCar: one Car,
 	reservedUser: one User,
@@ -43,18 +51,20 @@ sig Reservation {
 	isActive: Bool,
 	isExpired: Bool,
 } {
-	reservationTime < expirationTime
+	reservationTime + 3600 = expirationTime
 	unlockTime < expirationTime
 	unlockTime > reservationTime
 }
 
 sig Ride {
 	reservation: one Reservation,
+	rideCar: one Car,
+	rideUser: one User,
 	startTime: one Int,
 	endTime: lone Int,
 	originLocation: one Position,
 	finalLocation: lone Position,
-	driver: one User,
+	rideStatus: one RideStatus,
 } {
 	startTime < endTime
 }
@@ -73,18 +83,23 @@ one sig SafeArea {
 	#coverage>0
 }
 
+//No utenti uguali nel sistema
 fact UniqueUser {
 	no u1, u2: User | (u1 != u2 and
 		(u1.email = u2.email or u1.idCardNumber = u2.idCardNumber or
 		u1.taxCode = u2.taxCode or u1.licenseIdNumber = u2.licenseIdNumber))
 }
 
-//no two cars reserved by the same user
+//no two reservations by the same user
 fact UniqueReservation {
 	no res1, res2: Reservation | (res1 != res2 and
 		(res1.reservedUser = res2.reservedUser and res1.isActive = True
 		and res2.isActive = True))
 }
+
+//TODO: stessa macchina, al massimo una reservation/ride per volta
+
+//TODO: stesso user, no due ride nello stesso momento?
 
 //no users con account bloccato hanno active reservations
 fact NoBlockedUserReservation {
@@ -95,17 +110,40 @@ fact UniqueCarCode {
 	no c1, c2: Car | (c1 != c2 and c1.carCode = c2.carCode)
 }
 
+//Quando la macchina è available?
 fact AvailableForRentCar {
 	all c: Car | (c.status = AVAILABLE
 		implies (c.batteryLevel > 20 and c. isLocked = True and c.isEngineOn = False
-			and no r: Reservation | (r.reservedCar = c)))
+			and c.carPosition in SafeArea.coverage and 
+			no r: Reservation | (r.reservedCar = c)))
 }
 
+//Quando la macchina è reserved
 fact ReservedCar {
 	all c: Car | (c.status = RESERVED
 		implies ((one res: Reservation | res.reservedCar = c) and 
 			c.batteryLevel > 20 and c. isLocked = True and c.isEngineOn = False))
 }
+
+//TODO: quando la macchina è INUSE
+//TODO: quando la macchina è Out-Of-Service
+
+//Da sistemare
+fact BeginRide {
+	all r: Ride | (r.rideStatus = AUTHENTICATED
+		implies (r.rideUser = r.reservation.reservedUser and r.rideCar = r.reservation.reservedCar
+			and one startTime and one originLocation))
+}
+
+fact NoOverlappingRidesPerUser {
+	all r1, r2: Ride | ((r1 != r2 and r1.rideUser = r2.rideUser) implies
+		(r1.endTime < r2.startTime or r2.endTime < r1.startTime))
+}
+
+//Quando lo stato della ride è authenticated, la ride può iniziare (una posizione iniziale,
+// ma non ancora una finale (posizione + time)
+
+//Quando la ride finisce (ENDED), c'è un luogo e un tempo
 
 pred show() {}
 
