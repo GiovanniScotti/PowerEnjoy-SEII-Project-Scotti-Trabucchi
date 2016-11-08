@@ -1,22 +1,24 @@
 open util/boolean
 
+sig StringPE {}
+
 sig User {
-	email: one String,
-	name: one String,
-	surname: one String,
-	idCardNumber: one String,
-	taxCode: one String,
-	licenseIdNumber: one String,
-	address: one String,
+	email: one Int, //email is modeled as an Int to allow comparisons
+	name: one StringPE,
+	surname: one StringPE,
+	idCardNumber: one Int,
+	taxCode: one Int,
+	licenseIdNumber: one Int,
+	address: one StringPE,
 	phoneNumber: one Int,
 	paymentMethod: one PaymentMethod,
-	isAccountLocked: one Bool,
+	isAccountLocked: Bool,
 	userPosition: lone Position,
 }
 
 sig PaymentMethod {}
 
-//isLocked = True sblocca la macchina se e solo se l'utente è in prossimità
+//isLocked = True sblocca la macchina se e solo se l'utente e' in prossimita'
 //isEngineOn serve davvero? (forse per dire che isOnCharge implies (isEngineOn = false)
 sig Car {
 	carCode: one Int,
@@ -76,6 +78,11 @@ sig Position {
 	longitude: one Float,
 }
 
+//no two coinciding but distinct positions
+fact NoPositionOverlapping {
+	no disj p1, p2: Position | (p1.latitude = p2.latitude and p1.longitude = p2.longitude)
+}
+
 //The Safe Area is unique
 one sig SafeArea {
 	coverage: set Position,
@@ -85,14 +92,15 @@ one sig SafeArea {
 
 //No utenti uguali nel sistema
 fact UniqueUser {
-	no u1, u2: User | (u1 != u2 and
+	no disj u1, u2: User | (u1 != u2 and
 		(u1.email = u2.email or u1.idCardNumber = u2.idCardNumber or
 		u1.taxCode = u2.taxCode or u1.licenseIdNumber = u2.licenseIdNumber))
 }
 
+
 //no two reservations by the same user
 fact UniqueReservation {
-	no res1, res2: Reservation | (res1 != res2 and
+	no disj res1, res2: Reservation | (res1 != res2 and
 		(res1.reservedUser = res2.reservedUser and res1.isActive = True
 		and res2.isActive = True))
 }
@@ -107,10 +115,10 @@ fact NoBlockedUserReservation {
 }
 
 fact UniqueCarCode {
-	no c1, c2: Car | (c1 != c2 and c1.carCode = c2.carCode)
+	no disj c1, c2: Car | (c1 != c2 and c1.carCode = c2.carCode)
 }
 
-//Quando la macchina è available?
+//Quando la macchina e' available?
 fact AvailableForRentCar {
 	all c: Car | (c.status = AVAILABLE
 		implies (c.batteryLevel > 20 and c. isLocked = True and c.isEngineOn = False
@@ -118,15 +126,34 @@ fact AvailableForRentCar {
 			no r: Reservation | (r.reservedCar = c)))
 }
 
-//Quando la macchina è reserved
+//Quando la macchina e' reserved
 fact ReservedCar {
 	all c: Car | (c.status = RESERVED
 		implies ((one res: Reservation | res.reservedCar = c) and 
 			c.batteryLevel > 20 and c. isLocked = True and c.isEngineOn = False))
 }
 
-//TODO: quando la macchina è INUSE
-//TODO: quando la macchina è Out-Of-Service
+//TODO: quando la macchina e' INUSE (da completare!)
+fact InUseCar {
+	all c: Car | (c.status = INUSE)
+		implies (c.isLocked = False and c.isOnCharge = False and c.batteryLevel > 0)
+}
+
+//TODO: quando la macchina e' Out-Of-Service (da completare!)
+fact OutOfServiceCar {
+	all c: Car | (c.status = OUTOFSERVICE)
+		implies (c.isEngineOn = False and (c.isOnCharge = True implies c.isLocked = True))
+}
+
+//no two cars in the same position
+fact NoCarPositionOverlapping {
+	no disj c1, c2: Car | c1.carPosition = c2.carPosition
+}
+
+//no two users in the same position
+fact NoUserPositionOverlapping {
+	no disj u1, u2: User | u1.userPosition = u2.userPosition
+}
 
 //Da sistemare
 fact BeginRide {
@@ -136,14 +163,14 @@ fact BeginRide {
 }
 
 fact NoOverlappingRidesPerUser {
-	all r1, r2: Ride | ((r1 != r2 and r1.rideUser = r2.rideUser) implies
+	all disj r1, r2: Ride | ((r1 != r2 and r1.rideUser = r2.rideUser) implies
 		(r1.endTime < r2.startTime or r2.endTime < r1.startTime))
 }
 
-//Quando lo stato della ride è authenticated, la ride può iniziare (una posizione iniziale,
+//Quando lo stato della ride e' authenticated, la ride puo' iniziare (una posizione iniziale,
 // ma non ancora una finale (posizione + time)
 
-//Quando la ride finisce (ENDED), c'è un luogo e un tempo
+//Quando la ride finisce (ENDED), c'e' un luogo e un tempo
 
 pred show() {}
 
