@@ -18,6 +18,8 @@ sig User {
 	email > 0
 	idCardNumber > 0
 	taxCode > 0
+	licenseIdNumber > 0
+	phoneNumber > 0
 }
 
 sig PaymentMethod {}
@@ -58,8 +60,8 @@ sig Reservation {
 	isExpired: Bool,
 } {
 //	reservationTime + 3600 = expirationTime
-//	unlockTime < expirationTime
-//	unlockTime > reservationTime
+	unlockTime < expirationTime
+	unlockTime > reservationTime
 }
 
 sig Ride {
