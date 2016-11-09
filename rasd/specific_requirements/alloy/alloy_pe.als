@@ -28,18 +28,22 @@ sig User {
 sig PaymentMethod {}
 
 //isLocked = True sblocca la macchina se e solo se l'utente e' in prossimita'
-//isEngineOn serve davvero? (forse per dire che isOnCharge implies (isEngineOn = false)
 sig Car {
 	carCode: one Int,
 	status: one CarStatus,
-	batteryLevel: one Int,
+	batteryLevel: one BatteryLevel,
 	isLocked: Bool,
 	isEngineOn: Bool,
 	isOnCharge: Bool,
 	carPosition: one Position,
 } {
-	batteryLevel >= 0 and batteryLevel <= 100
 	carCode > 0
+	status = AVAILABLE implies batteryLevel = HIGH
+	status = RESERVED implies batteryLevel = HIGH
+	status = INUSE implies not (batteryLevel = EMPTY)
+	batteryLevel = EMPTY implies status = OUTOFSERVICE
+	isOnCharge = True implies isLocked = True
+	isOnCharge = True implies (one pg: PowerGridStation | pg.location = carPosition)
 }
 
 abstract sig CarStatus {}
@@ -61,6 +65,7 @@ sig Reservation {
 	unlockTime: lone Int,
 	isActive: Bool,
 	isExpired: Bool,
+	fee: lone Payment
 } {
 	reservationTime > 0
 	unlockTime > 0
@@ -70,28 +75,31 @@ sig Reservation {
 	unlockTime < expirationTime
 
 	isExpired = True implies isActive = False
+	one fee <=> isExpired = True
 }
 
-//RideCar LONE? perche' quando e' completata nessuna macchina e' piu' associata
 sig Ride {
 	reservation: one Reservation,
-	rideCar: one Car,
-	rideUser: one User,
 	startTime: one Int,
 	endTime: lone Int,
 	originLocation: one Position,
 	finalLocation: lone Position,
 	rideStatus: one RideStatus,
 	standardCharges: one Int,
+	payment: lone Payment,
+	discount: lone Discount,
+	addCharges: set AdditionalCharge
 } {
-	startTime < endTime
+	rideStatus = COMPLETED <=> (startTime < endTime)
 	startTime > reservation.unlockTime
-	standardCharges >= 0	
+	standardCharges > 0	
 
 	reservation.isActive = False
 	reservation.isExpired = False
 
 	originLocation in SafeArea.coverage
+	not (finalLocation in SafeArea.coverage)
+		implies (reservation.reservedCar.status = OUTOFSERVICE)
 }
 
 sig Float {}
@@ -113,14 +121,42 @@ one sig SafeArea {
 }
 
 sig Payment {
-	payRide: lone Ride,
-	payRes: lone Reservation,
 	totalAmount: one Int,
 	isPending: Bool,
 } {
 	totalAmount > 0
-	one payRide implies no payRes
-	one payRes implies no payRide
+}
+
+abstract sig BatteryLevel {}
+one sig EMPTY extends BatteryLevel {}
+one sig LOW extends BatteryLevel {}
+one sig HIGH extends BatteryLevel {}
+
+abstract sig AlternativeChargesSituation {
+	amount: one Int
+}{
+	amount > 0
+}
+sig Discount extends AlternativeChargesSituation {}
+sig AdditionalCharge extends AlternativeChargesSituation {}
+
+fact CompletedRidesHaveDestEnd {
+	all r: Ride | r.rideStatus = COMPLETED <=> (one r.endTime and one r.finalLocation)
+}
+
+fact NoEndDestWithoutEndTime {
+	all r: Ride | no r.endTime <=> no r.finalLocation
+}
+
+//no two rides with the same payment
+fact NoRidesWithSamePayment {
+	no disj r1, r2: Ride | r1.payment = r2.payment
+}
+
+//no payment is not associated to any transaction
+fact NoIsolatedPayment {
+	no p: Payment | ((no res: Reservation | res.fee = p)
+		or (no r: Ride | r.payment = p))
 }
 
 //no two coinciding but distinct positions
@@ -128,6 +164,7 @@ fact NoPositionOverlapping {
 	no disj p1, p2: Position | (p1.latitude = p2.latitude and p1.longitude = p2.longitude)
 }
 
+//no two distinct coinciding users
 fact UniqueUser {
 	no disj u1, u2: User | (u1 != u2 and
 		(u1.email = u2.email or u1.idCardNumber = u2.idCardNumber or
@@ -145,39 +182,47 @@ fact UniqueReservation {
 
 //TODO: stesso user, no due ride nello stesso momento?
 
-//no users con account bloccato hanno active reservations
+//no users with a locked account have active reservations
 fact NoBlockedUserReservation {
-	no res: Reservation | (res.reservedUser.isAccountLocked = True)
+	no res: Reservation | (res.isActive = True
+		and res.reservedUser.isAccountLocked = True)
 }
 
 fact UniqueCarCode {
 	no disj c1, c2: Car | (c1 != c2 and c1.carCode = c2.carCode)
 }
 
+//describes AVAILABLE cars conditions
 fact AvailableForRentCar {
 	all c: Car | (c.status = AVAILABLE)
-		<=> (c.batteryLevel > 20 and c. isLocked = True and c.isEngineOn = False
+		implies (c. isLocked = True and c.isEngineOn = False
 			and c.carPosition in SafeArea.coverage and 
-			(no r: Reservation | (r.reservedCar = c)))
+			(no r: Reservation | r.reservedCar = c and r.isActive = True))
 }
 
-//Quando la macchina e' reserved
+//describes RESERVED cars conditions
 fact ReservedCar {
 	all c: Car | (c.status = RESERVED)
-		implies ((one res: Reservation | res.reservedCar = c) and 
-			c.batteryLevel > 20 and c. isLocked = True and c.isEngineOn = False)
+		implies ((one res: Reservation | res.reservedCar = c 
+							and (no r: Ride | r.reservation = res)
+			and res.isActive = True)
+			and c.isEngineOn = False)
 }
 
-//TODO: quando la macchina e' INUSE (da completare!)
+//describes INUSE cars conditions
 fact InUseCar {
 	all c: Car | (c.status = INUSE)
-		implies (c.isLocked = False and c.isOnCharge = False and c.batteryLevel > 0)
+		implies (c.isLocked = False and c.isOnCharge = False
+			and (one r: Ride | r.rideStatus = AUTHENTICATED
+						and r.reservation.reservedCar = c))
 }
 
-//TODO: quando la macchina e' Out-Of-Service (da completare!)
+//describes OUTOFSERVICE cars conditions
 fact OutOfServiceCar {
 	all c: Car | (c.status = OUTOFSERVICE)
-		implies (c.isEngineOn = False and (c.isOnCharge = True implies c.isLocked = True))
+		implies (c.isEngineOn = False and
+						(no res: Reservation | res.isActive = True
+							and res.reservedCar = c))
 }
 
 //no two cars in the same position
@@ -190,57 +235,66 @@ fact NoUserPositionOverlapping {
 	no disj u1, u2: User | u1.userPosition = u2.userPosition
 }
 
-//Da sistemare aggiungendo che ci deve essere una reservation associata
-fact BeginRide {
-	all r: Ride | (r.rideStatus = AUTHENTICATED)
-		implies (r.rideUser = r.reservation.reservedUser and r.rideCar = r.reservation.reservedCar
-			and one startTime and one originLocation)
+fact NoOverlappingRidesPerUser {
+	all disj r1, r2: Ride | 
+			(r1.reservation.reservedUser = r2.reservation.reservedUser)
+			implies (r1.endTime < r2.startTime or r2.endTime < r1.startTime)
 }
 
-fact NoOverlappingRidesPerUser {
-	all disj r1, r2: Ride | ((r1 != r2 and r1.rideUser = r2.rideUser) implies
-		(r1.endTime < r2.startTime or r2.endTime < r1.startTime))
+fact NoDisjRidesWithSameReservation {
+	no disj r1, r2: Ride | r1.reservation = r2.reservation
 }
 
 fact PowerGridInsideSafeArea {
 	all pgs: PowerGridStation | pgs.location in SafeArea.coverage
 }
 
+//no two power grids in the same position
+fact NoPowerGridOverlapping {
+	no disj pg1, pg2: PowerGridStation | pg1.location = pg2.location
+}
+
 //No rides with expired reservations
-fact NoRideIfReservationExpired {
+assert NoRideIfReservationExpired {
 	no r: Ride | (r.reservation.isExpired = True)
 }
 
-fact RideCompleted {
-	all r: Ride | (r.rideStatus = COMPLETED) implies
-		(one endTime and one finalLocation)
+assert RideCompleted {
+	all r: Ride | (r.rideStatus = COMPLETED) <=>
+		(one r.endTime and one r.finalLocation)
+}
+
+assert NoEndTimeFinalDestForAuthRides {
+	all r: Ride | r.rideStatus = AUTHENTICATED <=>
+		(no r.endTime and no r.finalLocation)
+}
+
+fact NoPaymentIfAuthRide {
+	all r: Ride | r.rideStatus = AUTHENTICATED <=>
+		(no r.payment)
 }
 
 //Reservation expiration implies payment (fee)
-fact ReservationExpirationPayment {
-	all res: Reservation, p: Payment | (res.isExpired = True) implies
-		(one p.payRes and p.payRes = res)
-}
-
-//NON FUNZIONA
-//User account locked if pending payment
-fact PendingPaymentsLockAccounts {
-//	all p: Payment, res: Reservation, r: Ride | (p.isPending = True) <=>
-//		((p.payRes.reservedUser.isAccountLocked = True and p.payRes = res) or 
-//		(p.payRide.rideUser.isAccountLocked = True and p.payRide = r))
+//fact ReservationExpirationPayment {
+//	all res: Reservation, p: Payment | (res.isExpired = True) implies
+//		(one p.payRes and p.payRes = res)
 //}
 
-//Bisogna modellare il fatto che se una ride finisce, la macchina torna available oppure no
-
-//Quando lo stato della ride e' authenticated, la ride puo' iniziare (una posizione iniziale,
-// ma non ancora una finale (posizione + time)
-
-//Quando la ride finisce (ENDED), c'e' un luogo e un tempo
+//DOVREBBE FUNZIONARE
+//User account locked if pending payment
+fact PendingPaymentsLockAccounts {
+	all p: Payment | p.isPending = True
+		<=> ((one res: Reservation | res.fee = p and
+						res.reservedUser.isAccountLocked = True)
+			or (one r: Ride | r.payment = p and
+						r.reservation.reservedUser.isAccountLocked = True))
+}
 
 pred show() {
 	//Funziona
 	//some r: Reservation | r.isExpired = True
 	//some u: User | u.isAccountLocked = True
+	some r: Ride | r.rideStatus = COMPLETED
 }
 
 run show for 4
