@@ -347,11 +347,17 @@ fact NoUnexpiredReservationWithoutRide {
 //Account locked <=> (pending payment XOR pending fee)
 fact NoTwoPendingPaymentsWithSameUser {
 	all u: User | u.isAccountLocked = True <=>
-		(((one r: Ride | r.payment.isPending = True and r.reservation.reservedUser = u)
-		and (no res: Reservation | res.fee.isPending = True and res.reservedUser = u))
+		(((one r: Ride | r.payment.isPending = True
+				and r.reservation.reservedUser = u)
+			and
+			(no res: Reservation | res.fee.isPending = True
+				and res.reservedUser = u))
 		or
-		((no r: Ride | r.payment.isPending = True and r.reservation.reservedUser = u)
-		and (one res: Reservation | res.fee.isPending = True and res.reservedUser = u)))
+			((no r: Ride | r.payment.isPending = True
+				and r.reservation.reservedUser = u)
+			and
+			(one res: Reservation | res.fee.isPending = True
+				and res.reservedUser = u)))
 }
 
 //There are not locked users that have no reservations at all
