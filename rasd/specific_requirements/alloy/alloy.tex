@@ -25,3 +25,31 @@ This section includes a class diagram which is representative of the relevant fe
 
 % Includes the Alloy model file.
 \lstinputlisting{./specific_requirements/alloy/alloy_pe.als}
+
+Here is the execution of checks on the listed assertions:
+\begin{itemize}
+\item[] Executing "Check RideCompleted"
+   Solver=sat4j Bitwidth=4 MaxSeq=4 SkolemDepth=2 Symmetry=20
+   11829 vars. 945 primary vars. 28200 clauses. 77ms.
+   No counterexample found. Assertion may be valid. 42ms.
+
+\item[] Executing "Check NoRideIfReservationExpired"
+   Solver=sat4j Bitwidth=4 MaxSeq=4 SkolemDepth=2 Symmetry=20
+   11727 vars. 945 primary vars. 27849 clauses. 81ms.
+   No counterexample found. Assertion may be valid. 7ms.
+
+\item[] Executing "Check NoEndTimeFinalDestForAuthRides"
+   Solver=sat4j Bitwidth=4 MaxSeq=4 SkolemDepth=2 Symmetry=20
+   11795 vars. 945 primary vars. 28098 clauses. 51ms.
+   No counterexample found. Assertion may be valid. 9ms.
+
+\item[] Executing "Check NoTwoAuthRidesSameUser"
+   Solver=sat4j Bitwidth=4 MaxSeq=4 SkolemDepth=2 Symmetry=20
+   11808 vars. 948 primary vars. 28038 clauses. 55ms.
+   No counterexample found. Assertion may be valid. 42ms.
+
+\item[] Executing "Check AllInUseCarsAreUnlocked"
+   Solver=sat4j Bitwidth=4 MaxSeq=4 SkolemDepth=2 Symmetry=20
+   11734 vars. 945 primary vars. 27841 clauses. 41ms.
+   No counterexample found. Assertion may be valid. 3ms.
+\end{itemize}
