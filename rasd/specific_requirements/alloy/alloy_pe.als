@@ -3,6 +3,8 @@ open util/boolean
 //UNIX time notation is used
 //Dates are calculated as the number of seconds from the 1st of January 1970
 
+//SIGNATURES
+
 sig StringPE {}
 
 sig User {
@@ -27,7 +29,6 @@ sig User {
 
 sig PaymentMethod {}
 
-//isLocked = True sblocca la macchina se e solo se l'utente e' in prossimita'
 sig Car {
 	carCode: one Int,
 	status: one CarStatus,
@@ -52,7 +53,6 @@ one sig OUTOFSERVICE extends CarStatus {}
 one sig RESERVED extends CarStatus {}
 one sig INUSE extends CarStatus {}
 
-//Da usare per capire quando inizia e finisce una ride
 abstract sig RideStatus {}
 one sig AUTHENTICATED extends RideStatus{}
 one sig COMPLETED extends RideStatus{}
@@ -63,7 +63,7 @@ sig Reservation {
 	reservationTime: one Int,
 	expirationTime: one Int,
 	unlockTime: lone Int,
-	isActive: Bool,
+	isActive: Bool, //a Reservation is active until the car becomes "INUSE"
 	isExpired: Bool,
 	fee: lone Payment
 } {
@@ -140,6 +140,8 @@ abstract sig AlternativeChargesSituation {
 sig Discount extends AlternativeChargesSituation {}
 sig AdditionalCharge extends AlternativeChargesSituation {}
 
+//FACTS
+
 fact CompletedRidesHaveDestEnd {
 	all r: Ride | r.rideStatus = COMPLETED <=> (one r.endTime and one r.finalLocation)
 }
@@ -148,30 +150,30 @@ fact NoEndDestWithoutEndTime {
 	all r: Ride | no r.endTime <=> no r.finalLocation
 }
 
-//no two rides with the same payment
+//No two rides with the same payment
 fact NoRidesWithSamePayment {
 	no disj r1, r2: Ride | r1.payment = r2.payment
 }
 
-//no payment is not associated to any transaction
+//No payment is not associated to any transaction
 fact NoIsolatedPayment {
 	no p: Payment | ((no res: Reservation | res.fee = p)
 		or (no r: Ride | r.payment = p))
 }
 
-//no two coinciding but distinct positions
+//No two coinciding but distinct positions
 fact NoPositionOverlapping {
 	no disj p1, p2: Position | (p1.latitude = p2.latitude and p1.longitude = p2.longitude)
 }
 
-//no two distinct coinciding users
+//No two distinct coinciding users
 fact UniqueUser {
 	no disj u1, u2: User | (u1 != u2 and
 		(u1.email = u2.email or u1.idCardNumber = u2.idCardNumber or
 		u1.taxCode = u2.taxCode or u1.licenseIdNumber = u2.licenseIdNumber))
 }
 
-//no two active reservations by the same user
+//No two active reservations by the same user
 fact UniqueReservation {
 	no disj res1, res2: Reservation | (res1 != res2 and
 		(res1.reservedUser = res2.reservedUser and res1.isActive = True
@@ -182,7 +184,7 @@ fact UniqueReservation {
 
 //TODO: stesso user, no due ride nello stesso momento?
 
-//no users with a locked account have active reservations
+//No users with a locked account have active reservations
 fact NoBlockedUserReservation {
 	no res: Reservation | (res.isActive = True
 		and res.reservedUser.isAccountLocked = True)
@@ -192,7 +194,7 @@ fact UniqueCarCode {
 	no disj c1, c2: Car | (c1 != c2 and c1.carCode = c2.carCode)
 }
 
-//describes AVAILABLE cars conditions
+//Describes AVAILABLE cars conditions
 fact AvailableForRentCar {
 	all c: Car | (c.status = AVAILABLE)
 		implies (c. isLocked = True and c.isEngineOn = False
@@ -209,7 +211,7 @@ fact ReservedCar {
 			and c.isEngineOn = False)
 }
 
-//describes INUSE cars conditions
+//Describes INUSE cars conditions
 fact InUseCar {
 	all c: Car | (c.status = INUSE)
 		implies (c.isLocked = False and c.isOnCharge = False
@@ -217,7 +219,7 @@ fact InUseCar {
 						and r.reservation.reservedCar = c))
 }
 
-//describes OUTOFSERVICE cars conditions
+//Describes OUTOFSERVICE cars conditions
 fact OutOfServiceCar {
 	all c: Car | (c.status = OUTOFSERVICE)
 		implies (c.isEngineOn = False and
@@ -225,12 +227,12 @@ fact OutOfServiceCar {
 							and res.reservedCar = c))
 }
 
-//no two cars in the same position
+//No two cars in the same position
 fact NoCarPositionOverlapping {
 	no disj c1, c2: Car | c1.carPosition = c2.carPosition
 }
 
-//no two users in the same position
+//No two users in the same position
 fact NoUserPositionOverlapping {
 	no disj u1, u2: User | u1.userPosition = u2.userPosition
 }
@@ -249,7 +251,7 @@ fact PowerGridInsideSafeArea {
 	all pgs: PowerGridStation | pgs.location in SafeArea.coverage
 }
 
-//no two power grids in the same position
+//No two power grids in the same position
 fact NoPowerGridOverlapping {
 	no disj pg1, pg2: PowerGridStation | pg1.location = pg2.location
 }
