@@ -30,6 +30,8 @@ sig Car {
 	carCode: one Int,
 	status: one CarStatus,
 	batteryLevel: one BatteryLevel,
+	//<<isLocked = True>> until the car door and
+	//		the engine are unlocked
 	isLocked: Bool,
 	isEngineOn: Bool,
 	isOnCharge: Bool,
