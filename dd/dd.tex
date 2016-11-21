@@ -1,0 +1,78 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{lmodern}
+
+%Figure progressive enumeration
+\usepackage{chngcntr}
+\counterwithin{figure}{chapter}
+\counterwithin{table}{chapter}
+
+%package used to enumerate figures
+\usepackage[labelfont=bf]{caption}
+
+%hyperref for interactive PDF index
+\usepackage[bookmarks, colorlinks, breaklinks]{hyperref}
+\hypersetup{linkcolor=black, citecolor=black, filecolor=black, urlcolor=black}
+
+%Package required to use special symbols
+\usepackage{amsmath, amssymb}
+
+%Package required to use figures
+\usepackage{graphicx}
+%Include the bibliography in the table of contents
+\usepackage{tocbibind}
+
+%Package used to insert figures at the specified position
+\usepackage{float}
+
+%Our chapters must be called sections
+\addto\captionsenglish{\renewcommand{\chaptername}{Section}}
+
+\begin{document}
+
+%Code for title page
+\begin{titlepage}
+\centering
+\includegraphics[width=0.20\textwidth]{./pictures/logo_poli}\par
+	\vspace{1.5cm}
+	{\Large {PowerEnJoy \\ 
+		Software Engineering II} \par}
+	\vspace{1.5cm}
+	{\LARGE \textbf{Design Document} \par}
+	\vspace{1.5cm}
+	{\Large\itshape Giovanni Scotti, Marco Trabucchi\par}
+	\vspace{2cm}
+	\vfill
+	% Bottom of the page
+	{\large Document version: 1\par}
+	{\large \today \par}
+\end{titlepage}
+
+%Make the table of contents
+\tableofcontents
+
+%INTRODUCTION
+\chapter{Introduction}
+\label{ch:Introduction}
+
+\section{Purpose}
+\input{./introduction/purpose.tex}
+
+\section{Definitions, Acronyms, Abbreviations}
+\input{./introduction/def_acr_abbs.tex}
+
+\section{Reference Documents}
+\input{./introduction/reference_documents.tex}
+
+\section{Document Structure}
+\input{./introduction/document_structure.tex}
+
+\appendix
+\chapter{Appendix}
+\input{./appendix.tex}
+
+\input{./bibliography.tex}
+
+\end{document}
