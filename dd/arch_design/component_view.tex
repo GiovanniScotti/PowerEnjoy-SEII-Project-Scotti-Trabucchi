@@ -1,1 +1,49 @@
-%component view
+In this section the individual components will be discussed in terms of the needed high level sub-parts and their functioning, as well as how those sub-elements interface with one another within the overlaying component and which of them is in charge of interfacing with other components.
+
+\subsection{Database}
+The database layer must include a DBMS component, in order to manage the insertion, modification, deletion and logging of transactions on data inside the storage memory.
+
+Regardless of the implementation, the DBMS must guarantee the correct functioning of concurrent transactions and the ACID properties; it also must be a relational DBMS, since the application needs in terms of data storage do not require a more complex structure than the simple one provided by the relational data structure.
+
+The data layer must only be accessible through the Application Server via a dedicated interface. With respect to this, the Application Server must provide a persistence unit to handle the dynamic behaviour of all of the persistent application data.
+
+The Database must be tuned during the implementation phase in order to ensure security by granting data access according to the privilege level of the requester. Sensible data such as passwords and personal information must be encrypted properly before being stored. Users must be granted access only upon provision of correct and valid credentials.
+
+The E-R diagram in Figure \ref{er_dg} illustrates a concept of the Database schema.
+
+%insert inline ER dg 
+
+\subsection{Application Server}
+This layer must handle the business logic as a whole and the connections with the data layer and the multiple ways of accessing the application.
+
+The main feature of the Application Server are the specific modules of business logic, which describe business rules and work-flows for each of the functionalities provided by the application itself.
+
+The interface with the data layer must be handled, as stated in the previous section, by a dedicated persistence unit, that will be in charge of the object-relation mapping and dynamic data access and management; this ensures the fact that only the Application Server can access the Database.
+
+The Application Server must provide a means to interface with the Web Server and the mobile and on-board clients via specific APIs in order to decouple the different layers with respect to their individual implementation. Moreover, it must provide a way to communicate with external systems by adapting the application to the existing external infrastructures.
+
+The main business logic modules must include:
+
+\begin{description}
+\item[UserManager:] This module will manage all the logic involved with user account management, login, registration, profile customization and management, as well as the generation and provision of user credentials.
+\item[ReservationManager:] This module provides the logic behind the reservation management, with particular focus on the timing restrictions, car status updates (via the CarStatusManager) and reservation release conditions. It is also in charge of the controls to be performed in order to avoid multiple reservations by a user; lastly it must handle concurrent reservation issues such as pseudo-simultaneous requests for the same car.
+\item[RideManager:] The logic included in this module is in charge of record all useful information about the rides as provided by the on-board application, including ride time, car battery levels and ride charges. It also manages the ride status updates.
+\item[MapManager:] This module contains the logic used to locate cars and users, as well as defining the Safe Area boundaries and the power grids locations. It must provide useful data to the ReservationManager and the RideManager logic units, since both of them need localization information to perform their functionalities.
+\item[CarStatusManager:] This module includes the logic needed by other components to set the car status of a car. It must also serve as an interface with the external maintenance system by providing an automatic way to signal out-of-service cars.
+\item[SecurityAuthenticator:] All the logic in charge of performing user-reservation-car matches is included in this module: this includes the control over cars unlocking and the logic behind the on-board authentication method.
+\item[DiscountProvider:] This module is in charge of recording virtuous and bad situations as parameters of rides, so that the PaymentGateway can gather all the needed information to compute the corresponding net total charges.
+\item[PaymentGateway:] The logic involved in the computation of final charges is included in this module; moreover, this unit must stand as an interface with the payment handlers upon the act of the automatic payments.
+\item[NotificationManager:] Serves as a gateway from all the modules that need to notify the client towards the clients themselves by managing the logic behind the notifications services.
+\end{description}
+
+\subsection{Web Server} %specificare perché non c'è il browser nell'elenco
+
+\subsection{Mobile Application Client}
+
+\subsection{On-Board Application Client}
+
+%insert global component view diagram: show high-level comps and interfaces
+
+%PARAGRAPH: IMPLEMENTATION CHOICES
+%we specify the JEE choice and we put all EJB and shit pictures and diagrams
+%also all specifications not in RASD
