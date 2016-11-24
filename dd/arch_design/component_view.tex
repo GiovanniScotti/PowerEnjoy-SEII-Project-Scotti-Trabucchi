@@ -11,7 +11,13 @@ The Database must be tuned during the implementation phase in order to ensure se
 
 The E-R diagram in Figure \ref{er_dg} illustrates a concept of the Database schema.
 
-%insert inline ER dg 
+\begin{figure}[H]
+\begin{center}
+		\includegraphics[width=0.9\textwidth]{./arch_design/diagrams/er_dg.png}
+		\caption{The E-R diagram of the database schema. Note that the relation named "origin/final location" must be considered as two distinct relations: one for the starting location of the ride and one for the ending location.}
+		\label{er_dg}
+\end{center}
+\end{figure}
 
 \subsection{Application Server}
 This layer must handle the business logic as a whole and the connections with the data layer and the multiple ways of accessing the application.
