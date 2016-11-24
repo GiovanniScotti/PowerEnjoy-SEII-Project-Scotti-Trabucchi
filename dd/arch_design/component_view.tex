@@ -14,7 +14,7 @@ The E-R diagram in Figure \ref{er_dg} illustrates a concept of the Database sche
 \begin{figure}[H]
 \begin{center}
 		\includegraphics[width=0.9\textwidth]{./arch_design/diagrams/er_dg.png}
-		\caption{The E-R diagram of the database schema. Note that the relation named "origin/final location" must be considered as two distinct relations: one for the starting location of the ride and one for the ending location.}
+		\caption{The E-R diagram of the database schema. Note that the relation named "origin/final location" must be considered as a short-hand notation to indicate two distinct relations: one for the starting location of the ride and one for the ending location.}
 		\label{er_dg}
 \end{center}
 \end{figure}
@@ -43,13 +43,32 @@ The main business logic modules must include:
 \end{description}
 
 \subsection{Web Server} %specificare perché non c'è il browser nell'elenco
+The Web Server layer is the interface between clients and the business logic layer in case the access to the application services is performed via web browser.
+
+That being said, it is clear that the main functions to be implemented by this layer will essentially consist of interfaces, since - as stated in Section \ref{high_level_comps} - there will not be any logic implemented within the Web Server besides the presentation of pages.
+
+The presentation must be structured in a clean and simple way, such that the components providing the client with web pages are decoupled as possible from the components that interface with the business logic subsiding the Application Server in order to fetch relevant data to be shown.
+
+Adequate APIs must be designed in order to separate in the most efficient way the design of the Web and Application Servers. These APIs must be thought in a way that allows quick and efficient data transfer through textual data files over HTTPS, e.g. XML or JSON.
+
+The interface with web browsers must be performed efficiently and following similar design concepts.
 
 \subsection{Mobile Application Client}
+The Mobile Client must be designed in a way that makes communications with the Application Server easy and independent from the implementation of both sides.
+
+In order to do so, adequate APIs must be defined and used similarly to what has been described for the interactions between the two server layers.
+
+The mobile application must be designed following the guidelines provided by the Android and iOS producers. More detail on which packages and languages to be used will be put in Section \ref{impl_choices}.
 
 \subsection{On-Board Application Client}
+The On-Board Application consists of an application designed to run on pre-existing embedded devices on every car. The devices come together with the rest of the car equipment directly from the manufacturer.
+
+For this reason, the application must be designed following the guidelines provided by the manufacturer and based on given APIs.
+
+As far as the interface with the Application Server, the same considerations made with respect to the mobile application must be taken into account also for the on-board application.
 
 %insert global component view diagram: show high-level comps and interfaces
 
-%PARAGRAPH: IMPLEMENTATION CHOICES
+%PARAGRAPH: IMPLEMENTATION CHOICES\label{impl_choices}
 %we specify the JEE choice and we put all EJB and shit pictures and diagrams
 %also all specifications not in RASD
