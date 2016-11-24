@@ -9,9 +9,7 @@ The main high level components of the system are:
 \item[On-Board Application:] The presentation layer dedicated to the on-board computers applications; it communicates with the Application Server for the most part of the logic; however it also includes the logic needed to interface with the physical car systems and to perform ride-related actions/computations.
 \end{description}
 
-The described components are stuctured in four layers, as shown in Figure %insert ref.
-
-Said figure also includes the interaction with external systems, that is intended to happen at the level of the Application Server.
+The described components are structured in four layers, as shown in Figure \ref{sys_layers}. Said figure also includes the interaction with external systems, that is intended to happen at the level of the Application Server.
 
 The choice of separating the Application and Web Server layers allows greater scalability, since it allows the deployment on distinct physical tiers that can individually be optimized to perform their respective task.
 
@@ -19,5 +17,16 @@ The choice of separating the Application and Web Server layers allows greater sc
 \begin{center}
 		\includegraphics[width=\textwidth]{./arch_design/diagrams/system_layers.png}
 		\caption{Layered structure of the system.}
+		\label{sys_layers}
+\end{center}
+\end{figure}
+
+The interaction among the main system components is shown in Figure \ref{sys_comps}. The diagram noticeably points out the interaction with the payment handler and the maintenance systems, meant to support the \emph{PowerEnJoy} service as stated in the RASD document~\cite{rasd}. Note that the web server and the application server are multi-threaded.
+
+\begin{figure}[H]
+\begin{center}
+		\includegraphics[width=0.9\textwidth]{./arch_design/diagrams/system_components.png}
+		\caption{The high level components of the system.}
+		\label{sys_comps}
 \end{center}
 \end{figure}
