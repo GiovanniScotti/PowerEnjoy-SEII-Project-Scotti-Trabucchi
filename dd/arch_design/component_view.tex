@@ -107,13 +107,25 @@ The mobile application UI must be designed following the design guidelines provi
 
 The core of both application must be a Controller that communicates user inputs (after translating them from the UI input) to the Application Server via RESTful APIs. The access to the GPS of the devices must be performed through the default frameworks of the respective systems.
 
-%mobile app picture [vd denicolao p.16]
+\begin{figure}[H]
+\begin{center}
+		\includegraphics[width=\textwidth]{./arch_design/diagrams/mobile_app_comps.png}
+		\caption{The components of the mobile application.}
+		\label{mobile_app_comps}
+\end{center}
+\end{figure}
 
 \subsubsection{On-Board Application Client Implementation}
-The on-board application must strictly follow the car manufacturer guidelines for the development. The given APIs must be used to properly connect with the car equipment and sensors.
+The on-board application must strictly follow the car manufacturer guidelines for the development. The given APIs must be used to properly connect with the car equipment and sensors via the car CAN bus.
 
-Since the car embedded devices have limited hardware specifications, the software must be written in C/C++. The user interface must be managed by a dedicated unit. The core of the application must include a GPS manager and a mobile connectivity unit. The communication with the Application Server must be performed by the connectivity unit via an adequate RESTful API. Data-flows from the car sensors must be handled by a separated data collection unit. The single elements will be coordinated by a Controller.
+Since the car embedded devices have limited hardware specifications, the software must be written in C/C++. The user interface must be managed by a dedicated unit. The core of the application must include a GPS manager and a mobile connectivity unit. The communication with the Application Server must be performed by the connectivity unit via an adequate RESTful API. Data-flows from the car sensors must be handled by a separated data collection unit and properly evaluated by a data processing unit. The single elements will be coordinated by a Controller.
 
-%onboard app picture
+\begin{figure}[H]
+\begin{center}
+		\includegraphics[width=\textwidth]{./arch_design/diagrams/on_board_comps.png}
+		\caption{The components of the on-board application.}
+		\label{on_board_comps}
+\end{center}
+\end{figure}
 
 %albero scelte
