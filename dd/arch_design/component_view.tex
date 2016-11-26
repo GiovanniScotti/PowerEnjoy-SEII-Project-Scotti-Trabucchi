@@ -91,7 +91,13 @@ The specific implementation choices are:
 \item To interface with external systems, existing RESTful APIs defined by the partner (payment handlers, maintenance system) will be used.
 \end{itemize}
 
-%application server picture [vd denicolao p.14 semplificato]
+\begin{figure}[H]
+\begin{center}
+		\includegraphics[width=\textwidth]{./arch_design/diagrams/app_server_comps.png}
+		\caption{The components of the application server implemented as session beans to develop the business logic.}
+		\label{app_server_comps}
+\end{center}
+\end{figure}
 
 \subsubsection{Web Server Implementation}
 Based on the choices made for the Application Server implementation, an easy way to avoid interface issues between the two server layers is to use the GlassFish functionalities for the Web Server as well.
