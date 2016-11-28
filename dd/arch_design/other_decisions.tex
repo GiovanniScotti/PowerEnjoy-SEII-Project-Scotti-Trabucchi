@@ -1,1 +1,9 @@
-%
+\subsection{Authentication Method}
+As soon as the user unlocks the car, he/she needs to authenticate him/herself again to start the ride. This is a remarkable step introduced for security purpose: the goal is to prevent someone who has somehow stolen the password of a registered user to take the advantage of the service provided by \emph{PowerEnJoy}.
+
+The authentication method will be implemented as a PIN provided by the system during the registration process and cannot be changed by the user as stated in the RASD document~\cite{rasd}.
+
+The above-mentioned PIN must be inserted via the on-board application and must be checked by the system before unlocking the engine of the car.
+
+\subsection{User's password storage}
+For security reasons, the user's password is stored using cryptographic hash functions. In addition to that, the password is not only hashed, but also salted. This is a common security choice since many users reuse passwords for multiple sites and a cyber attack could jeopardize their sensitive information. 
