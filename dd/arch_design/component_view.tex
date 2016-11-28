@@ -65,7 +65,13 @@ The software module to be included in the application must manage the GPS locati
 
 As far as the interface with the Application Server, the same considerations made with respect to the mobile application must be taken into account also for the on-board application.
 
-%insert global component view diagram: show high-level comps and interfaces
+\begin{figure}[H]
+\begin{center}
+		\includegraphics[width=\textwidth]{./arch_design/diagrams/global_comp_view.png}
+		\caption{The global component view. Note that in the application server layer, most modules have been collapsed and only those that are relevant to particular interfaces have been highlighted. The modules interacting with the clients are more than one, so the connection has been specified with a macro-module containing all the access points.}
+		\label{er_dg}
+\end{center}
+\end{figure}
 
 %PARAGRAPH: IMPLEMENTATION CHOICES\label{impl_choices}
 %we specify the JEE choice and we put all EJB and shit pictures and diagrams
