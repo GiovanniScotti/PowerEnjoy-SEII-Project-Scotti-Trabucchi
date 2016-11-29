@@ -78,7 +78,7 @@ As far as the interface with the Application Server, the same considerations mad
 The implementation choices for the Database layer are the following:
 \begin{itemize}
 \item MySQL 5.7 as the relational DBMS;
-\item InnoDB as the subsiding database engine;
+\item InnoDB as the subsiding database engine; InnoDB is a good choice for this application, because it manages concurrent access to the same tables in a very clean and quick way;
 \item The Java Persistence API (JPA) within the Application Server will serve as an interface with the Database.
 \end{itemize}
 
@@ -109,7 +109,13 @@ This layer will also heavily rely on JEE: the core components of the Web Server 
 
 The interface with the Application Server will be provided by the same RESTful API specified in the previous subsection.
 
-%web server picture [vd denicolao p.15]
+\begin{figure}[H]
+\begin{center}
+		\includegraphics[width=\textwidth]{./arch_design/diagrams/web_server.png}
+		\caption{The components of the web server and their interfaces with other layers.}
+		\label{web_server}
+\end{center}
+\end{figure}
 
 \subsubsection{Mobile Application Client Implementation}
 The mobile application UI must be designed following the design guidelines provided by the devices' manufacturers. Two architectures must be supported: iOS and Android. The iOS application must be written in Swift, while the Android one must be implemented in Java.
