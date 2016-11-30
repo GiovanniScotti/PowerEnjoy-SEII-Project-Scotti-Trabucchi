@@ -39,7 +39,7 @@ The main business logic modules must include:
 \item[SecurityAuthenticator:] All the logic in charge of performing user-reservation-car matches is included in this module: this includes the control over cars unlocking and the logic behind the on-board authentication method.
 \item[DiscountProvider:] This module is in charge of recording virtuous and bad situations as parameters of rides, so that the PaymentGateway can gather all the needed information to compute the corresponding net total charges.
 \item[PaymentGateway:] The logic involved in the computation of final charges is included in this module; moreover, this unit must stand as an interface with the payment handlers upon the act of the automatic payments.
-\item[NotificationManager:] Serves as a gateway from all the modules that need to notify the client towards the clients themselves by managing the logic behind the notifications services.
+\item[NotificationManager:] Serves as a gateway from all the modules that need to send an email to the clients by managing the logic behind the email notification services.
 \end{description}
 
 \subsection{Web Server}
