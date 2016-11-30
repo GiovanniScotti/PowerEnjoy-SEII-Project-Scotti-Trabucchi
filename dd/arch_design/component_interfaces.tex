@@ -1,15 +1,19 @@
-This sections includes further details on the interfaces between different components of the system. Also, Subsection \ref{int_comps_if} is devoted to illustrate some relevant details about the interface among internal elements of the Application Server.
+This sections includes further details on the interfaces between different components of the system. Also, Subsection \ref{int_comps_if} is devoted to illustrate some relevant details about the interface among internal elements of the Application Server and interfaces between said elements and other layers of the system.
 
 \subsection{Database - Application Server}
 The Application Server is the only one that can access the Database directly; this is done through the Java Persistence API mapping between objects and actual relations.
 
-\subsection{Application Server - Web Server}
-
 \subsection{Web Server - Web Browsers}
 The interactions between the client's browsers and the Web Servers are based on the HTTPS protocol, as previously specified in the RASD~\cite{rasd}.
 
-\subsection{Application Clients - Application Server}
+\subsection{Application Server - Web Server and Clients}
+The communication between Application Server and clients, both direct and via the Web Server, must happen via RESTful APIs provided by the Application Server itself and implemented using JAX-RS.
 
 \subsection{Application Server - External Systems}
+The Application Server must connect with two types of external systems:
+\begin{itemize}
+\item A Maintenance System, to which the Application Server must offer an interface API in order to provide access to data needed for maintenance interventions;
+\item One or more Payment Handlers, that provide the interface APIs to which the Application server itself must adapt in order to perform payments of any kind.
+\end{itemize}
 
-\subsection{Internal Application Server Components}\label{int_comps_if}
+\subsection{Internal Interfaces for Application Server Components}\label{int_comps_if}
