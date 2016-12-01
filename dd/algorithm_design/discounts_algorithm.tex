@@ -1,3 +1,4 @@
+\subsection{Situations Detection}
 As stated in the RASD~\cite{rasd}, the system must be aware of different discount and additional charges situations that can occur during one user's ride and bring respectively a reduction or an increase of the final charges at the end of the ride.
 
 The \textbf{discount situations} that the system must recognize are the following:
@@ -6,23 +7,27 @@ The \textbf{discount situations} that the system must recognize are the followin
 \item if a ride ends with no more than 50\% of the car battery empty, the system applies a discount of 20\%.
 \item if the user plugs the car into the power grid at the end of the ride, the system applies a discount of 30\%.
 \end{enumerate}
+
 \noindent
 The \textbf{additional charges situations} that are detected by the system are the following:
 \begin{enumerate}
 \item if a car is left more than 3km away from the nearest power grid, the system charges 30\% more on the last ride.
 \item if a car is left with no more than 20\% of battery level and the user does not plug it into the power grid, the system charges 30\% more.
 \end{enumerate}
+
 \noindent
 The on-board application is aware of all these situations and it is able to detect them thanks to the sensors the car is provided.
 As soon as a situation occur, the on-board application gets in touch with the Application Server. The business logic is in charge of:
 \begin{enumerate}
 \item understanding if the situation will bring a discount or additional charges;
-\item saving in a \emph{List} of additional charges situations the event that has just happened if it is an additional charges situation;
-\item saving the event in an \emph{attribute} if it is a discount situation and the discount percentage is greater than the previous saved situation or the attribute is NULL.
+\item storing it in the database and linking it to the current ride.
 \end{enumerate}
-\noindent
+
+\subsection{Final Charges Computation}
 After 5 minutes to the end of the ride, in order to be specifications-compliant, the system must calculate the final charges taking into account the previously saved situations:
 \begin{enumerate}
+\item the system queries the data and saves in a \emph{List} of additional charges situations the events previously detected as additional charges situations;
+\item the system stores in an \emph{attribute} the discount situation with the highest percentage or NULL if no discount situations occurred during the ride.
 \item \emph{foreach} element of the additional charges List, the increment to the final charges is computed as: $standard charges * situation percentage$, where \emph{standard charges} are the charges at the end of the ride without any discount/additional charges situation;
 \item all the increments must be summed to the \emph{standard charges};
 \item if at least one discount situation happened during the ride, this will lead to a decrement of the final charges that is equal to $standard charges * situation percentage$.
