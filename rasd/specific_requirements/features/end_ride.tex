@@ -2,7 +2,7 @@
 This sub-part of the "Use Car" functionality focuses on allowing the user to conclude the current ride and assuring that, after the vehicles were used, they are parked within the Safe Area, properly locked and secured, ready to be rented and reserved again.
 
 \subsubsection{Scenario 1}
-Helen is driving a \emph{PowerEnJoy} car in her city with her friend Irina. Once they arrive at their destination within the Safe Area, Helen pulls aside and parks the vehicle. She turns the engine off, and the system recognizes that the car is inside the Safe Area, so it stops charging her and marks the current ride as finished. Helen gets off the vehicle and closes the door; the system detects that there still are people on board the car and waits. When Irina gets off as well, the system detects that the car is now empty and proceeds to lock the car. The system marks the car as available again and Helen's current ride and its relevant data including the final cost are stored by the server.
+Helen is driving a \emph{PowerEnJoy} car in her city with her friend Irina. Once they arrive at their destination within the Safe Area, Helen pulls aside and parks the vehicle. She turns the engine off, and the system recognizes that the car is inside the Safe Area. As soon as Helen gets off the vehicle and closes the door, the system detects that there still are people on board the car and waits before ending the ride. When Irina gets off as well, the system detects that the car is now empty and proceeds to lock the car and stop charging Helen. The system marks the car as available again and Helen's current ride and its relevant data including the final cost are stored by the server.
 
 \subsubsection{Scenario 2}
 Lauren is outside the Safe Area, driving a \emph{PowerEnJoy} car. She decides to end her ride, so she finds a spot where it is safe to leave the car. She stops and turns the engine off, but the on-board application warns her that, due to the fact that the car is outside the Safe Area, she is still being charged for the ride. Then, she turns the engine on again and moves towards the Safe Area to find a suitable parking spot.
@@ -35,7 +35,8 @@ Event Flow &
 \begin{enumerate}
 \item The user stops the vehicle within the Safe Area and parks it, turning the engine off;
 \item The system checks that every passenger, driver included, got off the vehicle;
-\item The system locks the car.
+\item The system locks the car;
+\item The system stops charging the user.
 \end{enumerate} \\
 \hline
 Output Condition & The car is locked and the ride ends.\\
