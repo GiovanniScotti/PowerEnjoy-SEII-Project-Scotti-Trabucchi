@@ -1,9 +1,27 @@
 %Functional requirements traceability
 \begin{table}[H]
 \begin{center}
-\begin{tabular}{p{0.2\textwidth} | p{0.4\textwidth} | p{0.4\textwidth}}
+\begin{tabular}{p{0.1\textwidth} | p{0.3\textwidth} | p{0.6\textwidth}}
 \hline
-\textbf{Goal} & \textbf{DD Component} & \textbf{RASD Requirements}\\
+\textbf{Goal} & \textbf{DD Component} & \textbf{RASD Requirements} \\
+\hline
+1 \newline 2 & UserManager & 3.2.1 Register \newline 3.2.2 Login \newline 3.2.3 Manage Profile \\
+\hline
+3 \newline 4 & ReservationManager & 3.2.4 Reserve Car \newline 3.2.11 Apply Fee \\
+\hline
+6 \newline 7 \newline 8 & RideManager & 3.2.7 Start Ride \newline 3.2.9 Apply Discounts/Additional Charges \newline 3.2.10 Apply Charges \\
+\hline
+5 \newline 7 & MapManager & 3.2.6 Unlock Car \newline 3.2.8 End Ride \\
+\hline
+3 \newline 4 \newline 7 & CarStatusManager & 3.2.4 Reserve Car \newline 3.2.5 Use Car \newline 3.2.7 Start Ride \newline 3.2.11 Apply Fee \\
+\hline
+5 \newline 7 & SecurityAuthenticator & 3.2.6 Unlock Car \newline 3.2.7 Start Ride (authentication method) \\
+\hline
+8 & DiscountProvider & 3.2.9 Apply Discounts/Additional Charges \\
+\hline
+6 & PaymentGateway & 3.2.10 Apply Charges (charges computation) \newline 3.2.12 Manage Payment \\
+\hline
+1 & NotificationManager & 3.2.1 Register (confirmation email) \newline 3.2.2 Login (forgot password) \\
 \hline
 \end{tabular}
 \end{center}
