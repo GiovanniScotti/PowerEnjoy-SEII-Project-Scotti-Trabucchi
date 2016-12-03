@@ -28,7 +28,7 @@ After 5 minutes to the end of the ride, in order to be specifications-compliant,
 \begin{enumerate}
 \item the system queries the data and saves in a \emph{List} of additional charges situations the events previously detected as additional charges situations;
 \item the system stores in an \emph{attribute} the discount situation with the highest percentage or NULL if no discount situations occurred during the ride.
-\item \emph{foreach} element of the additional charges List, the increment to the final charges is computed as: $standard charges * situation percentage$, where \emph{standard charges} are the charges at the end of the ride without any discount/additional charges situation;
+\item \emph{foreach} element of the additional charges List, the increment to the final charges is computed as: $standard charges * situation percentage$, where \emph{standard charges} are the charges at the end of the ride without any discount/additional charges situation. \emph{standard charges} are computed as $\text{\emph{PRICE\_PER\_SECOND}} * ( endTime - startTime )$ by the RideManager;
 \item all the increments must be summed to the \emph{standard charges};
 \item if at least one discount situation happened during the ride, this will lead to a decrement of the final charges that is equal to $standard charges * situation percentage$.
 \end{enumerate}
