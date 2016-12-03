@@ -9,12 +9,12 @@ The Web and the Mobile applications implement the same functionalities. This is 
 \item the possible choices of the user (e.g.: the car to be rented, the GPS coordinates...) have been depicted as \emph{Input Forms} since they are data to be sent to the system and imply a screen update.
 \end{itemize}
 The UX diagram of the both the Web and Mobile applications is shown in Figure \ref{web_mobile_ux}. \\
-The UX diagram of the on-board application is shown in Figure %\ref{}.
+The UX diagram of the on-board application is shown in Figure \ref{on_board_ux}.
 
 \begin{figure}[H]
 \begin{center}
 		\includegraphics[width=\textwidth]{./user_interface_design/diagrams/web_mobile_ux.png}
-		\caption{UX diagram of both the Web and the Mobile Applications.}
+		\caption{UX diagram of both the Web and the Mobile Applications. Note that the outgoing arcs exiting from "User Home" are mutually exclusive: they are shown based on the presence of an active reservation by the current user.}
 		\label{web_mobile_ux}
 \end{center}
 \end{figure}
@@ -22,7 +22,7 @@ The UX diagram of the on-board application is shown in Figure %\ref{}.
 \begin{figure}[H]
 \begin{center}
 		\includegraphics[width=\textwidth]{./user_interface_design/diagrams/on_board_ux.png}
-		\caption{UX diagram of the On-Board Application. Notice the dynamic contents shows in the ride status screen.}
-		\label{web_mobile_ux}
+		\caption{UX diagram of the On-Board Application. Notice that the attributes shown in the "Ride Status" screen are actually dynamic content. Note that there is no screen marked with the "\$" symbol: this is because no page acts as a home page reachable from anywhere in the application; the first screen to be shown is of course the "Authentication" one.}
+		\label{on_board_ux}
 \end{center}
 \end{figure}
