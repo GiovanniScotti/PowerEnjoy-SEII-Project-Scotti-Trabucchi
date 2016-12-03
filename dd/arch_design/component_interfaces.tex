@@ -1,4 +1,4 @@
-This sections includes further details on the interfaces between different components of the system. Also, Subsection \ref{int_comps_if} is devoted to illustrate some relevant details about the interface among internal elements of the Application Server and interfaces between said elements and other layers of the system.
+This sections includes further details on the interfaces between different components of the system. Also, Subsection \ref{int_comps_if} is devoted to illustrate some relevant details about the interfaces needed to use and interact with each component of the Application Server, accessible both by other Application Server components and by other components of the system.
 
 \subsection{Database - Application Server}
 The Application Server is the only one that can access the Database directly; this is done through the Java Persistence API mapping between objects and actual relations.
@@ -17,3 +17,66 @@ The Application Server must connect with two types of external systems:
 \end{itemize}
 
 \subsection{Internal Interfaces for Application Server Components}\label{int_comps_if}
+\subsubsection{UserManager}
+The following are the procedures implemented by the UserManager component and called by other components:
+\begin{description}
+\item[\texttt{submitLoginCredentials}] This procedure is used to submit the login credentials, hence accessing the application; this takes as \textit{parameters} the user credentials: email and password; the \textit{return value} for this function is a user-identifying token that is later going to be used as parameter by other procedures, in order to identify the requesting user; if the provided credentials are wrong or non-existing, the \textit{return value} is an error.
+\item[\texttt{forgotPassword}] This procedure is used when a user forgets his/her password for the service and wishes to recover it; this takes as \textit{parameter} the user email; the \textit{return value} for the procedure is not defined, as the procedure itself takes part in an asynchronous call.
+\item[\texttt{newAccountRequest}] This procedure is used to request the creation of a new \textit{PowerEnJoy} account; this takes as \textit{parameters} all the personal user data required to register, noticeably: name, surname, license ID and email; the \textit{return value} for the procedure is an error in case of invalid data submission or a confirmation message in case of success.
+\item[\texttt{deleteUser}] This procedure is used to permanently delete a user account from the system; this takes no \textit{parameters} apart from a user-identifying token to recognize the requester; the \textit{return value} for this procedure is a confirmation message.
+\item[\texttt{editProfile}] This procedure is used every time a user wishes to modify anything related to his personal account profile; this takes as \textit{parameters} a set of modified items; the \textit{return value} for this procedure is an error in case of invalid data insertion, and a confirmation message otherwise.
+\item[\texttt{accountLockRequest}] This procedure is called every time a user account must be locked for any reason; the only \textit{parameter} taken is a user-identifying token to get the correct target user; there is no defined \textit{return value} since the procedure call is asynchronous.
+\item[\texttt{fetchHistory}] This procedure is called to fetch the user's history from the database; the taken \textit{parameters} include a user-identifying token and - possibly - some filters over the history request; the \textit{return value} is an object containing a representation of the (possibly filtered) history of the user.
+\end{description}
+\subsubsection{ReservationManager}
+The following are the procedures implemented by the ReservationManager component and called by other components:
+\begin{description}
+\item[\texttt{desiredLocation}] This procedure is used to indicate the area in which a user wishes to look for available cars; this takes as \textit{parameters} either an address or a GPS position; the \textit{return value} for the procedure is a set of available cars based on the position parameter.
+\item[\texttt{carChoice}] This procedure is used to indicate the vehicle chosen by a user to be reserved; this takes as \textit{parameters} a car and a user-identifying token to associated the reservation with; the \textit{return value} is an error if there is any issue during the reservation process, otherwise it is a confirmation message.
+\item[\texttt{releaseReservation}] This procedure is called whenever a user decides to renounce to his/her current active reservation; the taken \textit{parameter} is only a user-identifying token; the \textit{return value} is a confirmation message.
+\end{description}
+\subsubsection{RideManager}
+The following are the procedures implemented by the RideManager component and called by other components:
+\begin{description}
+\item[\texttt{startRide}] This procedure is used to create a new ride after a successful authentication; this takes as \textit{parameters} are a car and a user-identifying token to associate with the ride; the \textit{return value} is undefined since the clearance to actually beginning the ride is sent directly to the car's application.
+\item[\texttt{sendDetectedSituation}] This procedure is used to communicate an alternative payment situation to the DiscountProvider; the \textit{parameters} needed by the procedure are a car and the detected situation; the \textit{return value} is a confirmation message.
+\item[\texttt{confirmEndRide}] This procedure is called when the system need to end a ride after detecting that this is really the case; the only needed \textit{parameter} is a car to recover all necessary data; the \textit{return value} is undefined, since the call is asynchronous.
+\end{description}
+\subsubsection{MapManager}
+The following are the procedures implemented by the MapManager component and called by other components:
+\begin{description}
+\item[\texttt{GPSUnlock}] This procedure is used to match the positions of a car and a user and unlock said car in case it was reserved by that user; this takes as \textit{parameters} a user-identifying token and the user's position; the \textit{return value} for the procedure is undefined, since its call is asynchronous.
+\item[\texttt{checkCarPosition}] This procedure is used to check if a car is within the Safe Area once the system detected a possible ride ending situation; the needed \textit{parameters} are a car and its position; the \textit{return value} is the result of the performed check.
+\end{description}
+\subsubsection{CarStatusManager}
+The following are the procedures implemented by the CarStatusManager component and called by other components:
+\begin{description}
+\item[\texttt{setCarStatus}] The procedure is called whenever a component need to update the status of a car; this takes as \textit{parameters} a car and the status to be set for said car; the \textit{return value} for this procedure is a confirmation message.
+\end{description}
+\subsubsection{SecurityAuthenticator}
+The following are the procedures implemented by the SecurityAuthenticator component and called by other components:
+\begin{description}
+\item[\texttt{codeUnlock}] This procedure is used to unlock a car based on a vehicle-specific code found on the car itself; the procedure \textit{parameters} are a user-identifying token and a code; the \textit{return value} for the procedure is undefined, since its call is asynchronous.
+\item[\texttt{checkReservation}] This procedure is used to perform the same action as the one listed before, but in the case of a GPS unlock attempt; the needed \textit{parameters} are a user-identifying token and a list of cars detected to be near the GPS position of the identified user; the \textit{return value} is an error in case there is no matching triplet car-user-reservation based on the given data, otherwise it is undefined.
+\item[\texttt{sendToCheck}] This procedure processes an authentication PIN inserted by a user on the on-board application of a car to find out if the ride is being initiated by the user who reserved and unlocked that car; this takes as \textit{parameters} a car and a PIN; the \textit{return value} is the result of the check.
+\end{description}
+\subsubsection{DiscountProvider}
+The following are the procedures implemented by the DiscountProvider component and called by other components:
+\begin{description}
+\item[\texttt{recordSituations}] This procedure is used to record a detected alternative payment situation; this takes as \textit{parameters} the detected situation and the corresponding ride; the \textit{return value} for the procedure is a confirmation message.
+\item[\texttt{fetchPercentages}] This procedure is called at the end of a ride to get all the alternative payment percentages in order to compute the final charges; this takes as only \textit{parameter} the ride for which the system needs to compute the final charges; the \textit{return value} is a list of discount/additions percentages.
+\end{description}
+\subsubsection{PaymentGateway}
+The following are the procedures implemented by the PaymentGateway component and called by other components:
+\begin{description}
+\item[\texttt{applyFee}] This procedure is used to apply a fee after a reservation expires; this takes as \textit{parameters} a reservation and a fee amount; the \textit{return value} is undefined since the procedure includes a call to the NotificationManager that manages the response to the user directly based on the success of the fee payment.
+\item[\texttt{sendStandardCharges}] This procedure is called to compute the final charges of a ride and carry out the corresponding payment; it takes as \textit{parameters} a ride and its standard charges; the \textit{return value} is undefined since the procedure includes a call to the NotificationManager that manages the response to the user directly based on the success of the fee payment.
+\end{description}
+\subsubsection{NotificationManager}
+The following are the procedures implemented by the NotificationManager component and called by other components:
+\begin{description}
+\item[\texttt{generateConfirmationEmail}] The procedure is used during the registration process to generate an email containing the provided user credentials; this takes as \textit{parameters} the user credentials generated by UserManager and the addressee's email; the \textit{return value} is undefined, since the confirmation email is immediately sent to the addressee, bypassing the caller.
+\item[\texttt{askForNewCredentialsMail}] This procedure is called upon the request of new credentials by a user; the procuedure \textit{parameter} are the user credentials generated by UserManager the user's email; the \textit{return value} of the procedure is undefined, since the confirmation email is immediately sent to the addressee, bypassing the caller.
+\item[\texttt{generatePaymentNotificationEmail}] The procedure is used to generate an email notification to a user as a consequence of a successful payment; this takes as \textit{parameters} all the data related to the successful payment and the user's email; the \textit{return value} is undefined, since the confirmation email is immediately sent to the addressee, bypassing the caller.
+\item[\texttt{generatePaymentErrorNotification}] The procedure is used to generate an email notification to a user as a consequence of a failed payment; this takes as \textit{parameters} all the data related to the failed payment and the user's email; the \textit{return value} is undefined, since the confirmation email is immediately sent to the addressee, bypassing the caller.
+\end{description}
