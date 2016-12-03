@@ -6,4 +6,11 @@ The authentication method will be implemented as a PIN provided by the system du
 The above-mentioned PIN must be inserted via the on-board application and must be checked by the system before unlocking the engine of the car.
 
 \subsection{User's password storage}
-For security reasons, the user's password is stored using cryptographic hash functions. In addition to that, the password is not only hashed, but also salted. This is a common security choice since many users reuse passwords for multiple sites and a cyber attack could jeopardize their sensitive information. 
+For security reasons, the user's password is stored using cryptographic hash functions. In addition to that, the password is not only hashed, but also salted. This is a common security choice since many users reuse passwords for multiple sites and a cyber attack could jeopardize their sensitive information.
+
+\subsection{Maps}
+In order to support the car finding functionality, the system will make use of an external maps service: \textit{Google Maps}. This choice is motivated by the fact that manually developing a map service is not a viable solution with respect to the size of the project.
+
+\textit{Google Maps}'s services will be used to translate addresses to coordinates and vice-versa during the process of finding a car: the translation from address to position will be performed when the location input by a user is an address; the inverse translation will happen when the system needs to display the address corresponding to the position of a reserved car.
+
+Another case in which the services of \textit{Google Maps} will be used is to graphically show the map during the same process.
