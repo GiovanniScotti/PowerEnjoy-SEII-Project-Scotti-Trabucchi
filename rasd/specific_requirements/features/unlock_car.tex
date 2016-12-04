@@ -4,7 +4,7 @@ This sub-part of the "Use Car" functionality focuses on the sequence of sub-func
 The purpose of the functionality is that of allowing the user to unlock the car he/she reserved based on his/her actual proximity to the vehicle - given the GPS of a mobile device is available - or upon the insertion of a vehicle-specific code into the application.
 
 \subsubsection{Scenario 1}
-Damian reserved a \emph{PowerEnJoy} car and is walking towards the vehicle location. When he reaches the car, he takes out his smartphone and opens the \emph{"Reserve Car"} function of the mobile app. The system shows the current reservation: since Damian is close enough to the car and the GPS is active on his mobile device, the \emph{"Unlock car"} button has been activated. He taps on the button and the car unlocks, enabling him to enter it.
+Damian reserved a \emph{PowerEnJoy} car and is walking towards the vehicle location. When he reaches the car, he takes out his smartphone and opens the \emph{"Car Reservation"} function of the mobile app. The system shows the current reservation: since Damian is close enough to the car and the GPS is active on his mobile device, the \emph{"Unlock car"} button has been activated. He taps on the button and the car unlocks, enabling him to enter it.
 
 \subsubsection{Scenario 2}
 Elsa stayed out later than usual to study for her exams, and decided to rent a \emph{PowerEnJoy} car with her laptop. Her smartphone has low battery, so she decided to turn the GPS off to make the battery last longer. Once she gets to the car, she tries to unlock it by making the system detect her proximity. Since the button does not activate, she remembers that the GPS is off and decides to input the car code into the mobile app; she then finds the dedicated car code, opens the right function by tapping on the \emph{"Unlock with car code"} button and inputs it. The system processes the request and, having verified that the user who inserted the code is the same who reserved the car, properly unlocks the vehicle and lets Elsa enter it.
@@ -46,7 +46,7 @@ Input Condition & The user reserved a car and he wants to unlock it.\\
 Event Flow & 
 \begin{enumerate}
 \item The user who reserved the vehicle approaches it and opens the mobile application;
-\item The user opens the \emph{"Reserve car"} function and the system provides the sum-up of his/her active reservation;
+\item The user opens the \emph{"Car Reservation"} function and the system provides the sum-up of his/her active reservation;
 \item The user either: has the GPS active and taps onto the \emph{"Unlock car"} button OR reads and inserts the car code into the application, tapping the \emph{"Unlock with car code"} button;
 \item The system processes the request, by verifying that the user who tries to unlock the car is the one who reserved it;
 \item The system unlocks the vehicle.
