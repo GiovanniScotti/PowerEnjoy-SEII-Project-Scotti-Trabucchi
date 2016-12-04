@@ -57,7 +57,7 @@ The following are the procedures implemented by the CarStatusManager component a
 The following are the procedures implemented by the SecurityAuthenticator component and called by other components:
 \begin{description}
 \item[\texttt{codeUnlock}] This procedure is used to unlock a car based on a vehicle-specific code found on the car itself; the procedure \textit{parameters} are a user-identifying token and a code; the \textit{return value} for the procedure is undefined, since its call is asynchronous.
-\item[\texttt{checkReservation}] This procedure is used to perform the same action as the one listed before, but in the case of a GPS unlock attempt; the needed \textit{parameters} are a user-identifying token and a list of cars detected to be near the GPS position of the identified user; the \textit{return value} is an error in case there is no matching triplet car-user-reservation based on the given data, otherwise it is undefined.
+\item[\texttt{checkReservation}] This procedure is used to perform the same action as the one listed before, but in the case of a GPS unlock attempt; the needed \textit{parameters} are a user-identifying token and a list of cars detected to be near the GPS position of the identified user; the \textit{return value} is an error in case there is no matching triplet car-user-reservation based on the given data, otherwise it is a confirmation message.
 \item[\texttt{sendToCheck}] This procedure processes an authentication PIN inserted by a user on the on-board application of a car to find out if the ride is being initiated by the user who reserved and unlocked that car; this takes as \textit{parameters} a car and a PIN; the \textit{return value} is the result of the check.
 \end{description}
 \subsubsection{DiscountProvider}
