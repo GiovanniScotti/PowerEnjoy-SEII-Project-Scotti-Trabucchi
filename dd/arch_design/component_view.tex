@@ -1,4 +1,4 @@
-In this section the individual components will be discussed in terms of the needed high level sub-parts and their functioning, as well as how those sub-elements interface with one another within the overlaying component and which of them is in charge of interfacing with other components.
+In this section, the individual components will be discussed in terms of the needed sub-parts, their role and functioning, as well as how those sub-elements interface with one another within the overlaying component; moreover, this section will show which of said sub-elements is in charge of interfacing with other components of the system.
 
 \subsection{Database}
 The database layer must include a DBMS component, in order to manage the insertion, modification, deletion and logging of transactions on data inside the storage memory.
@@ -20,7 +20,7 @@ The E-R diagram in Figure \ref{er_dg} illustrates a concept of the Database sche
 \end{figure}
 
 \subsection{Application Server}
-This layer must handle the business logic as a whole and the connections with the data layer and the multiple ways of accessing the application.
+This layer must handle the business logic as a whole, the connections with the data layer and the multiple ways of accessing the application from different clients and external systems.
 
 The main feature of the Application Server are the specific modules of business logic, which describe business rules and work-flows for each of the functionalities provided by the application itself.
 
@@ -47,7 +47,7 @@ The Web Server layer connects clients with the business logic layer in case the 
 
 That being said, it is clear that the main functions to be implemented by this layer will essentially consist of interfaces, since - as stated in Section \ref{high_level_comps} - there will not be any logic implemented within the Web Server besides the presentation of pages.
 
-The presentation must be structured in a clean and simple way, such that the components providing the client with web pages are decoupled as possible from the components that communicates with the business logic subsiding the Application Server in order to fetch relevant data to be shown. The communication must be thought in a way that allows quick and efficient data transfer through textual data files over HTTPS, e.g. XML or JSON.
+The presentation must be structured in a clean and simple way, such that the components providing the client with web pages are decoupled as possible from the components that communicates with the business logic subsiding the Application Server in order to fetch relevant data to be shown. The communication must be thought in a way that allows quick, efficient and safe data transfer through textual data files over HTTPS, e.g. XML or JSON.
 
 Adequate APIs must be designed in order to separate in the most efficient way the design of the Web and Application Servers.
 
@@ -89,9 +89,9 @@ The specific implementation choices are:
 \begin{itemize}
 \item GlassFish Server as the Application Server implementation;
 \item Enterprise JavaBeans (EJB) to implement the single business logic modules described in the sections above. These will be appropriately subdivided into EJB containers as specified by the JEE documentation;
-\item Java Persistence API (JPA) as the persitence unit to perform the object-relation mapping and the Database access. JPA Entities will be used to implement the object representation of the data entities;
+\item Java Persistence API (JPA) as the persistence unit to perform the object-relation mapping and the Database access. JPA Entities will be used to implement the object representation of the data entities;
 \item JAX-RS to implement proper RESTful APIs to interface with clients and the Web Server;
-\item To interface with external systems, existing RESTful APIs defined by the partner (payment handlers, maintenance system) will be used.
+\item To interface with external systems, existing RESTful APIs defined by the partners will be used in the communication with the payment handlers, whereas a dedicated one will be provided to the maintenance system to interact properly with the application services.
 \end{itemize}
 
 \begin{figure}[H]
@@ -133,7 +133,7 @@ The core of both application must be a Controller that communicates user inputs 
 \subsubsection{On-Board Application Client Implementation}
 The on-board application must strictly follow the car manufacturer guidelines for the development. The given APIs must be used to properly connect with the car equipment and sensors via the car CAN bus.
 
-Since the car embedded devices have limited hardware specifications, the software must be written in C/C++. The user interface must be managed by a dedicated unit. The core of the application must include a GPS manager and a mobile connectivity unit. The communication with the Application Server must be performed by the connectivity unit via an adequate RESTful API. Data-flows from the car sensors must be handled by a separated data collection unit and properly evaluated by a data processing unit. The single elements will be coordinated by a Controller.
+Since the car embedded devices have limited hardware specifications, the software must be written in C/C++. The user interface must be managed by a dedicated unit. The core of the application must include a GPS manager and a mobile connectivity unit. The communication with the Application Server must be performed by the connectivity unit via an adequate RESTful API. Data-flows from the car sensors must be handled by separated data collection units and properly processed by a single data processing unit. The single elements will be coordinated by a Controller.
 
 \begin{figure}[H]
 \begin{center}
