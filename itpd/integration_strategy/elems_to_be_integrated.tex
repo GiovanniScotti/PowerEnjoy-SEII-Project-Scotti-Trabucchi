@@ -1,15 +1,15 @@
-The integration test phase for the \emph{PowerEnJoy} system will be structured based on the architectural division in tiers that is described in the Design Document~\cite{dd}, as well as the indication of the elements of which said subsystems are composed of.
+The integration test phase for the \emph{PowerEnJoy} system will be structured on the architectural division in tiers that is described in the Design Document~\cite{dd}, as well as the indication of the elements of which said subsystems are composed of.
 
 With respect to this, the subsystems to be integrated in this phase are the following four:
 \begin{description}
 \item[Database Tier] This includes all the commercial database structures that will be used for the data storage and management of the system, namely the DBMS and the Database Engine; the two data layer components are already developed to work properly when coupled together, so the only component to be integrated is the DBMS.
 \item[Application Logic Tier] This includes all the business logic for the application, the data access components and the interface components towards external systems and clients. All the interactions among internal logic components must be tested and all the subsystems that interact with this tier must be individually integrated.
 \item[Web Tier] This includes all the components in charge of the web interface and the communication with the application logic tier and the browser client. The integration tests must be performed both ways for this tier, and the Web Controller must be thoroughly tested also for the interaction with the Java Server Pages component.
-\item[Client Tier] This includes the various types of clients, which is to say the Mobile Application Client, the Web Browser Client and the On-Board Application Client, and their internal components. Single clients must behave properly with respect to their internal structure, and must be integrated individually with the tier they interface with.
+\item[Client Tier] This includes the various types of clients, which is to say the Mobile Application Client, the Web Browser Client and the On-Board Application Client, and their internal components. Single clients must behave properly with respect to their internal structure, and must be individually integrated with the tier they interface with.
 \end{description}
 
 The integration process will be performed in two steps:
 \begin{itemize}
-\item A first phase in which the individual components of the subsystems, i.e. Java classes, Java Beans and Containers, are integrated one by one.
-\item A second phase in which, after having ensured a proper internal behaviour, the above specified subsystems are integrated as well.
+\item A \emph{first phase} in which the individual components of the subsystems (i.e. Java classes, Java Beans and Containers), are integrated one by one.
+\item A \emph{second phase} in which, after having ensured a proper internal behaviour, the above specified subsystems are integrated as well.
 \end{itemize}
