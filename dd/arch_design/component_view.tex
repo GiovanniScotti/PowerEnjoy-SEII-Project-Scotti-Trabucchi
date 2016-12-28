@@ -89,7 +89,7 @@ The specific implementation choices are:
 \begin{itemize}
 \item GlassFish Server as the Application Server implementation;
 \item Enterprise JavaBeans (EJB) to implement the single business logic modules described in the sections above. These will be appropriately subdivided into EJB containers as specified by the JEE documentation;
-\item Java Persistence API (JPA) as the persistence unit to perform the object-relation mapping and the Database access. JPA Entities will be used to implement the object representation of the data entities;
+\item Java Persistence API (JPA) as persistence unit to perform the Database access, that is not implemented with direct SQL queries. Entity beans will be used to implement the object representation of the database entities and they are strictly related to the entities of the ER diagram (Figure \ref{er_dg});
 \item JAX-RS to implement proper RESTful APIs to interface with clients and the Web Server;
 \item To interface with external systems, existing RESTful APIs defined by the partners will be used in the communication with the payment handlers, whereas a dedicated one will be provided to the maintenance system to interact properly with the application services.
 \end{itemize}
@@ -97,7 +97,7 @@ The specific implementation choices are:
 \begin{figure}[H]
 \begin{center}
 		\includegraphics[width=\textwidth]{./arch_design/diagrams/app_server_comps.png}
-		\caption{The components of the Application Server implemented as session beans to develop the business logic. The detailed interface of each bean is thoroughly described in section \ref{int_comps_if}.}
+		\caption{The components of the Application Server implemented as session beans to develop the business logic. The detailed interface of each bean is thoroughly described in section \ref{int_comps_if}. An arrow going from component C1 to component C2 means that C1 uses interfacing methods provided by C2.}
 		\label{app_server_comps}
 \end{center}
 \end{figure}
@@ -145,7 +145,7 @@ Since the car embedded devices have limited hardware specifications, the softwar
 
 \begin{figure}[H]
 \begin{center}
-		\includegraphics[width=\textwidth]{./arch_design/diagrams/choices_tree.png}
+		\includegraphics[width=0.9\textwidth]{./arch_design/diagrams/choices_tree.png}
 		\caption{The overall decision tree for the first phase of the architectural design.}
 		\label{overall_choices}
 \end{center}
