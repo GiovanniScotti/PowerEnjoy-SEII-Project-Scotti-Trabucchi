@@ -1,0 +1,19 @@
+\section{Integration Test Case SI1}
+
+\begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
+\hline
+\textbf{Test Case Identifier} & SI1T1\\
+\hline
+\textbf{Test Item(s)} & Application Logic Tier $\rightarrow$ Database Tier \\
+\hline
+\textbf{Input Specification} & Calls to the methods offered by the JPA Entities that are mapped on tables in the Database Tier. \\
+\hline
+\textbf{Output Specification} & The Database Tier must reply correctly by executing queries on the Test Database. In the case requests are coming from unauthorized sources that are maliciously trying to access the data, they must be blocked\\
+\hline
+\textbf{Environmental Needs} & The test needs a complete implementation of the JEBs, the Java Persistence API, the Test Database and a bunch of drivers that calls the JEBs' methods. \\
+\hline
+\textbf{Test Description} & The replies to the queries coming from the Database Tier will be compared with the expected output results. \\
+\hline
+\textbf{Testing Method} & Automated with JUnit. \\
+\hline
+\end{longtable}
