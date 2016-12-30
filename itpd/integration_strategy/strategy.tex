@@ -1,10 +1,11 @@
 As far as the integration testing process is concerned, a \textbf{bottom-up approach} will be followed. 
 
-The choice of the bottom-up testing strategy is natural since the integration testing can start from the smallest and lowest-level components, that already have unit tests and do not depend on other components or not-already-developed components. In this way the total amount of needed stubs to accomplish the integration will be deeply reduced, but temporary programs for higher-level modules (drivers) are used to simulate them and invoke the unit under test.
+The choice of the bottom-up testing strategy is natural since the integration testing can start from the smallest and lowest-level components, that are already tested at a unit level and do not depend on other components or not-already-developed components. In this way the total amount of needed stubs to accomplish the integration will be deeply reduced, but temporary programs for higher-level modules (drivers) will be necessary to simulate said modules and invoke the unit under test.
 
-The bottom-up strategy will be mixed with a \textbf{critical-module-first approach}, in order to avoid issues related to the failures of core components and to pose a threat to the correct implementation of the entire \emph{PowerEnJoy} system.
+The bottom-up strategy will be mixed with a \textbf{critical-module-first approach}, in order to avoid issues related to the failures of core components and threats to the correct implementation of the entire \emph{PowerEnJoy} system.
 
-Moreover the higher-level subsystems described in section \ref{elems_int} are loosely coupled and fairly independent from one another because they correspond to different tiers. In this case, the critical-module-first approach is used to establish the integration order to obtain the full system.
+Moreover the higher-level subsystems described in section \ref{elems_int} are loosely coupled and fairly independent from one another because they correspond to different tiers. In this case, the critical-module-first approach is used to establish the integration order and get to the full system.
 
 Notice that the DBMS is a commercial component already developed that can be used directly in the bottom-up approach and does not have any dependency.
-% CE NE SONO ALTRI?
+
+At this level of integration testing, the communication functionalities with external systems must be covered as well, especially considering the relevance of said interaction in the context of the application. With respect to this, stubs and  drivers will be used appropriately, based on the type of interface and interaction with the individual external systems.
