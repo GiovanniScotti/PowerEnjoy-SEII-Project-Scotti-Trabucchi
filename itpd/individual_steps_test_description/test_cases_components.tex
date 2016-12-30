@@ -1,0 +1,66 @@
+The followings are the test cases to be carried out. They are directly mapped with Table \ref{software_int} for the integration among components and Table \ref{subsys_int} for the subsystems integration. Test cases starting with \textbf{I} are integration test among components while test cases starting with \textbf{SI} concern the integration among subsystems. The adopted structure of the tables refers to the provided inegration test example~\cite{testplan_ex}.
+
+\section{Integration Test Cases I01, I02, I03, I04, I05, I06, I07}
+
+The following test cases concern the integration among the Java Entity Beans and the Database Tier running the DBMS. Since the test cases are very similar to each others, they are grouped together as follows:
+
+\begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
+\hline
+\textbf{Test Case Identifier} & I01T1\\
+\hline
+\textbf{Test Item(s)} & (JEB) User $\rightarrow$ DBMS \\
+\hline
+\textbf{Input Specification} & Typical queries on table User. \\
+\hline
+\hline
+\textbf{Test Case Identifier} & I02T1\\
+\hline
+\textbf{Test Item(s)} & (JEB) Car $\rightarrow$ DBMS \\
+\hline
+\textbf{Input Specification} & Typical queries on table Car. \\
+\hline
+\hline
+\textbf{Test Case Identifier} & I03T1\\
+\hline
+\textbf{Test Item(s)} & (EJB) Reservation $\rightarrow$ DBMS \\
+\hline
+\textbf{Input Specification} & Typical queries on table Reservation. \\
+\hline
+\hline
+\textbf{Test Case Identifier} & I04T1\\
+\hline
+\textbf{Test Item(s)} & (EJB) Ride $\rightarrow$ DBMS \\
+\hline
+\textbf{Input Specification} & Typical queries on table Ride. \\
+\hline
+\hline
+\textbf{Test Case Identifier} & I05T1\\
+\hline
+\textbf{Test Item(s)} & (EJB) SafeArea $\rightarrow$ DBMS \\
+\hline
+\textbf{Input Specification} & Typical queries on table SafeArea. \\
+\hline
+\hline
+\textbf{Test Case Identifier} & I06T1\\
+\hline
+\textbf{Test Item(s)} & (EJB) PowerGridStation $\rightarrow$ DBMS \\
+\hline
+\textbf{Input Specification} & Typical queries on table PowerGridStation. \\
+\hline
+\hline
+\textbf{Test Case Identifier} & I07T1\\
+\hline
+\textbf{Test Item(s)} & (EJB) AlternativeChargesSituation $\rightarrow$ DBMS \\
+\hline
+\textbf{Input Specification} & Typical queries on table AlternativeChargesSituation. \\
+\hline
+\hline
+\textbf{Output Specification} & The queries shall return the correct results. \\
+\hline
+\textbf{Environmental Needs} & GlassFish server, Test Database, driver for the Java Entity Beans. \\
+\hline
+\textbf{Test Description} & The purpose of these tests is to check the correctness of the queries to the DBMS that the JEBs shall perform and implement. Drivers for the entity beans are used to properly initialize and call their methods before the related Session Beans are fully developed. \\
+\hline
+\textbf{Testing Method} & Automated with JUnit. \\
+\hline
+\end{longtable}
