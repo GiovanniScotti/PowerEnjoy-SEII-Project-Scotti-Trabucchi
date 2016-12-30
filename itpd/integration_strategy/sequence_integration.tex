@@ -9,9 +9,12 @@ The first components to be integrated are those relative to the data access, sta
 
 %---------------------ATTENZIONE------------------------------
 %definiamole però!
-%Secondo me possiamo unificare i due passaggi. Partiamo dalle entity beans che hanno bisogno di driver per verificare che i loro metodi, opportunamente invocati, producano query corrette. Inutile il passaggio intermedio di creare driver rappresentanti le singole JEB.
+%Secondo me possiamo unificare i due passaggi. Partiamo dalle entity beans che hanno bisogno di driver per verificare che i loro metodi, opportunamente invocati, producano query corrette. Inutile il passaggio intermedio di creare driver rappresentanti le singole JEB. Perchè poi?
 
-In order to do so, the DBMS will need a driver for each Entity Bean to simulate actual queries and their correctness on a dummy database, containing a greatly reduced number of test information. Said test database will be structured based on the E-R schema that will be adopted for the final implementation of the data layer.
+In order to do so, the DBMS will need a driver for each Entity Bean to carry out queries and verify their correctness on a dummy database, containing a greatly reduced number of test information. Said test database will be structured based on the E-R schema that will be adopted for the final implementation of the data layer.
+
+%----- PEZZO CAMBIATO -------
+%In order to do so, the DBMS will need a driver for each Entity Bean to simulate actual queries and their correctness on a dummy database, containing a greatly reduced number of test information. Said test database will be structured based on the E-R schema that will be adopted for the final implementation of the data layer.
 
 \begin{figure}[H]
 \begin{center}
@@ -31,16 +34,21 @@ In order to do so, the DBMS will need a driver for each Entity Bean to simulate 
 %JEB PowerGridStation <- MapManager
 %JEB AlternativeChargesSituation <- DiscountProvider
 %JEB Payment <- PaymentGateway
-The next steps involve the definition of the needed drivers for each of the JEB. These drivers represent the Session Beans that will be in charge of accessing the individual Entity Beans in the final application.
+\noindent
+The next steps involve the integration of the Session Beans which take the advantage of said Entity Beans and are in charge of accessing them in the final application.
+
+%----- PEZZO CAMBIATO -------
+%The next steps involve the definition of the needed drivers for each of the JEB. These drivers represent the Session Beans that will be in charge of accessing the individual Entity Beans in the final application.
+
 %diagrammi con tutti i collegamenti
 
 \subsubsection{User and Utilities Management}
 %NotificationManager <- UserManager
 %NotificationManager <- PaymentGateway
 %UserManager <- PaymentGateway
-The integration can begin by covering the user management and the business logic utilities, that are considered relevant to support the rest of the application functionalities. To begin with, the most independent bean is, in this case, the NotificationManager, that requires drivers for UserManager and PaymentGateway (1).
+The integration can begin by covering the user management and the business logic utilities, that are considered relevant to support the rest of the application functionalities. To begin with, the most independent bean is, in this case, the NotificationManager, that requires drivers to invoke and test methods later used by UserManager and PaymentGateway (1).
 \noindent
-The UserManager component can then in turn be integrated (2), using the same PaymentGateway driver used in the previous step to call the needed methods appropriately for the case.
+The UserManager component can then in turn be integrated (2), using the same driver used in the previous step to replace the PaymentGateway and to call the needed methods appropriately for the case.
 
 \begin{figure}[H]
 \begin{center}
@@ -52,9 +60,9 @@ The UserManager component can then in turn be integrated (2), using the same Pay
 %DiscountProvider <- RideManager
 %DiscountProvider <- PaymentGateway
 %PaymentGateway <- RideManager
-The payment management context can be covered next in the integration process, starting once more from the most independent component, represented by the DiscountProvider. This will need two different drivers, one for the RideManager and another for the PaymentGateway (1).
+The payment management context can be covered next in the integration process, starting once more from the most independent component, represented by the DiscountProvider. This will need two different drivers, one for the methods called by the RideManager and another for the PaymentGateway (1).
 \noindent
-The PaymentGateway itself can in turn be integrated by using the same RideManager driver as before (2), only with the appropriate functionalities.
+The PaymentGateway itself can in turn be integrated by using the same driver used before to replace the RideManager (2), only with the appropriate functionalities.
 
 \begin{figure}[H]
 \begin{center}
@@ -62,12 +70,14 @@ The PaymentGateway itself can in turn be integrated by using the same RideManage
 \end{center}
 \end{figure}
 
+%----CONTINUARE COME SOPRA?
+
 \subsubsection{Ride and Reservation Management}
 %CarStatusManager <- RideManager	
 %CarStatusManager <- ReservationManager
 %RideManager <- SecurityAuthenticator
 %SecurityAuthenticator <- MapManager
-The most critical features of the application revolve around the management of rides and reservations. Within this context, the most independent functionality is provided by the CarStatusManager bean, since no other bean depend on it apart from the already integrated Entity Beans. In order to integrate the CarStatusManager, there will be the need of two drivers: one for the ReservationManager and one for the RideManager (1).
+The most critical features of the application revolve around the management of rides and reservations. Within this context, the most independent functionality is provided by the CarStatusManager bean, since no other bean depends on it apart from the already integrated Entity Beans. In order to integrate the CarStatusManager, there will be the need of two drivers: one for the ReservationManager and one for the RideManager (1).
 \noindent
 In its turn, the RideManager itself needs a driver in order to be integrated (2), which will represent the SecurityAuthenticator session bean.
 \noindent
@@ -145,9 +155,7 @@ The web application components will be integrated in a single step: a driver of 
 \end{center}
 \end{figure}
 
-\begin{table}[H]
-\begin{center}
-\begin{tabular}{p{0.1\textwidth} | p{0.3\textwidth} | p{0.3\textwidth} | p{0.3\textwidth}}
+\begin{longtable}{p{0.05\textwidth} | p{0.3\textwidth} | p{0.3\textwidth} | p{0.3\textwidth}}
 \hline
 \textbf{N.} & \textbf{Subsystems} & \textbf{Component} & \textbf{Integrates with} \\
 \hline
@@ -201,11 +209,9 @@ I24 & Mobile Client & ApplicationController & UIManager, GPSManager \\
 \hline
 I25 & Web & WebController & JavaServerPages \\
 \hline
-\end{tabular}
-\end{center}
 \caption{Integration order of the system components. External components are marked with (EXT).}
 \label{software_int}
-\end{table}
+\end{longtable}
 
 \subsection{Subsystem Integration Sequence}
 The integration sequence of the high-level subsystems is described in Figure \ref{h_level_subsys} and Table \ref{subsys_int}.
@@ -220,7 +226,7 @@ The integration sequence of the high-level subsystems is described in Figure \re
 
 \begin{table}[H]
 \begin{center}
-\begin{tabular}{p{0.2\textwidth} | p{0.4\textwidth} | p{0.4\textwidth}}
+\begin{tabular}{p{0.05\textwidth} | p{0.3\textwidth} | p{0.3\textwidth}}
 \hline
 \textbf{N.} & \textbf{Subsystem} & \textbf{Integrates with} \\
 \hline
