@@ -116,9 +116,25 @@
 \hline
 \end{longtable}
 
-\section{Integration Test Case SI7}
+\section{Integration Test Case SI6}
 
-%INSERIRE QUI
+\begin{longtable}{p{0.3\textlength} | p{0.7\textlength}}
+\hline
+\textbf{Test Case Identifier} & SI6T1\\
+\hline
+\textbf{Test Item(s)} & Web Tier $\rightarrow$ Application Logic Tier \\
+\hline
+\textbf{Input Specification} & Requests for services offered by the Application Logic Tier, both well-formed and invalid or malicious ones. \\
+\hline
+\textbf{Output Specification} & The web tier must use and interface correctly with the proper RESTful APIs or report an error if the request was not recognized or blocked. \\
+\hline
+\textbf{Environmental Needs} & GlassFish Server, fully developed Web Tier and Application Logic Tier. \\
+\hline
+\textbf{Test Description} & This test has to ensure the right translation from HTTPS requests into RESTful API calls, reporting errors when needed. \\
+\hline
+\textbf{Testing Method} & Automated with JUnit. \\
+\hline
+\end{longtable}
 
 \begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
 \hline

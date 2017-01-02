@@ -1,1 +1,8 @@
-%TOOLS AND EQUIPMENT
+The software tools to be used during the integration testing process are the following:
+
+\begin{description}
+\item[Apache JMeter:] JMeter - \url{http://jmeter.apache.org/} - is an open source software resource used to test performance both on static and dynamic environments of systems. It will be used to simulate a heavy load on the Web Tier and the Application Logic Tier, to mimic a situation in which many users connect simultaneously to the service. In more detail, the tool will be used to test the compliance with what stated in Section 3.3 of the RASD~\cite{rasd}.
+\item[JUnit:] JUnit - \url{http://junit.org/} - is a simple framework used to write repeatable tests. It is mainly used to perform unit testing of components (given as a prerequisite for this phase), but it will be coupled with other tools - such as Mockito and Arquillian - in order to better perform integration testing.
+\item[Arquillian:] Arquillian - \url{http://arquillian.org/} - is a test framework used to execute test cases against the container in which components are defined. It will be used in order to test the behaviour of containers with respect to the single Java Beans used for the application.
+\item[Mockito:] Mockito - \url{http://site.mockito.org/} - Mockito is a clean and simple framework that allows to write stubs and mocks using a simple API. It is used to generate the few stubs we indicated as necessary for the integration of all components and subsystems.
+\end{description}
