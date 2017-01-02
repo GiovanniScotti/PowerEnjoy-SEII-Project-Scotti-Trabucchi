@@ -131,20 +131,23 @@ As far as the Web Application is concerned, the Java Server Pages will be integr
 \end{center}
 \end{figure}
 
-An overall view of the integration sequence is provided below:
+\noindent
+An overall view of the integration sequence is provided below: \textcolor{blue}{blue} arrows highlight interactions between EJBs and the DBMS, \textcolor{red}{red} arrows highlight interactions between Containers and the respectively contained Session Beans.
 
-%DIAGRAMMONE GIGANTEEEE - didascalia: i numeri indicani i test case (livello software) in ordine di integrazione
 \begin{figure}[H]
 \begin{center}
 		\includegraphics[width=\textwidth]{./integration_strategy/diagrams/overall.png}
-		\caption{•}
+		\caption{Overall diagram of the components integration. Numbers point out the integration order.}
 \end{center}
 \end{figure}
 
-%DESCRIZIONE COLORI FRECCE
+%{p{0.03\textwidth} | p{0.29\textwidth} | p{0.40\textwidth} | p{0.40\textwidth}}
 
 \newpage
-\begin{longtable}{p{0.05\textwidth} | p{0.3\textwidth} | p{0.3\textwidth} | p{0.3\textwidth}}
+\begingroup
+\setlength{\LTleft}{-20cm plus -1fill}
+\setlength{\LTright}{\LTleft}
+\begin{longtable}{p{0.03\textwidth} | p{0.29\textwidth} | p{0.40\textwidth} | p{0.40\textwidth}}
 \hline
 \textbf{N.} & \textbf{Subsystems} & \textbf{Component} & \textbf{Integrates with} \\
 \hline
@@ -158,40 +161,62 @@ I04 & Database, App. Logic & (JEB) Ride & DBMS \\
 \hline
 I05 & Database, App. Logic & (JEB) SafeArea & DBMS \\
 \hline
-I06 & Database, App. Logic & (JEB) PowerGridStation & DBMS \\
+I06 & Database, App. Logic & (JEB) PowerGridStat. & DBMS \\
 \hline
-I07 & Database, App. Logic & (JEB) AlternativeChargesSitutation & DBMS \\
+I07 & Database, App. Logic & (JEB) AlternativeChargesSit. & DBMS \\
 \hline
 I08 & Database, App. Logic & (JEB) Payment & DBMS \\
 \hline
-I09 & App. Logic & (SB) DiscountProvider & (JEB) AlternativeChargesSituation \\
+I09 & App. Logic & (SB) DiscountProvider & (JEB) Alternative ChargesSit. \\
 \hline
 I10 & App. Logic & (SB) CarStatusManager & (JEB) Car \\
 \hline
 I11 & App. Logic & (SB) UserManager & (JEB) User \\
-	& & & (SB) NotificationManager \\
+									& & & (SB) NotificationManager \\
 \hline
-I12 & App. Logic & (SB) PaymentGateway & (JEB) Payment, (SB) UserManager, (SB) DiscountProvider, (SB) NotificationManager \\
+I12 & App. Logic & (SB) PaymentGateway & (JEB) Payment \\
+									   & & & (SB) UserManager \\ 
+									   & & & (SB) DiscountProvider \\ 
+									   & & & (SB) NotificationManager \\
 \hline
-I13 & App. Logic & (SB) RideManager & (JEB) Ride, (SB) PaymentGateway, (SB) DiscountProvider, (SB) CarStatusManager \\
+I13 & App. Logic & (SB) RideManager & (JEB) Ride \\
+									& & & (SB) PaymentGateway \\
+									& & & (SB) DiscountProvider \\
+									& & & (SB) CarStatusManager \\
 \hline
-I14 & App. Logic & (SB) ReservationManager & (JEB) Car, (JEB) Reservation, (SB) CarStatusManager \\
+I14 & App. Logic & (SB) ReservationManager & (JEB) Car \\
+										   & & & (JEB) Reservation \\
+										   & & & (SB) CarStatusManager \\
 \hline
-I15 & App. Logic & (SB) SecurityAuthenticator & (JEB) User, (JEB) Reservation, (SB) RideManager \\
+I15 & App. Logic & (SB) SecurityAuthenticator & (JEB) User \\
+											  & & & (JEB) Reservation \\
+											  & & & (SB) RideManager \\
 \hline
-I16 & App. Logic & (SB) MapManager & (JEB) Car, (JEB) SafeArea, (JEB) PowerGridStation, (SB) SecurityAuthenticator \\
+I16 & App. Logic & (SB) MapManager & (JEB) Car \\
+								   & & & (JEB) SafeArea \\ 
+								   & & & (JEB) PowerGridStation \\ 
+								   & & & (SB) SecurityAuthenticator \\
 \hline
-I17 & App. Logic & (EJB Container) UserManagementContainer & (SB) UserManager \\
+I17 & App. Logic & (Cont.) UserManagementCont. & (SB) UserManager \\
 \hline
-I18 & App. Logic & (EJB Container) UtilitiesContainer & (SB) MapManager, (SB) NotificationManager \\
+I18 & App. Logic & (Cont.) UtilitiesContainer & (SB) MapManager \\
+											  & & & (SB) NotificationManager \\
 \hline
-I19 & App. Logic & (EJB Container) ChargesManagementContainer & (SB) PaymentGateway, (SB) DiscountProvider \\
+I19 & App. Logic & (Cont.) ChargesManagementCont. & (SB) PaymentGateway \\
+													  & & & (SB) DiscountProvider \\
 \hline
-I20 & App. Logic & (EJB Container) RideManagementContainer & (SB) RideManager, (SB) ReservationManager, (SB) SecurityAuthenticator, (SB) CarStatusManager \\
+I20 & App. Logic & (Cont.) RideManagementCont. & (SB) RideManager \\ 
+												   & & & (SB) ReservationManager \\
+												   & & & (SB) SecurityAuthenticator \\
+												   & & & (SB) CarStatusManager \\
 \hline
-I21 & On-Board Client & ApplicationController & UIManager, GPSManager, ConnectivityUnit, DataProcessingUnit \\
+I21 & On-Board Client & ApplicationController & UIManager \\
+											  & & & GPSManager \\
+											  & & & ConnectivityUnit \\
+											  & & & DataProcessingUnit \\
 \hline
-I22 & Mobile Client & ApplicationController & UIManager, GPSManager \\
+I22 & Mobile Client & ApplicationController & UIManager \\
+											& & & GPSManager \\
 \hline
 I23 & Web & WebController & JavaServerPages \\
 \hline
@@ -200,6 +225,7 @@ I24 & Web & WebContainer & WebController \\
 \caption{Integration order of the system components.}
 \label{software_int}
 \end{longtable}
+\endgroup
 
 \subsection{Subsystem Integration Sequence}
 The integration sequence of the high-level subsystems is described in Figure \ref{h_level_subsys} and Table \ref{subsys_int}.
@@ -214,7 +240,7 @@ The integration sequence of the high-level subsystems is described in Figure \re
 
 \begin{table}[H]
 \begin{center}
-\begin{tabular}{p{0.05\textwidth} | p{0.3\textwidth} | p{0.3\textwidth}}
+\begin{tabular}{p{0.05\textwidth} | p{0.3\textwidth} | p{0.38\textwidth}}
 \hline
 \textbf{N.} & \textbf{Subsystem} & \textbf{Integrates with} \\
 \hline
@@ -250,5 +276,6 @@ To be precise, the components to be integrated are the endpoints of the Payment 
 \begin{figure}[H]
 \begin{center}
 		\includegraphics[width=0.8\textwidth]{./integration_strategy/diagrams/external_systems.png}
+		\caption{Integration of the external systems.}
 \end{center}
 \end{figure}
