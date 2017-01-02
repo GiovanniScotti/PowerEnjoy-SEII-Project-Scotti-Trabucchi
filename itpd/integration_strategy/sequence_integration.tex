@@ -141,6 +141,7 @@ An overall view of the integration sequence is provided below:
 \end{center}
 \end{figure}
 
+\newpage
 \begin{longtable}{p{0.05\textwidth} | p{0.3\textwidth} | p{0.3\textwidth} | p{0.3\textwidth}}
 \hline
 \textbf{N.} & \textbf{Subsystems} & \textbf{Component} & \textbf{Integrates with} \\
@@ -165,36 +166,34 @@ I09 & App. Logic & (SB) DiscountProvider & (JEB) AlternativeChargesSituation \\
 \hline
 I10 & App. Logic & (SB) CarStatusManager & (JEB) Car \\
 \hline
-I11 & App. Logic & (SB) ReservationManager & (SB) CarStatusManager \\
-\hline
-I12 & App. Logic & (SB) UserManager & (JEB) User \\
+I11 & App. Logic & (SB) UserManager & (JEB) User \\
 	& & & (SB) NotificationManager \\
 \hline
-I13 & App. Logic & (SB) PaymentGateway & (JEB) Payment, (SB) UserManager, (SB) DiscountProvider \\
+I12 & App. Logic & (SB) PaymentGateway & (JEB) Payment, (SB) UserManager, (SB) DiscountProvider, (SB) NotificationManager \\
 \hline
-I14 & App. Logic & (SB) RideManager & (JEB) Ride, (SB) PaymentGateway, (SB) DiscountProvider, (SB) CarStatusManager \\
+I13 & App. Logic & (SB) RideManager & (JEB) Ride, (SB) PaymentGateway, (SB) DiscountProvider, (SB) CarStatusManager \\
 \hline
-I15 & App. Logic & (SB) ReservationManager & (JEB) Car, (JEB) Reservation, (SB) CarStatusManager \\
+I14 & App. Logic & (SB) ReservationManager & (JEB) Car, (JEB) Reservation, (SB) CarStatusManager \\
 \hline
-I16 & App. Logic & (SB) SecurityAuthenticator & (JEB) User, (JEB) Reservation, (SB) RideManager \\
+I15 & App. Logic & (SB) SecurityAuthenticator & (JEB) User, (JEB) Reservation, (SB) RideManager \\
 \hline
-I17 & App. Logic & (SB) MapManager & (JEB) Car, (JEB) SafeArea, (JEB) PowerGridStation, (SB) SecurityAuthenticator \\
+I16 & App. Logic & (SB) MapManager & (JEB) Car, (JEB) SafeArea, (JEB) PowerGridStation, (SB) SecurityAuthenticator \\
 \hline
-I18 & App. Logic & (EJB Container) UserManagementContainer & (SB) UserManager \\
+I17 & App. Logic & (EJB Container) UserManagementContainer & (SB) UserManager \\
 \hline
-I19 & App. Logic & (EJB Container) UtilitiesContainer & (SB) MapManager, (SB) NotificationManager \\
+I18 & App. Logic & (EJB Container) UtilitiesContainer & (SB) MapManager, (SB) NotificationManager \\
 \hline
-I20 & App. Logic & (EJB Container) ChargesManagementContainer & (SB) PaymentGateway, (SB) DiscountProvider \\
+I19 & App. Logic & (EJB Container) ChargesManagementContainer & (SB) PaymentGateway, (SB) DiscountProvider \\
 \hline
-I21 & App. Logic & (EJB Container) RideManagementContainer & (SB) RideManager, (SB) ReservationManager, (SB) SecurityAuthenticator, (SB) CarStatusManager \\
+I20 & App. Logic & (EJB Container) RideManagementContainer & (SB) RideManager, (SB) ReservationManager, (SB) SecurityAuthenticator, (SB) CarStatusManager \\
 \hline
-I22 & On-Board Client & ApplicationController & UIManager, GPSManager, ConnectivityUnit, DataProcessingUnit \\
+I21 & On-Board Client & ApplicationController & UIManager, GPSManager, ConnectivityUnit, DataProcessingUnit \\
 \hline
-I23 & Mobile Client & ApplicationController & UIManager, GPSManager \\
+I22 & Mobile Client & ApplicationController & UIManager, GPSManager \\
 \hline
-I24 & Web & WebController & JavaServerPages \\
+I23 & Web & WebController & JavaServerPages \\
 \hline
-I25 & Web & WebContainer & WebController \\
+I24 & Web & WebContainer & WebController \\
 \hline
 \caption{Integration order of the system components.}
 \label{software_int}
