@@ -86,11 +86,16 @@ The last component to be integrated in this context is the SecurityAuthenticator
 %RideManager <- RideManagementContainer
 %SecurityAuthenticator <- RideManagementContainer
 %CarStatusManager <- RideManagementContainer
-%ContainerController <- All containers
 To conclude the integration process for the application logic tier, drivers for the EJB Containers must be provided, in order to have a means to emulate multiple requests for session bean instances; this will help in testing the underlying system effectiveness in managing heavy loads and concurrency during ordinary activity.
 \noindent
 Hence, in order to simulate the correctness of requests to the individual containers, a driver for each individual container must be used to bypass the runtime behaviour and reproduce said requests in a deterministic way. This approach will avoid the necessity of implementing the whole system before having the possibility to test the correctness of the requests to the containers.
-%diagramma per SB <- Container <- driver per containers (generale come per ejb - dbms, in didascalia specifichiamo che nel gigante è tutto dettagliato)
+
+\begin{figure}[H]
+\begin{center}
+		\includegraphics[width=\textwidth]{./integration_strategy/diagrams/containers.png}
+		\caption{The integration of the system components at a container level. The detailed integration steps are described at the end of the section in an overall comprehensive diagram.}
+\end{center}
+\end{figure}
 
 \subsubsection{On-Board Application}
 %GPSManager <- ApplicationController
@@ -122,13 +127,19 @@ As far as the Web Application is concerned, the Java Server Pages will be integr
 
 \begin{figure}[H]
 \begin{center}
-		\includegraphics[width=0.3\textwidth]{./integration_strategy/diagrams/web.png}
+		\includegraphics[width=0.8\textwidth]{./integration_strategy/diagrams/web.png}
 \end{center}
 \end{figure}
 
 An overall view of the integration sequence is provided below:
 
 %DIAGRAMMONE GIGANTEEEE - didascalia: i numeri indicani i test case (livello software) in ordine di integrazione
+\begin{figure}[H]
+\begin{center}
+		\includegraphics[width=\textwidth]{./integration_strategy/diagrams/overall.png}
+		\caption{•}
+\end{center}
+\end{figure}
 
 \begin{longtable}{p{0.05\textwidth} | p{0.3\textwidth} | p{0.3\textwidth} | p{0.3\textwidth}}
 \hline
@@ -148,39 +159,42 @@ I06 & Database, App. Logic & (JEB) PowerGridStation & DBMS \\
 \hline
 I07 & Database, App. Logic & (JEB) AlternativeChargesSitutation & DBMS \\
 \hline
-I08 & App. Logic & (SB) DiscountProvider & (JEB) AlternativeChargesSituation \\
+I08 & Database, App. Logic & (JEB) Payment & DBMS \\
 \hline
-I09 & App. Logic & (SB) CarStatusManager & (JEB) Car \\
+I09 & App. Logic & (SB) DiscountProvider & (JEB) AlternativeChargesSituation \\
 \hline
-I10 & App. Logic & (SB) ReservationManager & (SB) CarStatusManager \\
+I10 & App. Logic & (SB) CarStatusManager & (JEB) Car \\
 \hline
-I11 & App. Logic & (SB) UserManager & (JEB) User, (SB) NotificationManager \\
+I11 & App. Logic & (SB) ReservationManager & (SB) CarStatusManager \\
 \hline
-I12 & App. Logic & (SB) RideManager & (JEB) Ride, (SB) PaymentGateway, (SB) DiscountProvider, (SB) CarStatusManager \\
+I12 & App. Logic & (SB) UserManager & (JEB) User \\
+	& & & (SB) NotificationManager \\
 \hline
-I13 & App. Logic & (SB) ReservationManager & (JEB) Car, (JEB) Reservation, (SB) CarStatusManager \\
+I13 & App. Logic & (SB) PaymentGateway & (JEB) Payment, (SB) UserManager, (SB) DiscountProvider \\
 \hline
-I14 & App. Logic & (SB) SecurityAuthenticator & (JEB) User, (JEB) Reservation, (SB) RideManager \\
+I14 & App. Logic & (SB) RideManager & (JEB) Ride, (SB) PaymentGateway, (SB) DiscountProvider, (SB) CarStatusManager \\
 \hline
-I15 & App. Logic & (SB) MapManager & (JEB) Car, (JEB) SafeArea, (JEB) PowerGridStation, (SB) SecurityAuthenticator \\
+I15 & App. Logic & (SB) ReservationManager & (JEB) Car, (JEB) Reservation, (SB) CarStatusManager \\
 \hline
-I16 & App. Logic & (EJB Container) UserManagementContainer & (SB) UserManager \\
+I16 & App. Logic & (SB) SecurityAuthenticator & (JEB) User, (JEB) Reservation, (SB) RideManager \\
 \hline
-I17 & App. Logic & (EJB Container) UtilitiesContainer & (SB) MapManager, (SB) NotificationManager \\
+I17 & App. Logic & (SB) MapManager & (JEB) Car, (JEB) SafeArea, (JEB) PowerGridStation, (SB) SecurityAuthenticator \\
 \hline
-I18 & App. Logic & (EJB Container) ChargesManagementContainer & (SB) PaymentGateway, (SB) DiscountProvider \\
+I18 & App. Logic & (EJB Container) UserManagementContainer & (SB) UserManager \\
 \hline
-I19 & App. Logic & (EJB Container) RideManagementContainer & (SB) RideManager, (SB) ReservationManager, (SB) SecurityAuthenticator, (SB) CarStatusManager \\
+I19 & App. Logic & (EJB Container) UtilitiesContainer & (SB) MapManager, (SB) NotificationManager \\
 \hline
-I20 & App. Logic & ContainerController & (EJB Container) UserManagementContainer, (EJB Container) UtilitiesContainer, (EJB Container) ChargesManagementContainer, (EJB Container) RideManagementContainer \\
+I20 & App. Logic & (EJB Container) ChargesManagementContainer & (SB) PaymentGateway, (SB) DiscountProvider \\
 \hline
-I21 & On-Board Client & ApplicationController & UIManager, GPSManager, ConnectivityUnit, DataProcessingUnit \\
+I21 & App. Logic & (EJB Container) RideManagementContainer & (SB) RideManager, (SB) ReservationManager, (SB) SecurityAuthenticator, (SB) CarStatusManager \\
 \hline
-I22 & Mobile Client & ApplicationController & UIManager, GPSManager \\
+I22 & On-Board Client & ApplicationController & UIManager, GPSManager, ConnectivityUnit, DataProcessingUnit \\
 \hline
-I23 & Web & WebController & JavaServerPages \\
+I23 & Mobile Client & ApplicationController & UIManager, GPSManager \\
 \hline
-I24 & Web & WebContainer & WebController \\
+I24 & Web & WebController & JavaServerPages \\
+\hline
+I25 & Web & WebContainer & WebController \\
 \hline
 \caption{Integration order of the system components.}
 \label{software_int}
