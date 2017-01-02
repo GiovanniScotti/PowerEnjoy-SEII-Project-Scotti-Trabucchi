@@ -8,12 +8,170 @@
 \hline
 \textbf{Input Specification} & Calls to the methods offered by the JPA Entities that are mapped on tables in the Database Tier. \\
 \hline
-\textbf{Output Specification} & The Database Tier must reply correctly by executing queries on the Test Database. In the case requests are coming from unauthorized sources that are maliciously trying to access the data, they must be blocked\\
+\textbf{Output Specification} & The Database Tier must reply correctly by executing queries on the Test Database. In the case requests are coming from unauthorized sources that are maliciously trying to access the data, they must be blocked. \\
 \hline
-\textbf{Environmental Needs} & The test needs a complete implementation of the JEBs, the Java Persistence API, the Test Database and a bunch of drivers that calls the JEBs' methods. \\
+\textbf{Environmental Needs} & Complete implementation of the JEBs, the Java Persistence API, the Test Database and all of the drivers that call the methods of the JEBs. \\
 \hline
 \textbf{Test Description} & The replies to the queries coming from the Database Tier will be compared with the expected output results. \\
 \hline
 \textbf{Testing Method} & Automated with JUnit. \\
+\hline
+\end{longtable}
+
+\section{Integration Test Case SI2}
+
+\begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
+\hline
+\textbf{Test Case Identifier} & SI2T1\\
+\hline
+\textbf{Test Item(s)} & Application Logic Tier $\rightarrow$ (EXT) Maintenance System \\
+\hline
+\textbf{Input Specification} & Methods invocation to establish a bidirectional communication between the two systems. \\
+\hline
+\textbf{Output Specification} & The requests and responses are carried out correctly over the established communication. \\
+\hline
+\textbf{Environmental Needs} & Driver and stub simulating the behaviour of the Maintenance System endpoint to call methods offered by the dedicated RESTful API and to receive intervention requests from the \emph{PowerEnJoy} system over the same API. Application Logic Tier fully developed up to the CarStatusManager functionalities. \\
+\hline
+\textbf{Test Description} & The RESTful API methods needed to establish a communication between the two systems taken into account are called and a series of request/responses is performed and compared with the expected results. \\
+\hline
+\textbf{Testing Method} & Automated with JUnit. \\
+\hline
+\end{longtable}
+
+\section{Integration Test Case SI3}
+
+\begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
+\hline
+\textbf{Test Case Identifier} & SI3T1\\
+\hline
+\textbf{Test Item(s)} & Application Logic Tier $\rightarrow$ (EXT) Payment Handler \\
+\hline
+\textbf{Input Specification} & Invocations of methods provided by the payment handler API. \\
+\hline
+\textbf{Output Specification} & The methods are properly invoked with the right parameters. \\
+\hline
+\textbf{Environmental Needs} & Stub of the Payment Handler endpoint to record dummy transactions and report success/failure. Application Logic Tier fully developed up to the PaymentGateway functionalities.\\
+\hline
+\textbf{Test Description} & The Application Logic Tier shall correctly invoke methods offered by the Payment Handler endpoint, which is replaced by a proper stub. \\
+\hline
+\textbf{Testing Method} & Automated with JUnit. \\
+\hline
+\end{longtable}
+
+\section{Integration Test Case SI4}
+
+\begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
+\hline
+\textbf{Test Case Identifier} & SI4T1\\
+\hline
+\textbf{Test Item(s)} & On-Board Application $\rightarrow$ Application Logic Tier \\
+\hline
+\textbf{Input Specification} & Typical RESTful API calls, both correct and intentionally invalid ones, to the Application Logic Tier. \\
+\hline
+\textbf{Output Specification} & The Application Logic Tier must respond accordingly to the API specification even if the requests are malformed or malicious. \\
+\hline
+\textbf{Environmental Needs} & Complete implementation of the Application Logic Tier, RESTful API client for the On-Board Application. \\
+\hline
+\textbf{Test Description} & The clients should make typical API calls to the Application Logic Tier; the responses are then evaluated and checked against the expected output. This test will be supported by an adequate RESTful API client. \\
+\hline
+\textbf{Testing Method} & Automated with JUnit. \\
+\hline
+\end{longtable}
+
+\section{Integration Test Case SI5}
+
+\begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
+\hline
+\textbf{Test Case Identifier} & SI5T1\\
+\hline
+\textbf{Test Item(s)} & Mobile Application $\rightarrow$ Application Logic Tier \\
+\hline
+\textbf{Input Specification} & Typical RESTful API calls, both correct and intentionally invalid ones, to the Application Logic Tier. \\
+\hline
+\textbf{Output Specification} & The Application Logic Tier must respond accordingly to the API specification even if the requests are malformed or malicious. \\
+\hline
+\textbf{Environmental Needs} & Complete implementation of the Application Logic Tier, RESTful API client for the Mobile Application. \\
+\hline
+\textbf{Test Description} & The clients should make typical API calls to the Application Logic Tier; the responses are then evaluated and checked against the expected output. This test will be supported by an adequate RESTful API client. \\
+\hline
+\textbf{Testing Method} & Automated with JUnit. \\
+\hline
+\end{longtable}
+
+\begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
+\hline
+\textbf{Test Case Identifier} & SI5T2\\
+\hline
+\textbf{Test Item(s)} & Mobile Application $\rightarrow$ Application Logic Tier \\
+\hline
+\textbf{Input Specification} & Multiple and simultaneous requests to the RESTful API of the Application Logic Tier. \\
+\hline
+\textbf{Output Specification} & The Application Logic Tier shall answer the requests in a reasonable time to the target load. \\
+\hline
+\textbf{Environmental Needs} & Fully functional and developed Application Logic Tier, Apache JMeter, GlassFish Server. \\
+\hline
+\textbf{Test Description} & The purpose of this test is to verify if the system complies to the performance requirements as stated in Section 3.3 of the RASD~\cite{rasd}. \\
+\hline
+\textbf{Testing Method} & Automated with Apache JMeter. \\
+\hline
+\end{longtable}
+
+\section{Integration Test Case SI7}
+
+%INSERIRE QUI
+
+\begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
+\hline
+\textbf{Test Case Identifier} & SI6T2\\
+\hline
+\textbf{Test Item(s)} & Web Tier $\rightarrow$ Application Logic Tier \\
+\hline
+\textbf{Input Specification} & Multiple and simultaneous requests to the RESTful API of the Application Logic Tier. \\
+\hline
+\textbf{Output Specification} & The Application Logic Tier shall answer the requests in a reasonable time to the target load. \\
+\hline
+\textbf{Environmental Needs} & Fully functional and developed Application Logic Tier, Apache JMeter, GlassFish Server. \\
+\hline
+\textbf{Test Description} & The purpose of this test is to verify if the system complies to the performance requirements as stated in Section 3.3 of the RASD~\cite{rasd}. \\
+\hline
+\textbf{Testing Method} & Automated with Apache JMeter. \\
+\hline
+\end{longtable}
+
+\section{Integration Test Case SI7}
+
+\begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
+\hline
+\textbf{Test Case Identifier} & SI7T1\\
+\hline
+\textbf{Test Item(s)} & Web Browser $\rightarrow$ Web Tier \\
+\hline
+\textbf{Input Specification} & Typical HTTPS requests from client browser, both well-formed and malformed. \\
+\hline
+\textbf{Output Specification} & The Web Tier shall display the requested pages if the requests are valid otherwise a generic error message is generated. \\
+\hline
+\textbf{Environmental Needs} & Fully implemented Web Tier, driver to simulate the behaviour of a client browser. \\
+\hline
+\textbf{Test Description} & This test aims to emulate HTTPS requests of typical system users. \\
+\hline
+\textbf{Testing Method} & Automated with JUnit. \\
+\hline
+\end{longtable}
+
+\begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
+\hline
+\textbf{Test Case Identifier} & SI7T2\\
+\hline
+\textbf{Test Item(s)} & Web Browser $\rightarrow$ Web Tier \\
+\hline
+\textbf{Input Specification} & Concurrent and multiple requests to Web Tier. \\
+\hline
+\textbf{Output Specification} & The requested web pages are provided in the case of a reasonable load is applied. \\
+\hline
+\textbf{Environmental Needs} & Fully functional and developed Web Tier, Apache JMeter, GlassFish Server. \\
+\hline
+\textbf{Test Description} & The purpose of this test is to verify if the system complies to the performance requirements as stated in Section 3.3 of the RASD~\cite{rasd}. \\
+\hline
+\textbf{Testing Method} & Automated with Apache JMeter. \\
 \hline
 \end{longtable}

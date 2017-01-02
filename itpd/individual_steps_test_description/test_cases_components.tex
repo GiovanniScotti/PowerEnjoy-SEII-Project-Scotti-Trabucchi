@@ -305,7 +305,9 @@ The following test cases concern the integration among the Java Entity Beans and
 \hline
 \end{longtable}
 
-\section{Integration Test Case I17}
+\section{Integration Test Cases I17, I18, I19, I20}
+
+The following test cases concern the integration among the JEE Containers and the related Session Beans. Since the test cases are very similar to each others, they are grouped together as follows:
 
 \begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
 \hline
@@ -313,75 +315,37 @@ The following test cases concern the integration among the Java Entity Beans and
 \hline
 \textbf{Test Item(s)} & (EJB Container) UserManagementContainer $\rightarrow$ (SB) UserManager \\
 \hline
-\textbf{Input Specification} &  \\
+\textbf{Input Specification} & Requests for the UserManager Session Bean. \\
 \hline
-\textbf{Output Specification} &  \\
-\hline
-\textbf{Environmental Needs} & GlassFish server. \\
-\hline
-\textbf{Test Description} & The purpose of this test is  \\
-\hline
-\textbf{Testing Method} & Automated with JUnit. \\
-\hline
-\end{longtable}
-
-\section{Integration Test Case I18}
-
-\begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
 \hline
 \textbf{Test Case Identifier} & I18T1\\
 \hline
 \textbf{Test Item(s)} & (EJB Container) UtilitiesContainer $\rightarrow$ (SB) MapManager, (SB) NotificationManager \\
 \hline
-\textbf{Input Specification} &  \\
+\textbf{Input Specification} & Requests for the MapManager and NotificationManager Session Beans. \\
 \hline
-\textbf{Output Specification} &  \\
-\hline
-\textbf{Environmental Needs} & GlassFish server. \\
-\hline
-\textbf{Test Description} & The purpose of this test is  \\
-\hline
-\textbf{Testing Method} & Automated with JUnit. \\
-\hline
-\end{longtable}
-
-\section{Integration Test Case I19}
-
-\begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
 \hline
 \textbf{Test Case Identifier} & I19T1\\
 \hline
-\textbf{Test Item(s)} & (EJB Container) ChargesManagementContainer $\rightarrow$ (SB) PaymentGateway, (SB) DiscountProvider \\
+\textbf{Test Item(s)} & (EJB Container) ChargesManagementContainer $\rightarrow$ (SB) DiscountProvider, (SB) PaymentGateway \\
 \hline
-\textbf{Input Specification} &  \\
+\textbf{Input Specification} & Requests for the DiscountProvider and the PaymentGateway Session Beans. \\
 \hline
-\textbf{Output Specification} &  \\
-\hline
-\textbf{Environmental Needs} & GlassFish server. \\
-\hline
-\textbf{Test Description} & The purpose of this test is  \\
-\hline
-\textbf{Testing Method} & Automated with JUnit. \\
-\hline
-\end{longtable}
-
-\section{Integration Test Case I20}
-
-\begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
 \hline
 \textbf{Test Case Identifier} & I20T1\\
 \hline
 \textbf{Test Item(s)} & (EJB Container) RideManagementContainer $\rightarrow$ (SB) RideManager, (SB) ReservationManager, (SB) SecurityAuthenticator, (SB) CarStatusManager \\
 \hline
-\textbf{Input Specification} &  \\
+\textbf{Input Specification} & Requests for the Session Beans provided by the RideManagement Container. \\
 \hline
-\textbf{Output Specification} &  \\
 \hline
-\textbf{Environmental Needs} & GlassFish server. \\
+\textbf{Output Specification} & The Session Beans must be correctly assigned. Moreover the concurrency among multiple requests must be properly managed. \\
 \hline
-\textbf{Test Description} & The purpose of this test is  \\
+\textbf{Environmental Needs} & GlassFish server \\
 \hline
-\textbf{Testing Method} & Automated with JUnit. \\
+\textbf{Test Description} & Multiple requests for one specific Session Bean have to be simultaneously carried out in order to avoid concurrency troubles during the system usage. \\
+\hline
+\textbf{Testing Method} & Automated with Arquillian and JUnit. \\
 \hline
 \end{longtable}
 
@@ -431,15 +395,15 @@ The following test cases concern the integration among the Java Entity Beans and
 \hline
 \textbf{Test Case Identifier} & I23T1\\
 \hline
-\textbf{Test Item(s)} & (SB)  $\rightarrow$ (SB)  \\
+\textbf{Test Item(s)} & (SB) WebController $\rightarrow$ Java Server Pages \\
 \hline
-\textbf{Input Specification} &  \\
+\textbf{Input Specification} & The WebController is provided with a typical output to be display on a web page. \\
 \hline
-\textbf{Output Specification} &  \\
+\textbf{Output Specification} & Java Server Pages shall display the provided output correctly. \\
 \hline
-\textbf{Environmental Needs} & GlassFish server. \\
+\textbf{Environmental Needs} & GlassFish server, (Stub of the Application Logic Tier?). \\
 \hline
-\textbf{Test Description} & The purpose of this test is  \\
+\textbf{Test Description} & The test aims to check the robustness of the communication between JSP and the WebController bean. \\
 \hline
 \textbf{Testing Method} & Automated with JUnit. \\
 \hline
@@ -448,40 +412,17 @@ The following test cases concern the integration among the Java Entity Beans and
 \section{Integration Test Case I24}
 
 \begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
-\hline
 \textbf{Test Case Identifier} & I24T1\\
 \hline
-\textbf{Test Item(s)} & (SB)  $\rightarrow$ (SB)  \\
+\textbf{Test Item(s)} & (SB) WebController $\rightarrow$ Java Server Pages \\
 \hline
-\textbf{Input Specification} &  \\
+\textbf{Input Specification} & The web application is executed. \\
 \hline
-\textbf{Output Specification} &  \\
+\textbf{Output Specification} & The WebContainer instantiates the WebController correctly by injecting it using JSP. \\
 \hline
 \textbf{Environmental Needs} & GlassFish server. \\
 \hline
-\textbf{Test Description} & The purpose of this test is  \\
-\hline
-\textbf{Testing Method} & Automated with JUnit. \\
-\hline
-\end{longtable}
-
-%SUBSYSTEMS
-
-\section{Integration Test Case SI2}
-
-\begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
-\hline
-\textbf{Test Case Identifier} & I10T1\\
-\hline
-\textbf{Test Item(s)} & (EXT) MaintenanceSystemEndpoint $\rightarrow$ (SB) CarStatusManager \\
-\hline
-\textbf{Input Specification} & Typical queries on table AlternativeChargesSituation. \\
-\hline
-\textbf{Output Specification} & The queries shall return the correct results. \\
-\hline
-\textbf{Environmental Needs} & GlassFish server, Test Database, driver for the Java Entity Beans. \\
-\hline
-\textbf{Test Description} & A driver emulating the Maintenance System endpoint is used to simulate the external processing of intervention requests triggered by the CarStatusManager. The purpose of this test is to check that upon every request, a confirmation of the ... of the maintenance intervention is received from the external system. \\
+\textbf{Test Description} & The purpose of this test is to verify that the WebController is correctly injected using JSP during the Web Application session. \\
 \hline
 \textbf{Testing Method} & Automated with JUnit. \\
 \hline
