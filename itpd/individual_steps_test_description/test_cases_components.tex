@@ -1,4 +1,4 @@
-The followings are the test cases to be carried out. They are directly mapped with Table \ref{software_int} for the integration among components and Table \ref{subsys_int} for the subsystems integration. Test cases starting with \textbf{I} are integration test among components while test cases starting with \textbf{SI} concern the integration among subsystems. The adopted structure of the tables refers to the provided inegration test example~\cite{testplan_ex}.
+The following are the test cases to be carried out. They are directly mapped with Table \ref{software_int} for the integration among components and Table \ref{subsys_int} for the subsystems integration. Test cases starting with \textbf{I} are integration test among components while test cases starting with \textbf{SI} concern the integration among subsystems. The adopted structure of the tables refers to the provided inegration test example~\cite{testplan_ex}.
 
 \section{Integration Test Cases I01, I02, I03, I04, I05, I06, I07}
 
@@ -57,9 +57,88 @@ The following test cases concern the integration among the Java Entity Beans and
 \hline
 \textbf{Output Specification} & The queries shall return the correct results. \\
 \hline
-\textbf{Environmental Needs} & GlassFish server, Test Database, driver for the Java Entity Beans. \\
+\textbf{Environmental Needs} & GlassFish server, Test Database. \\
 \hline
 \textbf{Test Description} & The purpose of these tests is to check the correctness of the queries to the DBMS that the JEBs shall perform and implement. Drivers for the entity beans are used to properly initialize and call their methods before the related Session Beans are fully developed. \\
+\hline
+\textbf{Testing Method} & Automated with JUnit. \\
+\hline
+\end{longtable}
+
+\section{Integration Test Case I08}
+
+\begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
+\textbf{Test Case Identifier} & I08T1\\
+\hline
+\textbf{Test Item(s)} & (SB) DiscountProvider $\rightarrow$ (JEB) AlternativeChargesSituation \\
+\hline
+\textbf{Input Specification} & Calls from DiscountProvider to methods of the AlternativeChargesSituations entity to manage and update the information about discounts and additional charges accumulated during a rental.\\
+\hline
+\textbf{Output Specification} & The additional charges or discount information updates must be correctly memorized and made persistent. \\
+\hline
+\textbf{Environmental Needs} & GlassFish server, Test Database. \\
+\hline
+\textbf{Test Description} & The purpose of this test is to verify that the additional charges or discount information are correctly managed and updated by the AlternativeChargesSituation entity upon being prompted by the DiscountProvider. \\
+\hline
+\textbf{Testing Method} & Automated with JUnit. \\
+\hline
+\end{longtable}
+
+\section{Integration Test Case I09}
+
+\begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
+\textbf{Test Case Identifier} & I09T1\\
+\hline
+\textbf{Test Item(s)} & (SB) CarStatusManager $\rightarrow$ (JEB) Car \\
+\hline
+\textbf{Input Specification} & Calls from CarStatusManager to methods of the Car entity to update the car status information according to specific conditions.\\
+\hline
+\textbf{Output Specification} & The car status information updates must be correctly memorized and made persistent. \\
+\hline
+\textbf{Environmental Needs} & GlassFish server, Test Database. \\
+\hline
+\textbf{Test Description} & The purpose of this test is to check that every update to the status attribute of the Car entities performed upon requests from the CarStatusManager is applied correctly. \\
+\hline
+\textbf{Testing Method} & Automated with JUnit. \\
+\hline
+\end{longtable}
+
+\section{Integration Test Case I10}
+
+\begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
+\textbf{Test Case Identifier} & I10T1\\
+\hline
+\textbf{Test Item(s)} & (SB) CarStatusManager $\rightarrow$ (JEB) Car \\
+\hline
+\textbf{Input Specification} & Calls from CarStatusManager to methods of the Car entity to update the car status information according to specific conditions.\\
+\hline
+\textbf{Output Specification} & The car status information updates must be correctly memorized and made persistent. \\
+\hline
+\textbf{Environmental Needs} & GlassFish server, Test Database. \\
+\hline
+\textbf{Test Description} & The purpose of this test is to check that every update to the status attribute of the Car entities performed upon requests from the CarStatusManager is applied correctly. \\
+\hline
+\textbf{Testing Method} & Automated with JUnit. \\
+\hline
+\end{longtable}
+
+
+%SUBSYSTEMS
+
+\section{Integration Test Case SI2}
+
+\begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
+\textbf{Test Case Identifier} & I10T1\\
+\hline
+\textbf{Test Item(s)} & (EXT) MaintenanceSystemEndpoint $\rightarrow$ (SB) CarStatusManager \\
+\hline
+\textbf{Input Specification} & Typical queries on table AlternativeChargesSituation. \\
+\hline
+\textbf{Output Specification} & The queries shall return the correct results. \\
+\hline
+\textbf{Environmental Needs} & GlassFish server, Test Database, driver for the Java Entity Beans. \\
+\hline
+\textbf{Test Description} & A driver emulating the Maintenance System endpoint is used to simulate the external processing of intervention requests triggered by the CarStatusManager. The purpose of this test is to check that upon every request, a confirmation of the ... of the maintenance intervention is received from the external system. \\
 \hline
 \textbf{Testing Method} & Automated with JUnit. \\
 \hline
