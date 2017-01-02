@@ -75,6 +75,7 @@ The following test cases concern the integration among the Java Entity Beans and
 \section{Integration Test Case I09}
 
 \begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
+\hline
 \textbf{Test Case Identifier} & I09T1\\
 \hline
 \textbf{Test Item(s)} & (SB) DiscountProvider $\rightarrow$ (JEB) AlternativeChargesSituation \\
@@ -94,6 +95,7 @@ The following test cases concern the integration among the Java Entity Beans and
 \section{Integration Test Case I10}
 
 \begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
+\hline
 \textbf{Test Case Identifier} & I10T1\\
 \hline
 \textbf{Test Item(s)} & (SB) CarStatusManager $\rightarrow$ (JEB) Car \\
@@ -113,30 +115,12 @@ The following test cases concern the integration among the Java Entity Beans and
 \section{Integration Test Case I11}
 
 \begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
+\hline
 \textbf{Test Case Identifier} & I11T1\\
-\hline
-\textbf{Test Item(s)} & (SB) ReservationManager $\rightarrow$ (SB) CarStatusManager \\
-\hline
-\textbf{Input Specification} & Calls to the methods offered by CarStatusManager to update the car status upon reservation or reservation deletion or expiration. \\
-\hline
-\textbf{Output Specification} & The target car must transition status correctly based on the situation. \\
-\hline
-\textbf{Environmental Needs} & GlassFish server. \\
-\hline
-\textbf{Test Description} & The purpose of this test is to verify that the methods for car status updates are called according to the correct pattern of reservation, deletion or expiration. \\
-\hline
-\textbf{Testing Method} & Automated with JUnit. \\
-\hline
-\end{longtable}
-
-\section{Integration Test Case I12}
-
-\begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
-\textbf{Test Case Identifier} & I12T1\\
 \hline
 \textbf{Test Item(s)} & (SB) UserManager $\rightarrow$ (JEB) User \\
 \hline
-\textbf{Input Specification} & Calls from UserManager to methods of the User entity to update the user account and profile information according to user requests. \\
+\textbf{Input Specification} & Calls from UserManager to methods of the User entity to update user account and profile information according to user requests. \\
 \hline
 \textbf{Output Specification} & The target information must be updated correctly and the change must be made persistent. \\
 \hline
@@ -149,55 +133,115 @@ The following test cases concern the integration among the Java Entity Beans and
 \end{longtable}
 
 \begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
-\textbf{Test Case Identifier} & I12T2\\
+\hline
+\textbf{Test Case Identifier} & I11T2\\
 \hline
 \textbf{Test Item(s)} & (SB) UserManager $\rightarrow$ (JEB) User, (SB) NotificationManager \\
 \hline
-\textbf{Input Specification} & Calls to the methods of the User entity to update the user information when this operation requires a confirmation e-mail. \\
+\textbf{Input Specification} & Calls from UserManager to the methods of the User entity to manage user information (i.e. generate user credentials) when this operation requires a confirmation e-mail; calls to the methods of NotificationManager in order to generate and send said e-mails. \\
 \hline
 \textbf{Output Specification} & The target information must be updated and the change made persistent, and a notification e-mail must be sent to the corresponding user. \\
 \hline
 \textbf{Environmental Needs} & GlassFish server, mocked e-mail sender and receiver. \\
 \hline
-\textbf{Test Description} & The purpose of this test is to check that every modification requested by a user that implies an e-mail notification is performed correctly and said e-mail is sent without issues. \\
+\textbf{Test Description} & The purpose of this test is to check that every modification requested by a user that implies an e-mail notification is performed correctly and said e-mail is sent without issues. The message must be simulated through a mock e-mail address manager which simulates the user behaviour as needed. \\
+\hline
+\textbf{Testing Method} & Automated with JUnit and Mockito. \\
+\hline
+\end{longtable}
+
+\section{Integration Test Case I12}
+
+\begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
+\hline
+\textbf{Test Case Identifier} & I12T1\\
+\hline
+\textbf{Test Item(s)} & (SB) PaymentGateway $\rightarrow$ (SB) DiscountProvider \\
+\hline
+\textbf{Input Specification} & Call from PaymentGateway to the methods of DiscountProvider to trigger the retrieval of the lists of alternative charges situations. \\
+\hline
+\textbf{Output Specification} & The lists of situations are returned correctly. \\
+\hline
+\textbf{Environmental Needs} & GlassFish server. \\
+\hline
+\textbf{Test Description} & The purpose of this test is to ensure that every time the PaymentGateway requests the discount or additional charges situations relative to a ride, the DiscountProvider indicates all of them correctly in list form. \\
 \hline
 \textbf{Testing Method} & Automated with JUnit. \\
+\hline
+\end{longtable}
+
+\begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
+\hline
+\textbf{Test Case Identifier} & I12T2\\
+\hline
+\textbf{Test Item(s)} & (SB) PaymentGateway $\rightarrow$ (JEB) Payment, (SB) UserManager, (SB) NotificationManager \\
+\hline
+\textbf{Input Specification} & Method calls from PaymentGateway to the Payment entities to create and memorized them in a persistent way, to the NotificationManager in order to generate the necessary confirmation/error e-mails, and to the UserManager in case of failed payments that cause a user account to be locked. \\
+\hline
+\textbf{Output Specification} & All simulated payments must be correctly registered and memorized using methods provided by the Payment entity; in case the simulated payment is successful, a confirmation e-mail must be sent without issues; in case it fails, an error e-mail must be sent without issues and the UserManager must be contacted with a request of account locking. \\
+\hline
+\textbf{Environmental Needs} & GlassFish server, mocked e-mail sender and receiver. \\
+\hline
+\textbf{Test Description} & The purpose of this test is to ensure a proper behaviour of the system in every possible case concerning payments for the services of \textit{PowerEnJoy}, in terms of registering payments, notifying success or failure and eventually requesting account locking. \\
+\hline
+\textbf{Testing Method} & Automated with JUnit and Mockito. \\
 \hline
 \end{longtable}
 
 \section{Integration Test Case I13}
 
 \begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
+\hline
 \textbf{Test Case Identifier} & I13T1\\
 \hline
-\textbf{Test Item(s)} & (SB) PaymentGateway $\rightarrow$ (JEB) Payment, (SB) UserManager, (SB) DiscountProvider \\
+\textbf{Test Item(s)} & (SB) RideManager $\rightarrow$ (JEB) Ride, (SB) CarStatusManager \\
 \hline
-\textbf{Input Specification} & Calls to the methods offered by CarStatusManager to update the car status upon reservation or reservation deletion or expiration. \\
+\textbf{Input Specification} & Calls from RideManager to methods of Ride entities to update the ride status attribute at the beginning and end of the ride, and to methods of CarStatusManager to request updates to the status of cars according to the conditions at the end of rides. \\
 \hline
-\textbf{Output Specification} & The target car must transition status correctly based on the situation. \\
+\textbf{Output Specification} & The updates to the Ride entities must be correctly performed and made persistent in memory, and the status update request for cars must be performed correctly based on the final conditions of rides. \\
 \hline
 \textbf{Environmental Needs} & GlassFish server. \\
 \hline
-\textbf{Test Description} & The purpose of this test is to verify that the methods for car status updates are called according to the correct pattern of reservation, deletion or expiration. \\
+\textbf{Test Description} & The purpose of this test is to ensure a correct behaviour of the system in managing the rides and the consequent status variations of cars through the CarStatusManager. \\
 \hline
 \textbf{Testing Method} & Automated with JUnit. \\
 \hline
 \end{longtable}
 
-\section{Integration Test Case I14}
-
 \begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
-\textbf{Test Case Identifier} & I14T1\\
 \hline
-\textbf{Test Item(s)} & (SB) RideManager $\rightarrow$ (JEB) Ride, (SB) PaymentGateway, (SB) DiscountProvider, (SB) CarStatusManager \\
+\textbf{Test Case Identifier} & I13T2\\
 \hline
-\textbf{Input Specification} & Calls to the methods offered by CarStatusManager to update the car status upon reservation or reservation deletion or expiration. \\
+\textbf{Test Item(s)} & (SB) RideManager $\rightarrow$ (SB) PaymentGateway, (SB) DiscountProvider \\
 \hline
-\textbf{Output Specification} & The target car must transition status correctly based on the situation. \\
+\textbf{Input Specification} & Calls from RideManager to methods of PaymentGateway to communicate standard charges and prompt final charges computation, and to methods of DiscountProvider to request registration of detected alternative payment situations. \\
+\hline
+\textbf{Output Specification} & Every simulated detection of an alternative charges situation must result in an adequate method call to the DiscountProvider; the prompt to the final charges computation must be performed correctly in correspondence with the end of the ride. \\
 \hline
 \textbf{Environmental Needs} & GlassFish server. \\
 \hline
-\textbf{Test Description} & The purpose of this test is to verify that the methods for car status updates are called according to the correct pattern of reservation, deletion or expiration. \\
+\textbf{Test Description} & The purpose of this test is to verify the correctness of the active behaviour of the RideManager in terms of registering alternative payment situations and prompting the computation of final ride charges, through the indicated components. \\
+\hline
+\textbf{Testing Method} & Automated with JUnit. \\
+\hline
+\end{longtable}
+
+
+\section{Integration Test Case I14}
+
+\begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
+\hline
+\textbf{Test Case Identifier} & I14T1\\
+\hline
+\textbf{Test Item(s)} & (SB) ReservationManager $\rightarrow$ (JEB) Car, (JEB) Reservation, (SB) CarStatusManager \\
+\hline
+\textbf{Input Specification} & Usual calls to the methods of the Car and Reservation entities from the ReservationManager to search for available cars and generate valid reservations; calls to the methods of CarStatusManager to request updates to the status of cars. \\
+\hline
+\textbf{Output Specification} & Update to cars and reservation must be performed correctly and the changes made persistent. The requests of car status modification must be performed correctly in relation to the context in which they happen. \\
+\hline
+\textbf{Environmental Needs} & GlassFish server. \\
+\hline
+\textbf{Test Description} & The purpose of this test is to verify that the ReservationManager behaves correctly during the car reservation process, with respect to showing available cars, generating and managing reservations and requesting car status updates to support reservation activities. \\
 \hline
 \textbf{Testing Method} & Automated with JUnit. \\
 \hline
@@ -206,17 +250,36 @@ The following test cases concern the integration among the Java Entity Beans and
 \section{Integration Test Case I15}
 
 \begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
+\hline
 \textbf{Test Case Identifier} & I15T1\\
 \hline
-\textbf{Test Item(s)} & (SB) ReservationManager $\rightarrow$ (JEB) Car, (JEB) Reservation, (SB) CarStatusManager \\
+\textbf{Test Item(s)} & (SB) SecurityAuthenticator $\rightarrow$ (JEB) User, (SB) RideManager \\
 \hline
-\textbf{Input Specification} & Calls to the methods offered by CarStatusManager to update the car status upon reservation or reservation deletion or expiration. \\
+\textbf{Input Specification} & Usual calls to the methods of the User entity in order to match user authentication information with a provided set of test inputs; calls to methods of the RideManager to request the creation of new rides. \\
 \hline
-\textbf{Output Specification} & The target car must transition status correctly based on the situation. \\
+\textbf{Output Specification} & The match between authentication information and values in the database is carried out correctly; if the procedure is successful, the new Ride tuple is created without issues. \\
 \hline
 \textbf{Environmental Needs} & GlassFish server. \\
 \hline
-\textbf{Test Description} & The purpose of this test is to verify that the methods for car status updates are called according to the correct pattern of reservation, deletion or expiration. \\
+\textbf{Test Description} & The purpose of this test is to check that the authentication process needed to start rides is performed correctly and all the required controls are carried out, as well as to ensure that every valid ride is memorized and made persistent upon its beginning. \\
+\hline
+\textbf{Testing Method} & Automated with JUnit. \\
+\hline
+\end{longtable}
+
+\begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
+\hline
+\textbf{Test Case Identifier} & I15T1\\
+\hline
+\textbf{Test Item(s)} & (SB) SecurityAuthenticator $\rightarrow$ (JEB) Reservation \\
+\hline
+\textbf{Input Specification} & Usual calls to the methods of the Reservation entity in order to match users and reservations upon unlock attempts. \\
+\hline
+\textbf{Output Specification} & The calls to the Reservation entity return and are matched correctly by the SecurityAuthenticator in order to decide whether allowing or preventing the car unlock process. \\
+\hline
+\textbf{Environmental Needs} & GlassFish server. \\
+\hline
+\textbf{Test Description} & The purpose of this test is to verify that whenever a user wants to unlock a car there actually is a reservation corresponding to his/her account and to the specific car of the case. \\
 \hline
 \textbf{Testing Method} & Automated with JUnit. \\
 \hline
@@ -225,17 +288,18 @@ The following test cases concern the integration among the Java Entity Beans and
 \section{Integration Test Case I16}
 
 \begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
+\hline
 \textbf{Test Case Identifier} & I16T1\\
 \hline
-\textbf{Test Item(s)} & (SB) SecurityAuthenticator $\rightarrow$ (JEB) User, (JEB) Reservation, (SB) RideManager \\
+\textbf{Test Item(s)} & (SB) MapManager $\rightarrow$ (JEB) Car, (JEB) SafeArea, (JEB) PowerGridStation \\
 \hline
-\textbf{Input Specification} & Calls to the methods offered by CarStatusManager to update the car status upon reservation or reservation deletion or expiration. \\
+\textbf{Input Specification} & Usual calls from MapManager to the Car, SafeArea and PowerGridStation entities, in order to locate cars, power plugs and boundaries of the Safe Area based on input sets of coordinates. \\
 \hline
-\textbf{Output Specification} & The target car must transition status correctly based on the situation. \\
+\textbf{Output Specification} & The calls return correctly lists of values to be provided to other components needing such information. \\
 \hline
 \textbf{Environmental Needs} & GlassFish server. \\
 \hline
-\textbf{Test Description} & The purpose of this test is to verify that the methods for car status updates are called according to the correct pattern of reservation, deletion or expiration. \\
+\textbf{Test Description} & The purpose of this test is to verify that the MapManager calls to the database return results correctly with respect to the input coordinates and the actual positions of cars, power plugs and boundaries of the Safe Area. \\
 \hline
 \textbf{Testing Method} & Automated with JUnit. \\
 \hline
@@ -244,17 +308,18 @@ The following test cases concern the integration among the Java Entity Beans and
 \section{Integration Test Case I17}
 
 \begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
+\hline
 \textbf{Test Case Identifier} & I17T1\\
 \hline
-\textbf{Test Item(s)} & (SB) MapManager $\rightarrow$ (JEB) Car, (JEB) SafeArea, (JEB) PowerGridStation, (SB) SecurityAuthenticator \\
+\textbf{Test Item(s)} & (EJB Container) UserManagementContainer $\rightarrow$ (SB) UserManager \\
 \hline
-\textbf{Input Specification} & Calls to the methods offered by CarStatusManager to update the car status upon reservation or reservation deletion or expiration. \\
+\textbf{Input Specification} &  \\
 \hline
-\textbf{Output Specification} & The target car must transition status correctly based on the situation. \\
+\textbf{Output Specification} &  \\
 \hline
 \textbf{Environmental Needs} & GlassFish server. \\
 \hline
-\textbf{Test Description} & The purpose of this test is to verify that the methods for car status updates are called according to the correct pattern of reservation, deletion or expiration. \\
+\textbf{Test Description} & The purpose of this test is  \\
 \hline
 \textbf{Testing Method} & Automated with JUnit. \\
 \hline
@@ -263,17 +328,18 @@ The following test cases concern the integration among the Java Entity Beans and
 \section{Integration Test Case I18}
 
 \begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
+\hline
 \textbf{Test Case Identifier} & I18T1\\
 \hline
-\textbf{Test Item(s)} & (EJB Container) UserManagementContainer $\rightarrow$ (SB) UserManager \\
+\textbf{Test Item(s)} & (EJB Container) UtilitiesContainer $\rightarrow$ (SB) MapManager, (SB) NotificationManager \\
 \hline
-\textbf{Input Specification} & Calls to the methods offered by CarStatusManager to update the car status upon reservation or reservation deletion or expiration. \\
+\textbf{Input Specification} &  \\
 \hline
-\textbf{Output Specification} & The target car must transition status correctly based on the situation. \\
+\textbf{Output Specification} &  \\
 \hline
 \textbf{Environmental Needs} & GlassFish server. \\
 \hline
-\textbf{Test Description} & The purpose of this test is to verify that the methods for car status updates are called according to the correct pattern of reservation, deletion or expiration. \\
+\textbf{Test Description} & The purpose of this test is  \\
 \hline
 \textbf{Testing Method} & Automated with JUnit. \\
 \hline
@@ -282,17 +348,18 @@ The following test cases concern the integration among the Java Entity Beans and
 \section{Integration Test Case I19}
 
 \begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
+\hline
 \textbf{Test Case Identifier} & I19T1\\
 \hline
-\textbf{Test Item(s)} & (EJB Container) UtikitiesContainer $\rightarrow$ (SB) MapManager, (SB) NotificationManager \\
+\textbf{Test Item(s)} & (EJB Container) ChargesManagementContainer $\rightarrow$ (SB) PaymentGateway, (SB) DiscountProvider \\
 \hline
-\textbf{Input Specification} & Calls to the methods offered by CarStatusManager to update the car status upon reservation or reservation deletion or expiration. \\
+\textbf{Input Specification} &  \\
 \hline
-\textbf{Output Specification} & The target car must transition status correctly based on the situation. \\
+\textbf{Output Specification} &  \\
 \hline
 \textbf{Environmental Needs} & GlassFish server. \\
 \hline
-\textbf{Test Description} & The purpose of this test is to verify that the methods for car status updates are called according to the correct pattern of reservation, deletion or expiration. \\
+\textbf{Test Description} & The purpose of this test is  \\
 \hline
 \textbf{Testing Method} & Automated with JUnit. \\
 \hline
@@ -301,17 +368,18 @@ The following test cases concern the integration among the Java Entity Beans and
 \section{Integration Test Case I20}
 
 \begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
+\hline
 \textbf{Test Case Identifier} & I20T1\\
 \hline
-\textbf{Test Item(s)} & (EJB Container) ChargesManagementContainer $\rightarrow$ (SB) PaymentGateway, (SB) DiscountProvider \\
+\textbf{Test Item(s)} & (EJB Container) RideManagementContainer $\rightarrow$ (SB) RideManager, (SB) ReservationManager, (SB) SecurityAuthenticator, (SB) CarStatusManager \\
 \hline
-\textbf{Input Specification} & Calls to the methods offered by CarStatusManager to update the car status upon reservation or reservation deletion or expiration. \\
+\textbf{Input Specification} &  \\
 \hline
-\textbf{Output Specification} & The target car must transition status correctly based on the situation. \\
+\textbf{Output Specification} &  \\
 \hline
 \textbf{Environmental Needs} & GlassFish server. \\
 \hline
-\textbf{Test Description} & The purpose of this test is to verify that the methods for car status updates are called according to the correct pattern of reservation, deletion or expiration. \\
+\textbf{Test Description} & The purpose of this test is  \\
 \hline
 \textbf{Testing Method} & Automated with JUnit. \\
 \hline
@@ -320,17 +388,18 @@ The following test cases concern the integration among the Java Entity Beans and
 \section{Integration Test Case I21}
 
 \begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
+\hline
 \textbf{Test Case Identifier} & I21T1\\
 \hline
-\textbf{Test Item(s)} & (EJB Container) RideManagementContainer $\rightarrow$ (SB) RideManager, (SB) ReservationManager, (SB) SecurityAuthenticator, (SB) CarStatusManager \\
+\textbf{Test Item(s)} & (SB)  $\rightarrow$ (SB)  \\
 \hline
-\textbf{Input Specification} & Calls to the methods offered by CarStatusManager to update the car status upon reservation or reservation deletion or expiration. \\
+\textbf{Input Specification} &  \\
 \hline
-\textbf{Output Specification} & The target car must transition status correctly based on the situation. \\
+\textbf{Output Specification} &  \\
 \hline
 \textbf{Environmental Needs} & GlassFish server. \\
 \hline
-\textbf{Test Description} & The purpose of this test is to verify that the methods for car status updates are called according to the correct pattern of reservation, deletion or expiration. \\
+\textbf{Test Description} & The purpose of this test is  \\
 \hline
 \textbf{Testing Method} & Automated with JUnit. \\
 \hline
@@ -339,17 +408,18 @@ The following test cases concern the integration among the Java Entity Beans and
 \section{Integration Test Case I22}
 
 \begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
+\hline
 \textbf{Test Case Identifier} & I22T1\\
 \hline
-\textbf{Test Item(s)} & (SB) ReservationManager $\rightarrow$ (SB) CarStatusManager \\
+\textbf{Test Item(s)} & (SB)  $\rightarrow$ (SB)  \\
 \hline
-\textbf{Input Specification} & Calls to the methods offered by CarStatusManager to update the car status upon reservation or reservation deletion or expiration. \\
+\textbf{Input Specification} &  \\
 \hline
-\textbf{Output Specification} & The target car must transition status correctly based on the situation. \\
+\textbf{Output Specification} &  \\
 \hline
 \textbf{Environmental Needs} & GlassFish server. \\
 \hline
-\textbf{Test Description} & The purpose of this test is to verify that the methods for car status updates are called according to the correct pattern of reservation, deletion or expiration. \\
+\textbf{Test Description} & The purpose of this test is  \\
 \hline
 \textbf{Testing Method} & Automated with JUnit. \\
 \hline
@@ -358,17 +428,18 @@ The following test cases concern the integration among the Java Entity Beans and
 \section{Integration Test Case I23}
 
 \begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
+\hline
 \textbf{Test Case Identifier} & I23T1\\
 \hline
-\textbf{Test Item(s)} & (SB) ReservationManager $\rightarrow$ (SB) CarStatusManager \\
+\textbf{Test Item(s)} & (SB)  $\rightarrow$ (SB)  \\
 \hline
-\textbf{Input Specification} & Calls to the methods offered by CarStatusManager to update the car status upon reservation or reservation deletion or expiration. \\
+\textbf{Input Specification} &  \\
 \hline
-\textbf{Output Specification} & The target car must transition status correctly based on the situation. \\
+\textbf{Output Specification} &  \\
 \hline
 \textbf{Environmental Needs} & GlassFish server. \\
 \hline
-\textbf{Test Description} & The purpose of this test is to verify that the methods for car status updates are called according to the correct pattern of reservation, deletion or expiration. \\
+\textbf{Test Description} & The purpose of this test is  \\
 \hline
 \textbf{Testing Method} & Automated with JUnit. \\
 \hline
@@ -377,36 +448,18 @@ The following test cases concern the integration among the Java Entity Beans and
 \section{Integration Test Case I24}
 
 \begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
+\hline
 \textbf{Test Case Identifier} & I24T1\\
 \hline
-\textbf{Test Item(s)} & (SB) ReservationManager $\rightarrow$ (SB) CarStatusManager \\
+\textbf{Test Item(s)} & (SB)  $\rightarrow$ (SB)  \\
 \hline
-\textbf{Input Specification} & Calls to the methods offered by CarStatusManager to update the car status upon reservation or reservation deletion or expiration. \\
+\textbf{Input Specification} &  \\
 \hline
-\textbf{Output Specification} & The target car must transition status correctly based on the situation. \\
-\hline
-\textbf{Environmental Needs} & GlassFish server. \\
-\hline
-\textbf{Test Description} & The purpose of this test is to verify that the methods for car status updates are called according to the correct pattern of reservation, deletion or expiration. \\
-\hline
-\textbf{Testing Method} & Automated with JUnit. \\
-\hline
-\end{longtable}
-
-\section{Integration Test Case I25}
-
-\begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
-\textbf{Test Case Identifier} & I25T1\\
-\hline
-\textbf{Test Item(s)} & (SB) ReservationManager $\rightarrow$ (SB) CarStatusManager \\
-\hline
-\textbf{Input Specification} & Calls to the methods offered by CarStatusManager to update the car status upon reservation or reservation deletion or expiration. \\
-\hline
-\textbf{Output Specification} & The target car must transition status correctly based on the situation. \\
+\textbf{Output Specification} &  \\
 \hline
 \textbf{Environmental Needs} & GlassFish server. \\
 \hline
-\textbf{Test Description} & The purpose of this test is to verify that the methods for car status updates are called according to the correct pattern of reservation, deletion or expiration. \\
+\textbf{Test Description} & The purpose of this test is  \\
 \hline
 \textbf{Testing Method} & Automated with JUnit. \\
 \hline
@@ -417,6 +470,7 @@ The following test cases concern the integration among the Java Entity Beans and
 \section{Integration Test Case SI2}
 
 \begin{longtable}{p{0.3\textwidth} | p{0.7\textwidth}}
+\hline
 \textbf{Test Case Identifier} & I10T1\\
 \hline
 \textbf{Test Item(s)} & (EXT) MaintenanceSystemEndpoint $\rightarrow$ (SB) CarStatusManager \\
