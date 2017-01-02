@@ -159,49 +159,49 @@ The web application components will be integrated in a single step: a driver of 
 \hline
 \textbf{N.} & \textbf{Subsystems} & \textbf{Component} & \textbf{Integrates with} \\
 \hline
-I01 & Database, Application Logic & (JEB) User & DBMS \\
+I01 & Database, App. Logic & (JEB) User & DBMS \\
 \hline
-I02 & Database, Application Logic & (JEB) Car & DBMS \\
+I02 & Database, App. Logic & (JEB) Car & DBMS \\
 \hline
-I03 & Database, Application Logic & (JEB) Reservation & DBMS \\
+I03 & Database, App. Logic & (JEB) Reservation & DBMS \\
 \hline
-I04 & Database, Application Logic & (JEB) Ride & DBMS \\
+I04 & Database, App. Logic & (JEB) Ride & DBMS \\
 \hline
-I05 & Database, Application Logic & (JEB) SafeArea & DBMS \\
+I05 & Database, App. Logic & (JEB) SafeArea & DBMS \\
 \hline
-I06 & Database, Application Logic & (JEB) PowerGridStation & DBMS \\
+I06 & Database, App. Logic & (JEB) PowerGridStation & DBMS \\
 \hline
-I07 & Database, Application Logic & (JEB) AlternativeChargesSitutation & DBMS \\
+I07 & Database, App. Logic & (JEB) AlternativeChargesSitutation & DBMS \\
 \hline
-I08 & Application Logic, MaintenanceSystem & (EXT) MaintenanceSystemEndpoint & (SB) CarStatusManager \\
+I08 & App. Logic, MaintenanceSystem & (EXT) MaintenanceSystemEndpoint & (SB) CarStatusManager \\
 \hline
-I09 & Application Logic & (SB) DiscountProvider & (JEB) AlternativeChargesSituation \\
+I09 & App. Logic & (SB) DiscountProvider & (JEB) AlternativeChargesSituation \\
 \hline
-I10 & Application Logic & (SB) CarStatusManager & (JEB) Car \\
+I10 & App. Logic & (SB) CarStatusManager & (JEB) Car \\
 \hline
-I11 & Application Logic & (SB) ReservationManager & (SB) CarStatusManager \\
+I11 & App. Logic & (SB) ReservationManager & (SB) CarStatusManager \\
 \hline
-I12 & Application Logic & (SB) UserManager & (JEB) User, (SB) NotificationManager \\
+I12 & App. Logic & (SB) UserManager & (JEB) User, (SB) NotificationManager \\
 \hline
-I13 & Application Logic & (SB) PaymentGateway & (JEB) Payment,(SB) UserManager, (SB) NotificationManager, (SB) DiscountProvider, (EXT) \textit{[stub]} PaymentHandlerEndpoint \\
+I13 & App. Logic & (SB) PaymentGateway & (JEB) Payment,(SB) UserManager, (SB) NotificationManager, (SB) DiscountProvider, (EXT) \textit{[stub]} PaymentHandlerEndpoint \\
 \hline
-I14 & Application Logic & (SB) RideManager & (JEB) Ride, (SB) PaymentGateway, (SB) DiscountProvider, (SB) CarStatusManager \\
+I14 & App. Logic & (SB) RideManager & (JEB) Ride, (SB) PaymentGateway, (SB) DiscountProvider, (SB) CarStatusManager \\
 \hline
-I15 & Application Logic & (SB) ReservationManager & (JEB) Car, (JEB) Reservation, (SB) CarStatusManager \\
+I15 & App. Logic & (SB) ReservationManager & (JEB) Car, (JEB) Reservation, (SB) CarStatusManager \\
 \hline
-I16 & Application Logic & (SB) SecurityAuthenticator & (JEB) User, (JEB) Reservation, (SB) RideManager \\
+I16 & App. Logic & (SB) SecurityAuthenticator & (JEB) User, (JEB) Reservation, (SB) RideManager \\
 \hline
-I17 & Application Logic & (SB) MapManager & (JEB) Car, (JEB) SafeArea, (JEB) PowerGridStation, (SB) SecurityAuthenticator \\
+I17 & App. Logic & (SB) MapManager & (JEB) Car, (JEB) SafeArea, (JEB) PowerGridStation, (SB) SecurityAuthenticator \\
 \hline
-I18 & Application Logic & (EJB Container) UserManagementContainer & (SB) UserManager \\
+I18 & App. Logic & (EJB Container) UserManagementContainer & (SB) UserManager \\
 \hline
-I19 & Application Logic & (EJB Container) UtilitiesContainer & (SB) MapManager, (SB) NotificationManager \\
+I19 & App. Logic & (EJB Container) UtilitiesContainer & (SB) MapManager, (SB) NotificationManager \\
 \hline
-I20 & Application Logic & (EJB Container) ChargesManagementContainer & (SB) PaymentGateway, (SB) DiscountProvider \\
+I20 & App. Logic & (EJB Container) ChargesManagementContainer & (SB) PaymentGateway, (SB) DiscountProvider \\
 \hline
-I21 & Application Logic & (EJB Container) RideManagementContainer & (SB) RideManager, (SB) ReservationManager, (SB) SecurityAuthenticator, (SB) CarStatusManager \\
+I21 & App. Logic & (EJB Container) RideManagementContainer & (SB) RideManager, (SB) ReservationManager, (SB) SecurityAuthenticator, (SB) CarStatusManager \\
 \hline
-I22 & Application Logic & ContainerController & (EJB Container) UserManagementContainer, (EJB Container) UtilitiesContainer, (EJB Container) ChargesManagementContainer, (EJB Container) RideManagementContainer \\
+I22 & App. Logic & ContainerController & (EJB Container) UserManagementContainer, (EJB Container) UtilitiesContainer, (EJB Container) ChargesManagementContainer, (EJB Container) RideManagementContainer \\
 \hline
 I23 & On-Board Client & ApplicationController & UIManager, GPSManager, ConnectivityUnit, DataProcessingUnit \\
 \hline
