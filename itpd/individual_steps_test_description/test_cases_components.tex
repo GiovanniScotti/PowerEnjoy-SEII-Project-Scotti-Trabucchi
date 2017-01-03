@@ -349,23 +349,23 @@ The following test cases concern the integration among the JEE Containers and th
 \hline
 \end{longtable}
 
-\section{Integration Test Case I21}
+\section{Integration Test Case I21}\label{testing_c++}
 
 \begin{longtable}{p{0.32\textwidth} | p{0.68\textwidth}}
 \hline
 \textbf{Test Case Identifier} & I21T1\\
 \hline
-\textbf{Test Item(s)} & ApplicationController  $\rightarrow$ UIManager, GPSManager, ConnectivityUnit, DataProcessingUnit  \\
+\textbf{Test Item(s)} & ApplicationController $\rightarrow$ UIManager, GPSManager, ConnectivityUnit, DataProcessingUnit  \\
 \hline
-\textbf{Input Specification} & Typical requests of functions offered by a specific component of the On-Board Application are processed by the controller. \\
+\textbf{Input Specification} & Typical requests of functions used by the application components to the application controller in order for it to forward appropriately the requests to the correct underlying On-Board Application component. \\
 \hline
 \textbf{Output Specification} & The controller contacts the appropriate component and the functionality is offered. \\
 \hline
-\textbf{Environmental Needs} & Basic components to integrate with must be fully developed. \\
+\textbf{Environmental Needs} & Basic application components to integrate with must be fully developed. \\
 \hline
-\textbf{Test Description} & The purpose of this test is to check if the ApplicationController is able to make all the components communicate together. \\
+\textbf{Test Description} & The purpose of this test is to check if the ApplicationController is able to make all the components communicate together properly. \\
 \hline
-\textbf{Testing Method} & Automated with a proper C/C++ testing environment. \\
+\textbf{Testing Method} & Automated with a proper C/C++ testing environment. Manual testing on physical devices. \\
 \hline
 \end{longtable}
 
@@ -377,15 +377,15 @@ The following test cases concern the integration among the JEE Containers and th
 \hline
 \textbf{Test Item(s)} & ApplicationController  $\rightarrow$ UIManager, GPSManager \\
 \hline
-\textbf{Input Specification} & Typical requests of functions offered by a specific component of the Mibile Application are processed by the controller. \\
+\textbf{Input Specification} & Typical requests of functions used by the application components to the application controller in order for it to forward appropriately the requests to the correct underlying Mobile Application component. \\
 \hline
 \textbf{Output Specification} & The controller contacts the appropriate component and the functionality is offered. \\
 \hline
-\textbf{Environmental Needs} & Basic components to integrate with must be fully developed. \\
+\textbf{Environmental Needs} & Basic application components to integrate with must be fully developed. \\
 \hline
-\textbf{Test Description} & The purpose of this test is to check if the ApplicationController is able to make all the components communicate together. \\
+\textbf{Test Description} & The purpose of this test is to check if the ApplicationController is able to make all the components communicate together properly. \\
 \hline
-\textbf{Testing Method} & Automated with JUnit. \\
+\textbf{Testing Method} & Automated with Android and iOS testing suites. Manual testing on physical devices. \\
 \hline
 \end{longtable}
 
