@@ -1,26 +1,63 @@
-%DRIVERS AND STUBS
+The following are all the drivers, stubs and test data structures needed for the integration testing phase:
 
-%TEST DATABASE
-%DRIVERS FOR EJBs
-%----DRIVERS SBs------
-%Drivers for NotificationManager (testa l'invio di email appoggiandosi allo stub apposito (quello che simula il client mail))
-%Drivers for UserManager
-%Drivers for discount provider
-%Drivers for payment gateway
-%Drivers for car status manager
-%Drivers for reservation manager
-%Drivers for ride manager
-%Drivers for security authenticator
-%Drivers for map manager
-%-----CONTAINERS
-%Drivers for containers
+\section{Test Database}
+In order to perform the first tests on the mapping of JEBs over actual database entities, a DBMS and database configured as specified in the DD~\cite{dd} must be used. This database must contain dummy data, crafted in a way and number that allow for exhaustive tests on the data layer.
 
+The structure of the test database must comply with the specification of the E-R diagram provided in the design phase, which can be found in Section 2.3.1 of the Design Document for the \textit{PowerEnJoy} system.
 
-%---- EXT
-%Driver/stub maintenance
-%stub payment handler
+\section{Drivers for the Java Entity Beans (JEBs)}
+To test the correct behaviour of the Entity beans with respect to the calls they operate to perform queries on the database, a set of drivers for each Entity Bean that accesses application data must be used.
 
-%Stub email service
+All these drivers will work the same way, calling all the methods offered by the single JEBs and triggering well-formed and malformed queries to the database, hence testing the correctness of the responses; the testing environment will then compare the results of said queries.
 
-%Drivers mobile/on-board se non ancora complete per testare API business logic
-%(vedi Denicolao "lightweight API client".
+\section{Mocked E-Mail Sender and Receiver Service}\label{mock_email}
+To substitute an actual e-mail sender and receiver before the deployment and release of the application, a stub of it will be necessary to ensure a proper behaviour of the system logic.
+
+This mocked e-mail server will simulate the notification process by accepting requests of generating notification e-mails from the application logic, logging said requests and generating test messages to be sent to a set of test addresses. Both well-formed and malformed requests and e-mail must be processable by the service, that in turn must reply in a coherent way.
+
+\section{Drivers for the Session Beans (SBs)}
+All the the Session Beans used to implement the application logic need a dedicated driver in order to test their functionalities in an appropriate way. These drivers will be gradually replaced by other components, as specified in Section \ref{soft_int_seq}.
+
+Whenever a session bean needs to interact with another session bean that is going to be located in  a distinct container, the driver for it simulates and simplifies the procedure used to request an instance of the needed resource forwarding requests to other containers. This will be done by the driver by instantiating the required component directly.
+
+\subsubsection{Driver for the NotificationManager}
+The NotificationManager will need a driver to invoke all methods exposed by it in order to test its interaction with the subsiding Notification Service. This will be simulated, as stated in Section \ref{mock_email}, by a mocked e-mail sender and receiver service.
+
+\subsubsection{Driver for the UserManager}
+A driver for the UserManager will be needed to invoke all methods exposed by it in order to test its interaction with the NotificationManager and with the User JEB.
+
+\subsubsection{Driver for the DiscountProvider}
+A driver for the DiscountProvider will be needed to invoke all methods exposed by it in order to test its interaction with the AlternativeChargesSituation JEB.
+
+\subsubsection{Driver for the PaymentGateway}
+A driver for the PaymentGateway will be needed to invoke all methods exposed by it in order to test its interaction with the DiscountProvider, with the UserManager, with the NotificationManager and with the Payment JEB.
+
+\subsubsection{Driver for the CarStatusManager}
+A driver for the CarStatusManager will be needed to invoke all methods exposed by it in order to test its interaction with the Car JEB.
+
+\subsubsection{Driver for the ReservationManager}
+A driver for the ReservationManager will be needed to invoke all methods exposed by it in order to test its interaction with the CarStatusManager, with the PaymentGateway and with the Reservation and Car JEBs.
+
+\subsubsection{Driver for the RideManager}
+A driver for the RideManager will be needed to invoke all methods exposed by it in order to test its interaction with the CarStatusManager, with the PaymentGateway, with the DiscountProvider and with the Ride JEB.
+
+\subsubsection{Driver for the SecurityAuthenticator}
+A driver for the SecurityAuthenticator will be needed to invoke all methods exposed by it in order to test its interaction with the RideManager and with the User and Reservation JEBs .
+
+\subsubsection{Driver for the MapManager}
+A driver for the MapManager will be needed to invoke all methods exposed by it in order to test its interaction with the SecurityAuthenticator and with the SafeArea, PowerGridStation, Car and User JEBs.
+
+\section{Drivers for the Containers}
+In order to test the correct behaviour of the EJB containers with respect to the instantiation of different application logic components, a driver for each container must be used. This drivers shall simulate multiple concurrent requests to the different beans of the individual container.
+
+\section{Drivers and Stubs for the interaction with External Systems}
+In order to test the interaction with the Maintenance System, both a driver and a stub will be needed.
+\noindent
+The driver will serve the purpose of testing interactions triggered by the external system, like the requests of car status modification after intervention.
+\noindent
+The stub will be used to simulate the behaviour of the external system in case the interaction is triggered by the Application Server, i.e. in case the system needs to signal an out-of-service vehicle.
+
+The interaction with the Payment Handler must instead be tested using a stub for it, in order to verify that all the calls performed over the provided API are well crafted or rejected if that is not the case.
+
+\section{Drivers for the Mobile and On-Board Application APIs}
+In order to integrate the Mobile Tier with the Application Logic Tier and the On-Board Tier with the Application Logic Tier, two drivers will be simulating appropriate RESTful API clients. This is necessary in order to properly test the communication over the defined APIs that connect the client layers to the business logic one.
