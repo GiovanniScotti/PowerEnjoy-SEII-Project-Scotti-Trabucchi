@@ -6,3 +6,7 @@ The software tools to be used during the integration testing process are the fol
 \item[Arquillian:] Arquillian - \url{http://arquillian.org/} - is a test framework used to execute test cases against the container in which components are defined. It will be used in order to test the behaviour of containers with respect to the single Java Beans used for the application.
 \item[Mockito:] Mockito - \url{http://site.mockito.org/} - Mockito is a clean and simple framework that allows to write stubs and mocks using a simple API. It is used to generate the few stubs we indicated as necessary for the integration of all components and subsystems.
 \end{description}
+
+In order to properly test the On-Board Application, which is written in C/C++ - as specified in the RASD~\cite{rasd} and DD~\cite{dd} -, proper testing environment and tools must be used, as stated in Section \ref{testing_c++}. For the testing of both version of the Mobile Application, which is to say the Android and the iOS ones, the proprietary test suites must be used.
+
+Since both the Mobile and On-Board Applications need some manual testing on the physical devices to complement the aforementioned tests, some test devices are required for Android and iOS smartphones and the embedded computers of vehicles.
