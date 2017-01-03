@@ -247,6 +247,24 @@ The following test cases concern the integration among the Java Entity Beans and
 \hline
 \end{longtable}
 
+\begin{longtable}{p{0.32\textwidth} | p{0.68\textwidth}}
+\hline
+\textbf{Test Case Identifier} & I14T2\\
+\hline
+\textbf{Test Item(s)} & (SB) ReservationManager $\rightarrow$ (SB) PaymentGateway, (SB) CarStatusManager \\
+\hline
+\textbf{Input Specification} & Calls from ReservationManager to methods of PaymentGateway to prompt automatic fee payment caused by the expiry of a reservation; call from ReservationManager to methods of CarStatusManager to request appropriate modifications to the status of the involved cars. \\
+\hline
+\textbf{Output Specification} & The PaymentGateway processes the request appropriately and the CarStatusManager sets the interested cars as "AVAILABLE" again. \\
+\hline
+\textbf{Environmental Needs} & GlassFish server. \\
+\hline
+\textbf{Test Description} & The purpose of this test is to ensure that every reservation that expires due to being pending for more than one hour of time causes the payment of a fee and the automatic request is sent and carried out appropriately; at the same time, the test ensures that, contextually, the cars are shown to be available again by the system. \\
+\hline
+\textbf{Testing Method} & Automated with JUnit. \\
+\hline
+\end{longtable}
+
 \section{Integration Test Case I15}
 
 \begin{longtable}{p{0.32\textwidth} | p{0.68\textwidth}}

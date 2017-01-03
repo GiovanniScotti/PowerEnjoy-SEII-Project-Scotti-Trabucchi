@@ -49,9 +49,10 @@ The UserManager component can then in turn be integrated (2), using a driver to 
 %DiscountProvider <- RideManager
 %DiscountProvider <- PaymentGateway
 %PaymentGateway <- RideManager
+%PaymentGateway <- ReservationManager
 The payment management context can be covered next in the integration process, starting once more from the most independent component, represented by the DiscountProvider. This will need two different drivers, one for the methods called by the RideManager and another for the PaymentGateway (1).
 \noindent
-The PaymentGateway itself can in turn be integrated by using another driver, that will be replaced with the RideManager (2). RideManager is then going to replace the two drivers that simulated its behaviour altogether.
+The PaymentGateway itself can in turn be integrated by using two other drivers, that will be replaced respectively with the RideManager and ReservationManager (2). The two drivers will call methods related with ride payments (RideManager) and fee payments (ReservationManager).
 
 \begin{figure}[H]
 \begin{center}
@@ -187,6 +188,7 @@ I13 & App. Logic & (SB) RideManager & (JEB) Ride \\
 I14 & App. Logic & (SB) ReservationManager & (JEB) Car \\
 										   & & & (JEB) Reservation \\
 										   & & & (SB) CarStatusManager \\
+										   & & & (SB) PaymentGateway \\
 \hline
 I15 & App. Logic & (SB) SecurityAuthenticator & (JEB) User \\
 											  & & & (JEB) Reservation \\
