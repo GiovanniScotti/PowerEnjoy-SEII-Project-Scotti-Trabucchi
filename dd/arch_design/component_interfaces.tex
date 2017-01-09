@@ -18,6 +18,11 @@ The Application Server must connect with two types of external systems:
 
 \subsection{Internal Interfaces for Application Server Components}\label{int_comps_if}
 \subsubsection{UserManager}
+The UserManager bean interacts with the following entities:
+\begin{itemize}
+\item \textit{User entity} - in order to create, update and delete user information during the registration process and to perform checks on login credentials.
+\end{itemize}
+
 The following are the procedures implemented by the UserManager component and called by other components:
 \begin{description}
 \item[\texttt{submitLoginCredentials}] This procedure is used to submit the login credentials, hence accessing the application; this takes as \textit{parameters} the user credentials: email and password; the \textit{return value} for this function is a user-identifying token that is later going to be used as parameter by other procedures, in order to identify the requesting user; if the provided credentials are wrong or non-existing, the \textit{return value} is an error.
@@ -29,6 +34,12 @@ The following are the procedures implemented by the UserManager component and ca
 \item[\texttt{fetchHistory}] This procedure is called to fetch the user's history from the database; the taken \textit{parameters} include a user-identifying token and - possibly - some filters over the history request; the \textit{return value} is an object containing a representation of the (possibly filtered) history of the user.
 \end{description}
 \subsubsection{ReservationManager}
+The ReservationManager bean interacts with the following entities:
+\begin{itemize}
+\item \textit{Car entity} - in order to fetch available cars to be shown to the user in the client applications.
+\item \textit{Reservation entity} - in order to create reservation data, to update and delete recorded reservation.
+\end{itemize}
+
 The following are the procedures implemented by the ReservationManager component and called by other components:
 \begin{description}
 \item[\texttt{desiredLocation}] This procedure is used to indicate the area in which a user wishes to look for available cars; this takes as \textit{parameters} either an address or a GPS position; the \textit{return value} for the procedure is a set of available cars based on the position parameter.
@@ -36,6 +47,11 @@ The following are the procedures implemented by the ReservationManager component
 \item[\texttt{releaseReservation}] This procedure is called whenever a user decides to renounce to his/her current active reservation; the taken \textit{parameter} is only a user-identifying token; the \textit{return value} is a confirmation message.
 \end{description}
 \subsubsection{RideManager}
+The RideManager bean interacts with the following entities:
+\begin{itemize}
+\item \textit{Ride entity} - in order to create and manage ride information.
+\end{itemize}
+
 The following are the procedures implemented by the RideManager component and called by other components:
 \begin{description}
 \item[\texttt{startRide}] This procedure is used to create a new ride after a successful authentication; this takes as \textit{parameters} are a car and a user-identifying token to associate with the ride; the \textit{return value} is undefined since the clearance to actually beginning the ride is sent directly to the car's application.
@@ -43,17 +59,35 @@ The following are the procedures implemented by the RideManager component and ca
 \item[\texttt{confirmEndRide}] This procedure is called when the system need to end a ride after detecting that this is really the case; the only needed \textit{parameter} is a car to recover all necessary data; the \textit{return value} is undefined, since the call is asynchronous.
 \end{description}
 \subsubsection{MapManager}
+The MapManager bean interacts with the following entities:
+\begin{itemize}
+\item \textit{SafeArea entity} - in order to perform check if the position of a car is within the given area upon the end of the corresponding ride.
+\item \textit{PowerGridStation entity} - in order to detect the position of power stations to be shown to the user during rides when he/she is near one.
+\item \textit{Car entity} - in order to detect GPS positions of vehicles relative to users in order to establish whether to allow unlock procedures or less.
+\end{itemize}
+
 The following are the procedures implemented by the MapManager component and called by other components:
 \begin{description}
 \item[\texttt{GPSUnlock}] This procedure is used to match the positions of a car and a user and unlock said car in case it was reserved by that user; this takes as \textit{parameters} a user-identifying token and the user's position; the \textit{return value} for the procedure is undefined, since its call is asynchronous.
 \item[\texttt{checkCarPosition}] This procedure is used to check if a car is within the Safe Area once the system detected a possible ride ending situation; the needed \textit{parameters} are a car and its position; the \textit{return value} is the result of the performed check.
 \end{description}
 \subsubsection{CarStatusManager}
+The CarStatusManager bean interacts with the following entities:
+\begin{itemize}
+\item \textit{Car entity} - in order to change car statuses whenever needed.
+\end{itemize}
+
 The following are the procedures implemented by the CarStatusManager component and called by other components:
 \begin{description}
 \item[\texttt{setCarStatus}] The procedure is called whenever a component need to update the status of a car; this takes as \textit{parameters} a car and the status to be set for said car; the \textit{return value} for this procedure is a confirmation message.
 \end{description}
 \subsubsection{SecurityAuthenticator}
+The SecurityAuthenticator bean interacts with the following entities:
+\begin{itemize}
+\item \textit{User entity} - in order to check if the authentication data provided by the user upon a ride starting matches the correct user credentials in memory.
+\item \textit{Reservation entity} - in order to check if a reservation was actually performed by a user and regards a specific car he/she is trying to unlock.
+\end{itemize}
+
 The following are the procedures implemented by the SecurityAuthenticator component and called by other components:
 \begin{description}
 \item[\texttt{codeUnlock}] This procedure is used to unlock a car based on a vehicle-specific code found on the car itself; the procedure \textit{parameters} are a user-identifying token and a code; the \textit{return value} for the procedure is undefined, since its call is asynchronous.
@@ -61,18 +95,30 @@ The following are the procedures implemented by the SecurityAuthenticator compon
 \item[\texttt{sendToCheck}] This procedure processes an authentication PIN inserted by a user on the on-board application of a car to find out if the ride is being initiated by the user who reserved and unlocked that car; this takes as \textit{parameters} a car and a PIN; the \textit{return value} is the result of the check.
 \end{description}
 \subsubsection{DiscountProvider}
+The DiscountProvider bean interacts with the following entities:
+\begin{itemize}
+\item \textit{AlternativeChargesSituation entity} - in order to create and manage discount and additional charges situations information to be used to compute final charges for rides.
+\end{itemize}
+
 The following are the procedures implemented by the DiscountProvider component and called by other components:
 \begin{description}
 \item[\texttt{recordSituations}] This procedure is used to record a detected alternative payment situation; this takes as \textit{parameters} the detected situation and the corresponding ride; the \textit{return value} for the procedure is a confirmation message.
 \item[\texttt{fetchPercentages}] This procedure is called at the end of a ride to get all the alternative payment percentages in order to compute the final charges; this takes as only \textit{parameter} the ride for which the system needs to compute the final charges; the \textit{return value} is a list of discount/additions percentages.
 \end{description}
 \subsubsection{PaymentGateway}
+The PaymentGateway bean interacts with the following entities:
+\begin{itemize}
+\item \textit{Payment entity} - in order to create and update useful data to record both regular payments and fee payments.
+\end{itemize}
+
 The following are the procedures implemented by the PaymentGateway component and called by other components:
 \begin{description}
 \item[\texttt{applyFee}] This procedure is used to apply a fee after a reservation expires; this takes as \textit{parameters} a reservation and a fee amount; the \textit{return value} is undefined since the procedure includes a call to the NotificationManager that manages the response to the user directly based on the success of the fee payment.
 \item[\texttt{sendStandardCharges}] This procedure is called to compute the final charges of a ride and carry out the corresponding payment; it takes as \textit{parameters} a ride and its standard charges; the \textit{return value} is undefined since the procedure includes a call to the NotificationManager that manages the response to the user directly based on the success of the fee payment.
 \end{description}
 \subsubsection{NotificationManager}
+The NotificationManager bean does not interact with any entity.
+
 The following are the procedures implemented by the NotificationManager component and called by other components:
 \begin{description}
 \item[\texttt{generateConfirmationEmail}] The procedure is used during the registration process to generate an email containing the provided user credentials; this takes as \textit{parameters} the user credentials generated by UserManager and the addressee's email; the \textit{return value} is undefined, since the confirmation email is immediately sent to the addressee, bypassing the caller.
