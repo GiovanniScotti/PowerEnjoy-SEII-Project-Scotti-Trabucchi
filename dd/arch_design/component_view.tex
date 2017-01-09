@@ -88,8 +88,8 @@ The main choice for this layer is the use of Java Enterprise Edition 7 (JEE). Th
 The specific implementation choices are:
 \begin{itemize}
 \item GlassFish Server as the Application Server implementation;
-\item Enterprise JavaBeans (EJB) to implement the single business logic modules described in the sections above. These will be appropriately subdivided into EJB containers as specified by the JEE documentation;
-\item Java Persistence API (JPA) as persistence unit to perform the Database access, that is not implemented with direct SQL queries. Entity beans will be used to implement the object representation of the database entities and they are strictly related to the entities of the ER diagram (Figure \ref{er_dg});
+\item Enterprise JavaBeans (EJB) to implement the single business logic modules described in the sections above using Stateless Beans. These will be appropriately subdivided into EJB containers as specified by the JEE documentation;
+\item Java Persistence API (JPA) as persistence unit to perform the Database access, that is not implemented with direct SQL queries. Entity beans will be used to implement the object representation of the database entities and they are strictly related to the entities of the E-R diagram (Figure \ref{er_dg}). The detailed relationships between the individual session beans and the various entity beans will be described in Section \ref{int_comps_if};
 \item JAX-RS to implement proper RESTful APIs to interface with clients and the Web Server;
 \item To interface with external systems, existing RESTful APIs defined by the partners will be used in the communication with the payment handlers, whereas a dedicated one will be provided to the maintenance system to interact properly with the application services.
 \end{itemize}
