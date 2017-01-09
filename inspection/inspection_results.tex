@@ -1,4 +1,5 @@
 %Inspection results
+This chapter contains the result of the code inspection carried out on the assigned class and its methods. All the points of the given checklist~\cite{assignment} have been checked.
 \section{Notation}
 The following notations have been used to draw up this document:
 \begin{itemize}
@@ -8,3 +9,30 @@ The following notations have been used to draw up this document:
 \end{itemize}
 
 \section{Issues}
+\subsection{ModelDataFileReader Class}
+\begin{enumerate}
+\item \textbf{C18.} Comments are NOT used to adequately explain what the class, blocks of code and methods do except for the following methods:
+	\begin{itemize}
+	\item \texttt{getDataFilesNames()}
+	\item \texttt{getDataFileNamesIterator()}
+	\item \texttt{getModelDataFile(String dataFileName)}
+	\end{itemize}
+	Moreover the provided JavaDoc is very limited.
+\item \textbf{C22.} JavaDoc for the public method \texttt{getModelDataFiles} is missing, therefore it is impossible to check whether the interface has been implemented consistently or not.
+\item \textbf{C40.} No object is compared to another one. There are only objects compared to \texttt{null} by using the "==" operator correctly.
+\item \textbf{C42.} The following lines contain log error messages that do not provide guidance or hints on how to correct the problem at all: \textbf{L.}102, \textbf{L.}115, \textbf{L.}129-130, \textbf{L.}136-137, \textbf{L.}142-143, \textbf{L.}158-159.
+\end{enumerate}
+
+%ATTENZIONE:
+%The style used is the Kernigham and Ritchie one.
+%Controllare C11: L.49-50 (è pieno anche più avanti)
+
+%C13-C14: Da dove si parte a misurare la lunghezza della linea?
+%C15: Good code conventions say that the line break occurs BEFORE an operator and AFTER a comma
+%C16: cosa vuol dire higher-level breaks?
+
+%L266: error in the article ("a Iterator")
+%L276: error in the article ("an DataFile")
+
+%PUNTI Controllati da Gio:
+%2-4-6-8-10-12-18-20-(22)-24-26-40-42-48-50-52-54-58-60
