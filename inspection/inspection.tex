@@ -30,6 +30,9 @@
 %Our chapters must be called sections
 \addto\captionsenglish{\renewcommand{\chaptername}{Section}}
 
+%command to send long words to newline
+\newcommand\lword[1]{\leavevmode\nobreak\hskip0pt plus\linewidth\penalty50\hskip0pt plus-\linewidth\nobreak{#1}}
+
 \begin{document}
 
 %Code for title page
@@ -55,6 +58,8 @@
 
 \chapter{Code Description}
 \input{./code_description.tex}
+
+\chapter{Inspection Results}
 \input{./inspection_results.tex}
 
 \appendix

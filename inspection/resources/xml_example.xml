@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ 
+<data-files xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/datafiles.xsd">
+    <data-file name="posreport" separator-style="fixed-length" type-code="text">
+        <record name="tillentry" limit="many">
+            <field name="tillCode" type="String" length="16" position="0"/>
+            <field name="name" type="String" length="32" position="17"/>
+            <field name="prodCode" type="String" length="12" position="63"/>
+            <field name="quantity" type="String" length="8" position="76"/>
+            <field name="totalPrice" type="String" length="8" position="85"/>
+        </record>
+    </data-file>
+</data-files>
