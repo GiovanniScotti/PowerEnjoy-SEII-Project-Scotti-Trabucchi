@@ -11,14 +11,90 @@ The following notations have been used to draw up this document:
 \section{Issues}
 \subsection{ModelDataFileReader Class}
 \begin{enumerate}
+\item \textbf{C1.} The following attributes have name that could be more meaningful:
+	\begin{itemize}
+	\item \texttt{module}, \textbf{L.}43, class attribute containing the class name;
+	\item \texttt{priorEnd}, \textbf{L.}238, method attribute of the \texttt{createModelRecord(Element recordElement)}, could use a name which is friendlier to non-native English-speakers to be perfectly clear, such as \texttt{lastEnd}.
+	\end{itemize}	
+The following parameters have names that could be improved:
+	\begin{itemize}
+	\item \texttt{readerURL}, \textbf{L.}46, in the \texttt{getModelDataFileReader(URL readerURL)} method, could be more meaningful if called \texttt{descriptionURL} as in the \texttt{DataFile.java} class;
+	\item The same happens for the homonymous parameters at \textbf{L.}59 and \textbf{L.}62;
+	\end{itemize}
+To be precise, it must be mentioned that the capitalization of the name of parameters named \texttt{readerURL} does not follow the guidelines of good programming habits, but since it follows the naming of the \texttt{java.net} package naming for the URL class, this is a coherent choice.
+\item \textbf{C7.} The following constant attributes of the class do not follow the naming convention for constants and should be renamed:
+	\begin{itemize}
+	\item \texttt{module}, \textbf{L.}43;
+	\item \texttt{readers}, \textbf{L.}44.
+	\end{itemize}
+\item \textbf{C9.} Tabs are used to indent code throughout the whole class and project, but since this is done consistently it should not pose major issues with different environments.
+\item \textbf{C11.} The following \texttt{if} clauses do not follow the convention for parenthesis usage indicated for clause containing only one statement, that is, the only statement they contain is not surrounded by curly brackets:
+	\begin{itemize}
+	\item \texttt{if} clause at \textbf{L.}49;
+	\item \texttt{if} clause at \textbf{L.}54;
+	\item \texttt{if} clause at \textbf{L.}213;
+	\item \texttt{if} clause at \textbf{L.}215;
+	\end{itemize}
+\item \textbf{C13.} and \textbf{C14.} Many lines of code are not broken up properly and exceed the indicated caps of 80 and 120 characters:
+	\begin{itemize}
+	\item \textbf{L.}44 is 116 characters long, and could be split after the "\texttt{=}" character;
+	\item \textbf{L.}46 is 98 characters long, and could be split before the \texttt{throws} keyword;
+	\item \textbf{L.}50 is 105 characters long, and could be split after the string parameter;
+	\item \textbf{L.}55 is 106 characters long, and could be split after the string parameter;
+	\item \textbf{L.}72 is 82 characters long, but is reasonably not split and still less than 120 characters long;
+	\item \textbf{L.}74 is 81 characters long, but is reasonably not split and still less than 120 characters long;
+	\item \textbf{L.}90 is 94 characters long, but is reasonably not split and still less than 120 characters long;
+	\item \textbf{L.}91 is 87 characters long, but is reasonably not split and still less than 120 characters long;
+	\item \textbf{L.}102 is 98 characters long, and could use splitting the string parameter for readability;
+	\item \textbf{L.}115 is 138 characters long, and could use splitting the string parameter for readability;
+	\item \textbf{L.}123 is 84 characters long, and could be split before the \texttt{throws} keyword;
+	\item \textbf{L.}140 is 93 characters long, and could be split after the "\texttt{=}" character;
+	\item \textbf{L.}143 is 82 characters long, and could be split after the "\texttt{+}" character;
+	\item \textbf{L.}149 is 139 characters long, and could use splitting the string parameter for readability;
+	\item \textbf{L.}158 is 87 characters long, and could be split after the "\texttt{+}" character;
+	\item \textbf{L.}159 is 111 characters long, and could be split after the "\texttt{+}" character;
+	\item \textbf{L.}183 is 81 characters long, but is reasonably not split and still less than 120 characters long;
+	\item \textbf{L.}184 is 93 characters long, but is reasonably not split and still less than 120 characters long;
+	\item \textbf{L.}233 is 83 characters long, but is reasonably not split and still less than 120 characters long;
+	\item \textbf{L.}234 is 84 characters long, but is reasonably not split and still less than 120 characters long;
+	\item \textbf{L.}244 has a comment that is 82 characters long, and should either be rephrased or split in more lines;
+	\end{itemize}
+	\item \textbf{L.}266 has a JavaDoc comment that is 84 characters long, and should be split in more lines.
+	\end{itemize}
 \item \textbf{C18.} Comments are NOT used to adequately explain what the class, blocks of code and methods do except for the following methods:
 	\begin{itemize}
 	\item \texttt{getDataFilesNames()}
 	\item \texttt{getDataFileNamesIterator()}
 	\item \texttt{getModelDataFile(String dataFileName)}
 	\end{itemize}
-	Moreover the provided JavaDoc is very limited.
+Moreover the provided JavaDoc is very limited.
 \item \textbf{C22.} JavaDoc for the public method \texttt{getModelDataFiles} is missing, therefore it is impossible to check whether the interface has been implemented consistently or not.
+\item \textbf{C23.} The JavaDoc for the class is very poor and vague. The following methods are missing the JavaDoc:
+	\begin{itemize}
+	\item \texttt{getModelDataFileReader(URL readerURL)};
+	\item \texttt{createModelDataFile(Element dataFileElement)};
+	\item \texttt{createModelDataFiles()};
+	\item \texttt{createModelField(Element fieldElement)};
+	\item \texttt{createModelRecord(Element recordElement)};
+	\item \texttt{getModelDataFiles()};
+	\end{itemize}
+Moreover, nor the constructor nor the attributes have no JavaDoc at all; even if some of them can seem intuitive, other could actually use a detailed explanation and documentation.
+\item \textbf{C25.} The \texttt{static} method \texttt{getModelDataFileReader(URL readerURL)} is placed among the declaration of class variables, in the wrong place with respect to the standard structure of classes.
+\item \textbf{C27.} The code of the class is quite duplicated, although this is almost unavoidable in classes which provide parsing methods such as this.
+
+The class itself is not very big, but some of its methods are really long. Despite this, the methods of the class are well structured and make the class code loosely coupled, since each method takes care of one single task. On the other hand, cohesion of code is quite high since the main methods of the class all rely on one another in order to perform their tasks (i.e. \texttt{createModelDataFiles} calls \texttt{createModelDataFile} repeatedly, which in turn calls \texttt{createModelRecord} which calls \texttt{createmodelField}).
+
+Encapsulation is mostly preserved by the presence of the accessor methods. The only threat to encapsulation itself comes from the public attribute, \texttt{module}, which could be substituted by a getter as well if not strictly necessary.
+\item \textbf{C31.} The three internal variables named \texttt{tempStr}, located respectively at \textbf{L.}69, \textbf{L.}167 and \textbf{L.}207, are declared but not initialized immediately. This could result in potential issues in some environment.
+\item \textbf{C33.} The following variables are declared in the wrong section of the class or of a method, with respect to the conventional structure of Java code:
+	\begin{itemize}
+	\item Class variables \texttt{readerURL} and \texttt{modelDataFiles}, \textbf{L.}60 and \textbf{L.}60 are declared after a method;
+	\item In method \texttt{createModelDataFile}, at \textbf{L.}93, attribute \texttt{rList} is declared after a block of non-declarative code and outside any for loop;
+	\item In method \texttt{createModelDataFile}, at \textbf{L.}145, attribute \texttt{result} is declared after a block of non-declarative code and outside any for loop;
+	\item Within the \texttt{for} loop of \textbf{L.}146, attribute \texttt{dataFile} of \textbf{L.}151 is declared separately by the other loop variables, after a block of non-declarative code;
+	\item In method \texttt{createModelRecord}, at \textbf{L.}237, attribute \texttt{fList} is declared after a block of non-declarative code and outside any for loop;
+	\item In method \texttt{createModelRecord}, at \textbf{L.}238, attribute \texttt{priorEnd} is declared after a block of non-declarative code and outside any for loop;
+	\end{itemize}
 \item \textbf{C40.} No object is compared to another one. There are only objects compared to \texttt{null} by using the "==" operator correctly.
 \item \textbf{C42.} The following lines contain log error messages that do not provide guidance or hints on how to correct the problem at all: \textbf{L.}102, \textbf{L.}115, \textbf{L.}129-130, \textbf{L.}136-137, \textbf{L.}142-143, \textbf{L.}158-159.
 \end{enumerate}
@@ -36,3 +112,5 @@ The following notations have been used to draw up this document:
 
 %PUNTI Controllati da Gio:
 %2-4-6-8-10-12-18-20-(22)-24-26-40-42-48-50-52-54-58-60
+%PUNTI controllati da Marcone:
+%1-3-5-7-9-11-13-14-15-17-19-21-23-25-27-29-31-33-35-37-39-41-43-45-47-49-51-53-55-57-59
