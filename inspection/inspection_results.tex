@@ -1,4 +1,3 @@
-%Inspection results
 This chapter contains the result of the code inspection carried out on the assigned class and its methods. All the points of the given checklist~\cite{assignment} have been checked.
 \section{Notation}
 The following notations have been used to draw up this document:
@@ -9,7 +8,7 @@ The following notations have been used to draw up this document:
 \end{itemize}
 
 \section{Issues}
-\subsection{ModelDataFileReader Class}
+\subsection{\texttt{ModelDataFileReader.java} Class}
 \begin{enumerate}
 \item \textbf{C1.} The following attributes have name that could be more meaningful:
 	\begin{itemize}
@@ -35,7 +34,7 @@ The following parameters have names that could be improved:
 	\item \texttt{if} clause at \textbf{L.}213;
 	\item \texttt{if} clause at \textbf{L.}215;
 	\end{itemize}
-\item \textbf{C13.} and \textbf{C14.} Many lines of code are not broken up properly and exceed the indicated caps of 80 and 120 characters:
+\item \textbf{C13.} and \textbf{C14.} Many lines of code are not broken up properly and exceed the indicated caps of 80 and 120 characters (characters are counted starting from the first non-whitespace character of each line):
 	\begin{itemize}
 	\item \textbf{L.}44 is 116 characters long, and could be split after the "\texttt{=}" character;
 	\item \textbf{L.}46 is 98 characters long, and could be split before the \texttt{throws} keyword;
@@ -66,7 +65,7 @@ The following parameters have names that could be improved:
 	\item \texttt{getDataFileNamesIterator()}
 	\item \texttt{getModelDataFile(String dataFileName)}
 	\end{itemize}
-Moreover the provided JavaDoc is very limited.
+Moreover the provided JavaDoc is very limited. Some minor grammatical errors occur in the JavaDoc of some methods, but these errors do not compromise the understanding of the provided explanations.
 \item \textbf{C22.} JavaDoc for the public method \texttt{getModelDataFiles} is missing, therefore it is impossible to check whether the interface has been implemented consistently or not.
 \item \textbf{C23.} The JavaDoc for the class is very poor and vague. The following methods are missing the JavaDoc:
 	\begin{itemize}
@@ -83,11 +82,11 @@ Moreover, nor the constructor nor the attributes have no JavaDoc at all; even if
 
 The class itself is not very big, but some of its methods are really long. Despite this, the methods of the class are well structured and make the class code loosely coupled, since each method takes care of one single task. On the other hand, cohesion of code is quite high since the main methods of the class all rely on one another in order to perform their tasks (i.e. \texttt{createModelDataFiles} calls \texttt{createModelDataFile} repeatedly, which in turn calls \texttt{createModelRecord} which calls \texttt{createmodelField}).
 
-Encapsulation is mostly preserved by the presence of the accessor methods. The only threat to encapsulation itself comes from the public attribute, \texttt{module}, which could be substituted by a getter as well if not strictly necessary.
-\item \textbf{C31.} and \textbf{C32.} The three internal variables named \texttt{tempStr}, located respectively at \textbf{L.}69, \textbf{L.}167 and \textbf{L.}207, are declared but not initialized immediately. This could result in potential issues in some environment.
+Encapsulation is mostly preserved by the presence of the accessor methods. The only threat to encapsulation itself comes from the \texttt{public} attribute, \texttt{module}, for which a getter could be as well if the \texttt{public} visibility attribute is not strictly necessary.
+\item \textbf{C31.} and \textbf{C32.} The three internal variables named \texttt{tempStr}, located respectively at \textbf{L.}69, \textbf{L.}167 and \textbf{L.}207, are declared but not initialized immediately. This could result in potential issues in some environment; however, these variables are initialized right before use by means of a computation.
 \item \textbf{C33.} The following variables are declared in the wrong section of the class or of a method, with respect to the conventional structure of Java code:
 	\begin{itemize}
-	\item Class variables \texttt{readerURL} and \texttt{modelDataFiles}, \textbf{L.}60 and \textbf{L.}60 are declared after a method;
+	\item Class variables \texttt{readerURL} and \texttt{modelDataFiles}, \textbf{L.}59 and \textbf{L.}60 are declared after a method;
 	\item In method \texttt{createModelDataFile}, at \textbf{L.}93, attribute \texttt{rList} is declared after a block of non-declarative code and outside any for loop;
 	\item In method \texttt{createModelDataFile}, at \textbf{L.}145, attribute \texttt{result} is declared after a block of non-declarative code and outside any for loop;
 	\item Within the \texttt{for} loop of \textbf{L.}146, attribute \texttt{dataFile} of \textbf{L.}151 is declared separately by the other loop variables, after a block of non-declarative code;
@@ -99,17 +98,9 @@ Encapsulation is mostly preserved by the presence of the accessor methods. The o
 \end{enumerate}
 
 %ATTENZIONE:
-%The style used is the Kernigham and Ritchie one.
-%Controllare C11: L.49-50 (è pieno anche più avanti)
-
-%C13-C14: Da dove si parte a misurare la lunghezza della linea?
-%C15: Good code conventions say that the line break occurs BEFORE an operator and AFTER a comma
 %C16: cosa vuol dire higher-level breaks?
 
-%L266: error in the article ("a Iterator")
-%L276: error in the article ("an DataFile")
+\subsection{Other issues concerning the class}
+In the code of the class, the attribute from the \texttt{ModelDataFile.java} class are accessed directly multiple times, since they are defined as \texttt{public}; however, said class also provides accessor methods for its attributes. If this is not strictly necessary, substituting direct accesses with getter and setter method calls could be beneficial in terms of increasing encapsulation of application data.
 
-%PUNTI Controllati da Gio:
-%2-4-6-8-10-12-18-20-(22)-24-26-40-42-48-50-52-54-58-60
-%PUNTI controllati da Marcone:
-%1-3-5-7-9-11-13-14-15-17-19-21-23-25-27-29-31-33-35-37-39-41-43-45-47-49-51-53-55-57-59
+A similar issue happens with the \texttt{ModelRecord.java} and \texttt{ModelField.java} classes.
