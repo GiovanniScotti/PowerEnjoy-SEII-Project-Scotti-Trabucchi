@@ -1,0 +1,80 @@
+This chapter is devoted to the Function Point Analysis for the \textit{PowerEnJoy} project, aimed at obtaining a reasonable estimate of the size of the project, which will be later used within the COCOMO II estimation model to compute an average effort factor for the development process.
+
+\section{Internal Logic Files (ILFs)}
+Internal Logic Files are defined as follows~\cite{cocomo-manual}:
+\begin{quotation}
+\textit{"Internal Logic Files count each major logical group of user data or control information in the software system as a logical internal file type. They include each logical file (e.g., each logical group of data) that is generated, used, or maintained by the software system."}
+\end{quotation}
+\noindent
+In practice, they can be identified as a homogeneous set of data used and managed by the application itself.
+
+The identified ILFs for the application are:
+\begin{itemize}
+\item User
+\item Car
+\item Payment
+\item Reservation
+\item Ride
+\item AlternativeChargesSituation
+\item SafeArea
+\item PowerGridStation
+\end{itemize}
+
+\section{External Interface Files (EIFs)}
+External Interface Files are defined as follows~\cite{cocomo-manual}:
+\begin{quotation}
+\textit{"Files passed or shared between software systems should be counted as External Interface File types within each system."}
+\end{quotation}
+In practice, they can be identified as a homogeneous set of data used by the application but generated and maintained by other applications.
+
+The identified EIFs for the application are:
+\begin{itemize}
+\item Payment records in the Payment Handlers databases
+\item Maintenance intervention records in the Maintenance System database
+\item The data streams related to the \textit{Google Maps} service
+\end{itemize}
+
+\section{External Inputs (EIs)}
+External Inputs are defined as follows~\cite{cocomo-manual}:
+\begin{quotation}
+\textit{"External Inputs count each unique user data or user control input type that enters the external boundary of the software system being measured."}
+\end{quotation}
+In practice, they can be identified as elementary operations to elaborate data coming from the external environment.
+
+The identified EIs for the application are:
+\begin{itemize}
+\item The registration process
+\item The login process
+\item The update process for user profiles
+\item Data streams from the sensors and equipment of cars
+\item Data about the availability of cars
+\item The car reservation process
+\item The car unlocking process
+\item The user authentication process for the rides
+\end{itemize}
+
+\section{External Outputs (EOs)}
+External Outputs are defined as follows~\cite{cocomo-manual}:
+\begin{quotation}
+\textit{"External Outputs count each unique user data or control output type that leaves the external boundary of the software system being measured."}
+\end{quotation}
+In practice, they can be identified as elementary operations that generate data for the external environment.
+
+The identified EOs for the application are:
+\begin{itemize}
+\item E-mail notifications
+\item User notifications
+\end{itemize}
+
+\section{External Inquiries (EQs)}
+External Inquiries are defined as follows~\cite{cocomo-manual}:
+\begin{quotation}
+\textit{"External Inquiries count each unique input-output combination, where input causes and generates an immediate output."}
+\end{quotation}
+In practice, they can be identified as elementary operation that involve input and output, without significant elaboration of data from logic files.
+
+The identified EQs for the application are:
+\begin{itemize}
+\item The visualization of user profile data by the user him/herself
+\item The detection of alternative charges situation during rides
+\end{itemize}
