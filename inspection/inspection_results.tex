@@ -21,7 +21,7 @@ The following parameters have names that could be improved:
 	\item \texttt{readerURL}, \textbf{L.}46, in the \texttt{getModelDataFileReader(URL readerURL)} method, could be more meaningful if called \texttt{descriptionURL} as in the \texttt{DataFile.java} class;
 	\item The same happens for the homonymous parameters at \textbf{L.}59 and \textbf{L.}62;
 	\end{itemize}
-To be precise, it must be mentioned that the capitalization of the name of parameters named \texttt{readerURL} does not follow the guidelines of good programming habits, but since it follows the naming of the \texttt{java.net} package naming for the URL class, this is a coherent choice.
+\item \textbf{C6.} The capitalization of the name of parameters named \texttt{readerURL} does not follow the guidelines of good programming habits, but since it follows the naming of the \texttt{java.net} package naming for the URL class, this is a coherent choice.
 \item \textbf{C7.} The following constant attributes of the class do not follow the naming convention for constants and should be renamed:
 	\begin{itemize}
 	\item \texttt{module}, \textbf{L.}43;
@@ -58,7 +58,6 @@ To be precise, it must be mentioned that the capitalization of the name of param
 	\item \textbf{L.}233 is 83 characters long, but is reasonably not split and still less than 120 characters long;
 	\item \textbf{L.}234 is 84 characters long, but is reasonably not split and still less than 120 characters long;
 	\item \textbf{L.}244 has a comment that is 82 characters long, and should either be rephrased or split in more lines;
-	\end{itemize}
 	\item \textbf{L.}266 has a JavaDoc comment that is 84 characters long, and should be split in more lines.
 	\end{itemize}
 \item \textbf{C18.} Comments are NOT used to adequately explain what the class, blocks of code and methods do except for the following methods:
@@ -85,7 +84,7 @@ Moreover, nor the constructor nor the attributes have no JavaDoc at all; even if
 The class itself is not very big, but some of its methods are really long. Despite this, the methods of the class are well structured and make the class code loosely coupled, since each method takes care of one single task. On the other hand, cohesion of code is quite high since the main methods of the class all rely on one another in order to perform their tasks (i.e. \texttt{createModelDataFiles} calls \texttt{createModelDataFile} repeatedly, which in turn calls \texttt{createModelRecord} which calls \texttt{createmodelField}).
 
 Encapsulation is mostly preserved by the presence of the accessor methods. The only threat to encapsulation itself comes from the public attribute, \texttt{module}, which could be substituted by a getter as well if not strictly necessary.
-\item \textbf{C31.} The three internal variables named \texttt{tempStr}, located respectively at \textbf{L.}69, \textbf{L.}167 and \textbf{L.}207, are declared but not initialized immediately. This could result in potential issues in some environment.
+\item \textbf{C31.} and \textbf{C32.} The three internal variables named \texttt{tempStr}, located respectively at \textbf{L.}69, \textbf{L.}167 and \textbf{L.}207, are declared but not initialized immediately. This could result in potential issues in some environment.
 \item \textbf{C33.} The following variables are declared in the wrong section of the class or of a method, with respect to the conventional structure of Java code:
 	\begin{itemize}
 	\item Class variables \texttt{readerURL} and \texttt{modelDataFiles}, \textbf{L.}60 and \textbf{L.}60 are declared after a method;
