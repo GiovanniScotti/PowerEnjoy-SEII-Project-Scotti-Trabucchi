@@ -1,37 +1,40 @@
 %Risk management
 %Problemi di interazione con il payment handler e il maintenance system
 
-The \emph{PowerEnJoy} system project might be threatened by many risks. The analysis of the said risks follows a specific approach that splits them up into three groups: project, technical and business risks.
+The \emph{PowerEnJoy} system project might be threatened by many risks. The analysis of said risks follows a specific approach that splits them up into three groups: \textit{project}, \textit{technical} and \textit{business risks}.
 
 \section{Project Risks}
-Project risks pose a threat to the project plan and make the project schedule slip, increasing the overall costs.
-The following risks have been found and analyzed, providing a response strategy. 
+\textit{Project risks} pose a threat to the project plan and make the project schedule slip, increasing the overall costs.
+The following risks have been found and analysed, providing a response strategy. 
 \begin{description}
 \item[Changes concerning requirements:] during the development of the project the requirements can change unexpectedly. This kind of risk cannot be prevented, but it can be reduced by using a style of programming that takes advantage of reusable and extensible code.
 \item[Deadlines are not met:] it can occur that the project requires more time than expected to be carried out. In this case only some functionalities will be offered in a first release while less essential features will be developed later. The above-mentioned first release can provide the target services by the only means of the Mobile Application. The Web Application and the Web Tier may be built afterwards.
-\item[Lack of experience in using specific frameworks:] if the team has never used Java Enterprise Edition and has no actual experience in programming with the said framework, the development process will definitely be slowed down. This is that case.
-\item[Lack of communication:] team members usually work separately. This can cause misunderstandings and conflicts about the division of the different tasks. To prevent the risk, crystal clear and complete specification and design documents must be provided. Moreover the responsibilities of each group member must be defined in this document.
-\item[Team cohesion:]
-%Se un membro del team se ne va?
+\item[Lack of communication:] team members usually work separately. This can cause misunderstandings and conflicts about the division of different tasks. To mitigate the risk, crystal clear and complete specification and design documents must be provided. Moreover the responsibilities of each group member must be clearly defined in this document.
+\item[Team break-ups:] if, for any natural or human reason, any of the team member is forced to leave the project team, the development process will inevitably suffer from huge delays and the risk will result in an impossibility to meet the defined deadlines (this is due to the very small size of the team). This can be countered, in case of social issues, in a pre-emptive way by implying a work method that values each team member in the same way; in case of natural causes, the reactive behaviour to be adopted must be that of hiring new members. Note that, in this second unpredictable case, the time required by the project will be greatly increased also due to the well-acknowledged Brooks's Law~\cite{mythical-man-month}.
 \end{description}
+
+%tabella con catalogazione rischi
 
 \section{Technical Risks}
-Technical risks threaten the quality and the punctuality of the software product preventing a straightforward implementation.
-
+\textit{Technical risks} threaten the quality and the punctuality of the software product preventing a straightforward implementation.
+The following risks have been found and analysed, providing a response strategy. 
 \begin{description}
-\item[Unreadable code:] huge and large projects may have a badly structured and unreadable code. Documenting the code can be a reasonable way to mitigate this risk. Furthermore information provided by a good Design Document can come in handy too.
-\item[Scalability issues:] if the system does not scale properly with the increasing number of users, a work of major redesign will be carried out. To prevent the issue, a correct estimation of the computing power and the number of involved machines is necessary.
-\item[Integration testing failure:]
-\item[Downtime:]
-\item[Deployment difficulties:]
-\item[Data loss and leaks:]
+\item[Unreadable code:] large projects may have a badly structured and unreadable code. Documenting the code can be a reasonable way to mitigate this risk. Furthermore, information provided by a good Design Document can come in handy too.
+\item[Scalability issues:] if the system does not scale properly with the increasing number of users, a work of major redesign will be carried out. To reduce the risk, a correct estimation of the computing power and the number of involved machines is necessary.
+\item[Integration testing failure:] in case, during the integration testing phase, the team realizes that the system components do not integrate as they should based on the tests defined in the ITPD~\cite{itpd}, there can be the risk of delays in the overall project schedule, resulting in a fail in meeting deadlines. In case this happens, the efforts of the team members will be fully redirected to redefining and implementing integration test cases over other tasks in progress.
+\item[Downtime:] Upon being fully functional and operative, the system may experience brief or long periods of downtime. This will be accounted for and discussed in other documents, and the risk could be made less likely by decoupling the clients' activities and making some clients independent from other components of the system, so that a channel to access the application is always active while the other is being fixed. In cases in which this is not possible, structuring the code to make it more reliable, robust and maintainable is always a good countermeasure.
+\item[Data loss and leaks:] if, for any reason, a big portion of the application data should be lost, the damage to the application itself could be considerable. For this reason, it is recommendable to store data in multiple locations, or to have one or more backup database, especially for sensitive information.
 \end{description}
+
+%tabella con catalogazione rischi
 
 \section{Economical Risks}
-Economical risks jeopardize the whole software product threatening its viability.
-
+\textit{Economical risks} jeopardize the whole software product threatening its viability.
+The following risks have been found and analysed, providing a response strategy. 
 \begin{description}
-\item[Bankruptcy:]
-\item[Local regulation and policies:]
-\item[Competitors:]
+\item[Bankruptcy:] the income from the usage of the application may not be sufficient to support maintenance and development of the system. A good feasibility study should help avoiding this critical situation.
+\item[Local regulation and policies:] minor risks could derive from changes in the local regulation about traffic within the city, and especially with respect to the areas that will be covered by the service. The minor problems deriving from this can be mitigated by maintaining a continuous dialogue with the local administration for the city (potentially, cities) in which the \textit{PowerEnJoy} service will be deployed.
+\item[Competitors:] competition by other providers of the same kind of services must be kept in consideration at all times, since a poor management could lead considerable economical losses. Competition must be exploited to the advantage of the \textit{PowerEnJoy} company by continuously providing new appealing functionalities, based in part on customer feedback.
 \end{description}
+
+%tabella con catalogazione rischi
