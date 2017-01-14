@@ -1,19 +1,40 @@
 %Risk management
 %Problemi di interazione con il payment handler e il maintenance system
+% very low, low, moderate, high, very high, certain
+% negligible, moderate, serious, catastrophic
 
-The \emph{PowerEnJoy} system project might be threatened by many risks. The analysis of said risks follows a specific approach that splits them up into three groups: \textit{project}, \textit{technical} and \textit{business risks}.
+The \emph{PowerEnJoy} system project might be threatened by many risks. The analysis of said risks follows a specific approach that splits them up into three groups: \textit{project}, \textit{technical} and \textit{business risks}. 
+
+In the following sections a detailed description of the risks and the countermeasures is provided. Moreover, summarizing tables at the end of each section give an overview of the probability and the effects of each of the listed risks. The probability of a risk occurring can be classified as: \textit{Very Low}, \textit{Low}, \textit{Moderate}, \textit{High}, \textit{Very High}, \textit{Certain}. The effects of a risk upon occurrence can be classified as: \textit{Negligible}, \textit{Moderate}, \textit{Serious}, \textit{Catastrophic}.
 
 \section{Project Risks}
 \textit{Project risks} pose a threat to the project plan and make the project schedule slip, increasing the overall costs.
 The following risks have been found and analysed, providing a response strategy. 
 \begin{description}
-\item[Changes concerning requirements:] during the development of the project the requirements can change unexpectedly. This kind of risk cannot be prevented, but it can be reduced by using a style of programming that takes advantage of reusable and extensible code.
-\item[Deadlines are not met:] it can occur that the project requires more time than expected to be carried out. In this case only some functionalities will be offered in a first release while less essential features will be developed later. The above-mentioned first release can provide the target services by the only means of the Mobile Application. The Web Application and the Web Tier may be built afterwards.
-\item[Lack of communication:] team members usually work separately. This can cause misunderstandings and conflicts about the division of different tasks. To mitigate the risk, crystal clear and complete specification and design documents must be provided. Moreover the responsibilities of each group member must be clearly defined in this document.
+\item[Changing requirements:] during the development of the project the requirements can change unexpectedly. This kind of risk cannot be prevented, but it can be reduced by using a style of programming that takes advantage of reusable and extensible code.
+\item[Deadlines not met:] it can occur that the project requires more time than expected to be carried out. In this case only some functionalities will be offered in a first release while less essential features will be developed later. The above-mentioned first release can provide the target services by the only means of the Mobile Application. The Web Application and the Web Tier may be built afterwards.
+\item[Lack of communication:] team members usually work separately. This can cause misunderstandings and conflicts about the division of different tasks. To mitigate the risk, crystal clear and complete specification and design documents must be provided. Moreover the responsibilities of each group member must be clearly defined in this document. Lastly, a good countermeasure is to arrange frequent brief meetings in order for each member to gain awareness of the level of progress achieved.
 \item[Team break-ups:] if, for any natural or human reason, any of the team member is forced to leave the project team, the development process will inevitably suffer from huge delays and the risk will result in an impossibility to meet the defined deadlines (this is due to the very small size of the team). This can be countered, in case of social issues, in a pre-emptive way by implying a work method that values each team member in the same way; in case of natural causes, the reactive behaviour to be adopted must be that of hiring new members. Note that, in this second unpredictable case, the time required by the project will be greatly increased also due to the well-acknowledged Brooks's Law~\cite{mythical-man-month}.
 \end{description}
 
-%tabella con catalogazione rischi
+\begin{table}[H]
+\centering
+    \begin{tabular}{p{0.40\textwidth} | p{0.20\textwidth} | p{0.20\textwidth}}
+        \hline
+        \multicolumn{1}{c |}{\textbf{Risk}} & \multicolumn{1}{c |}{\textbf{Probability}}  & \multicolumn{1}{c}{\textbf{Effects}}  \\
+        \hline
+        Changing requirements & Moderate & Moderate \\
+        \hline
+        Deadlines not met & Moderate-High & Moderate \\
+        \hline
+        Lack of communication & Very Low & Negligible \\
+        \hline
+        Team breaks-up & Very Low & Catastrophic \\
+        \hline
+    \end{tabular}
+    \caption{Evaluation of project risks.}
+    \label{project_risks}
+\end{table}
 
 \section{Technical Risks}
 \textit{Technical risks} threaten the quality and the punctuality of the software product preventing a straightforward implementation.
@@ -24,9 +45,31 @@ The following risks have been found and analysed, providing a response strategy.
 \item[Integration testing failure:] in case, during the integration testing phase, the team realizes that the system components do not integrate as they should based on the tests defined in the ITPD~\cite{itpd}, there can be the risk of delays in the overall project schedule, resulting in a fail in meeting deadlines. In case this happens, the efforts of the team members will be fully redirected to redefining and implementing integration test cases over other tasks in progress.
 \item[Downtime:] Upon being fully functional and operative, the system may experience brief or long periods of downtime. This will be accounted for and discussed in other documents, and the risk could be made less likely by decoupling the clients' activities and making some clients independent from other components of the system, so that a channel to access the application is always active while the other is being fixed. In cases in which this is not possible, structuring the code to make it more reliable, robust and maintainable is always a good countermeasure.
 \item[Data loss and leaks:] if, for any reason, a big portion of the application data should be lost, the damage to the application itself could be considerable. For this reason, it is recommendable to store data in multiple locations, or to have one or more backup database, especially for sensitive information.
+\item[Interaction with external systems:] since the system heavily relies on the interaction with payment handlers and a maintenance system for interventions on vehicles, failures involving components devoted to the communication with said external systems constitute a severe risk. A possible countermeasure is to maintain a close collaboration with development teams of the partners.
 \end{description}
 
-%tabella con catalogazione rischi
+\begin{table}[H]
+\centering
+    \begin{tabular}{p{0.50\textwidth} | p{0.20\textwidth} | p{0.20\textwidth}}
+        \hline
+        \multicolumn{1}{c |}{\textbf{Risk}} & \multicolumn{1}{c |}{\textbf{Probability}}  & \multicolumn{1}{c}{\textbf{Effects}}  \\
+        \hline
+        Unreadable code & Moderate & Moderate \\
+        \hline
+        Scalability issues & Low & Serious \\
+        \hline
+        Integration testing failure & Moderate & Serious \\
+        \hline
+        Downtime & Low & Moderate \\
+        \hline
+        Data loss and leaks & Low & Catastrophic \\
+        \hline
+        Interaction with external systems & Low & Serious \\
+        \hline
+    \end{tabular}
+    \caption{Evaluation of technical risks.}
+    \label{technical_risks}
+\end{table}
 
 \section{Economical Risks}
 \textit{Economical risks} jeopardize the whole software product threatening its viability.
@@ -37,4 +80,19 @@ The following risks have been found and analysed, providing a response strategy.
 \item[Competitors:] competition by other providers of the same kind of services must be kept in consideration at all times, since a poor management could lead considerable economical losses. Competition must be exploited to the advantage of the \textit{PowerEnJoy} company by continuously providing new appealing functionalities, based in part on customer feedback.
 \end{description}
 
-%tabella con catalogazione rischi
+\begin{table}[H]
+\centering
+    \begin{tabular}{p{0.40\textwidth} | p{0.20\textwidth} | p{0.20\textwidth}}
+        \hline
+        \multicolumn{1}{c |}{\textbf{Risk}} & \multicolumn{1}{c |}{\textbf{Probability}}  & \multicolumn{1}{c}{\textbf{Effects}}  \\
+        \hline
+        Bankruptcy & Moderate & Catastrophic \\
+        \hline
+        Local regulation and policies & Very Low & Negligible \\
+        \hline
+        Competitors & High & Moderate \\
+        \hline
+    \end{tabular}
+    \caption{Evaluation of economical risks.}
+    \label{economical_risks}
+\end{table}
