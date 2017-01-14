@@ -26,7 +26,7 @@ The following parameters have names that could be improved:
 	\item \texttt{module}, \textbf{L.}43;
 	\item \texttt{readers}, \textbf{L.}44.
 	\end{itemize}
-\item \textbf{C9.} Tabs are used to indent code throughout the whole class and project, but since this is done consistently it should not pose major issues with different environments.
+\item \textbf{C9.} Tabs are used to indent code throughout the whole class. This is done consistently for all the indented lines of code.
 \item \textbf{C11.} The following \texttt{if} clauses do not follow the convention for parenthesis usage indicated for clause containing only one statement, that is, the only statement they contain is not surrounded by curly brackets:
 	\begin{itemize}
 	\item \texttt{if} clause at \textbf{L.}49;
@@ -34,7 +34,7 @@ The following parameters have names that could be improved:
 	\item \texttt{if} clause at \textbf{L.}213;
 	\item \texttt{if} clause at \textbf{L.}215;
 	\end{itemize}
-\item \textbf{C13.} and \textbf{C14.} Many lines of code are not broken up properly and exceed the indicated caps of 80 and 120 characters (characters are counted starting from the first non-whitespace character of each line):
+\item \textbf{C13.} and \textbf{C14.} Many lines of code are not broken up properly and exceed the indicated caps of 80 and 120 characters (characters are counted starting from the first non-whitespace character of each line, since indentation is performed using tabs that are not of fixed length for any environment):
 	\begin{itemize}
 	\item \textbf{L.}44 is 116 characters long, and could be split after the "\texttt{=}" character;
 	\item \textbf{L.}46 is 98 characters long, and could be split before the \texttt{throws} keyword;
@@ -59,6 +59,7 @@ The following parameters have names that could be improved:
 	\item \textbf{L.}244 has a comment that is 82 characters long, and should either be rephrased or split in more lines;
 	\item \textbf{L.}266 has a JavaDoc comment that is 84 characters long, and should be split in more lines.
 	\end{itemize}
+\item \textbf{C16.} Higher-level breaks are never used were they could. This could be done for \textbf{L.}50, \textbf{L.}55, \textbf{L.}102, \textbf{L.}115, \textbf{L.}149 and \textbf{L.}158.
 \item \textbf{C18.} Comments are NOT used to adequately explain what the class, blocks of code and methods do except for the following methods:
 	\begin{itemize}
 	\item \texttt{getDataFilesNames()}
@@ -96,9 +97,6 @@ Encapsulation is mostly preserved by the presence of the accessor methods. The o
 \item \textbf{C40.} No object is compared to another one. There are only objects compared to \texttt{null} by using the "==" operator correctly.
 \item \textbf{C42.} The following lines contain log error messages that do not provide guidance or hints on how to correct the problem at all: \textbf{L.}102, \textbf{L.}115, \textbf{L.}129-130, \textbf{L.}136-137, \textbf{L.}142-143, \textbf{L.}158-159.
 \end{enumerate}
-
-%ATTENZIONE:
-%C16: cosa vuol dire higher-level breaks?
 
 \subsection{Other issues concerning the class}
 In the code of the class, the attribute from the \texttt{ModelDataFile.java} class are accessed directly multiple times, since they are defined as \texttt{public}; however, said class also provides accessor methods for its attributes. If this is not strictly necessary, substituting direct accesses with getter and setter method calls could be beneficial in terms of increasing encapsulation of application data.
