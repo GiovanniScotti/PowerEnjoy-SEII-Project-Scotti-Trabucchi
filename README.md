@@ -16,3 +16,5 @@ This is the repository of Giovanni Scotti and Marco Trabucchi for the project of
 * RASD submission deadline 13/11/2016
 * DD submission deadline 11/12/2016
 * ITPD submission deadline 15/01/2017
+* PPD submission deadline 22/01/2017
+* Code Inspection submission deadline 5/02/2017
