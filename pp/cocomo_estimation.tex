@@ -36,7 +36,11 @@ Some of the most important factors contributing to a project's duration and cost
 \section{Cost Drivers}
 Cost Drivers appear as parameters of the effort equation reflecting characteristics of the developing process and acting as multiplication factors on the effort needed to carry out said project.
 
-Since this effort analysis is carried out at the beginning of the life-cycle of the project, the point-of-view will be that of the \textit{early design} version of the COCOMO II model.
+Since this effort analysis is carried out at the beginning of the life-cycle of the project, before the writing of the RASD~\cite{rasd} and the DD~\cite{dd}, the point-of-view will be that of the \textit{early design} version of the COCOMO II model. Clear information about the architecture are not still available and the team is exploring and evaluating different architectural alternatives.
+
+In order to conduct the analysis of said cost drivers, guidelines given by the COCOMO Model Definition Manual~\cite{cocomo-manual} have been followed.
+
+Each cost driver of the post-architecture approach has a rating that is considered as a numerical value during the early design analysis (Very Low = 1, Extra High = 6).
 
 %PERS
 %RCPX
@@ -46,13 +50,116 @@ Since this effort analysis is carried out at the beginning of the life-cycle of 
 %FCIL
 %SCED
 \begin{description}
-\item[Personnel Capability:] describes the overall capabilities of the team members in terms of problem-solving, actual implementation skills and ratings of personnel turnover. It derives from the conjunction of the Analyst Capability (ACAP) factor, the Programmer Capability (PCAP) factor and the Personnel Continuity (PCON) factor.
+\item[Personnel Capability:] describes the overall capabilities of the team members in terms of problem-solving, actual implementation skills and ratings of personnel turnover. It derives from the conjunction of the Analyst Capability (ACAP) factor, the Programmer Capability (PCAP) factor and the Personnel Continuity (PCON) factor. In details, the ACAP factor expresses the analysis and design ability of the team members, as well as the ability to communicate and cooperate. It is set to Nominal (3) since the team members have not previous experience in finding requirements, but  communication and cooperation is very high. Also PCAP is set to Nominal (3) because the programming abilities of the team is in the average. PCON is instead set at Very High (5) since the turnover is totally absent.
 
+The PERS factor is set to High according to the following table:
 
-\item[Product Reliability and Complexity:]
-\item[Re-usability:]
+\begin{table}[H]
+	\begin{adjustwidth}{-.5in}{-.5in}
+    \centering
+    \begin{tabular}{p{4cm}|p{1cm}|p{1cm}|p{1cm}|p{1.5cm}|p{1cm}|p{1cm}|p{1cm}}
+        \hline
+        Sum of ACAP, PCAP, PCON Ratings & 3,4 & 5,6 & 7,8 & 9 & 10,11 & 12,13 & 14,15 \\
+        \hline
+        \hline
+        Rating Levels & Extra Low & Very Low & Low & Nominal & High & Very High & Extra High \\
+        \hline
+        Effort Multipliers & 2.12 & 1.62 & 1.26 & 1.00 & 0.83 & 0.63 & 0.50 \\
+        \hline
+    \end{tabular}
+    \caption{PERS cost driver.}
+    \end{adjustwidth}
+\end{table}
+
+\item[Product Reliability and Complexity:] this Early Design cost driver depends on the characteristics of the product under development and combines the following four Post-Architecture cost drivers: Required
+software reliability (RELY), Database size (DATA), Product complexity (CPLX), and
+Documentation match to life-cycle needs (DOCU).
+RELY is set to Nominal (3) since a software failure brings moderate financial losses, but there is no risk to human life.
+
+\item[Re-usability:] this cost driver points out the additional effort needed to construct components intended for reuse on current or future projects. A Nominal value is set because re-usability is actually limited to the project itself and no similar projects are planned for the future. 
+
+\begin{table}[H]
+	\begin{adjustwidth}{-.5in}{-.5in}
+    \centering
+    \begin{tabular}{p{3.8cm}|p{1cm}|p{1cm}|p{1.5cm}|p{1.6cm}|p{1.5cm}|p{2cm}}
+    	\hline
+        RUSE Descriptors: & & none & across project & across program & across product line & across multiple product lines \\
+        \hline
+        Rating Levels & Very Low & Low & Nominal & High & Very High & Extra High \\
+        \hline
+        Effort Multipliers & n/a & 0.95 & 1.00 & 1.07 & 1.15 & 1.24 \\
+        \hline
+    \end{tabular}
+    \caption{RUSE cost driver.}
+    \end{adjustwidth}
+\end{table}
+
 \item[Platform Difficulty:]
 \item[Personnel Experience:]
 \item[Facilities:]
-\item[Required Development Schedule:]
+\item[Required Development Schedule:] measures the schedule constraints imposed on the project team developing the system -to-be. It is set to Nominal since deadlines are not so flexible and effort must be equally distributed over the given development time.
+
+\begin{table}[H]
+	\begin{adjustwidth}{-.5in}{-.5in}
+    \centering
+    \begin{tabular}{p{3.6cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1cm}}
+    	\hline
+        SCED Descriptors: & 75\% of nominal & 85\% of nominal & 100\% of nominal & 130\% of nominal & 160\% of nominal & \\
+        \hline
+        Rating Levels & Very Low & Low & Nominal & High & Very High & Extra High \\
+        \hline
+        Effort Multipliers & 1.43 & 1.14 & 1.00 & 1.00 & 1.00 & n/a \\
+        \hline
+    \end{tabular}
+    \caption{SCED cost driver.}
+    \end{adjustwidth}
+\end{table}
+
 \end{description}
+
+\noindent
+The overall results of the analysis of the cost drivers are summarized by the following table:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{l|l|l}
+    	\hline
+    	Cost Driver & Factor & Value \\
+        \hline
+        \hline
+        Personnel Capability (PERS) & & \\
+        \hline
+        Reliability and Complexity (RCPX) & & \\
+        \hline
+        Re-usability (RUSE) & & \\
+        \hline
+        Platform Difficulty (PDIF) & & \\
+        \hline
+        Personnel Experience (PREX) & & \\
+        \hline
+        Facilities (FCIL) & & \\
+        \hline
+        Required Development Schedule (SCED) & & \\
+        \hline
+        \textbf{Total}  & $EAF=\prod_i C_i$ & \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\section{Effort Equation}
+Equation \ref{effort} allows to estimate the effort in Person-Months (PM):
+
+\begin{equation}
+    \textrm{Effort} = A \times EAF \times KSLOC^E
+    \label{effort}
+\end{equation}
+
+Where the parameters have the following meanings:
+\begin{itemize}
+    \item $EAF = \prod_i C_i$: derived from the cost drivers analysis.
+    \item $E=0.91 + 0.01 \times \prod_{i}SF_i$: derived from the scale drives analysis.
+    \item $KSLOC$: Kilo Source Lines of Code estimated via FPs analysis.
+    \item $A=2.94$
+\end{itemize}
+
+\section{Schedule Estimation}
