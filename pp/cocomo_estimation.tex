@@ -1,14 +1,12 @@
-%cocomo estimation
 \section{Scale Drivers}
 Some of the most important factors contributing to a project's duration and cost are the Scale Drivers. Each of the said drivers describes the project itself and determines the exponent used in the Effort Equation. More precisely, the Scale Drivers reflect the non-linearity of the effort with relation to the number of SLOC. Each scale driver has a range of rating levels from \textit{Very Low} to \textit{Extra High}. The result of the evaluation is summed up in Table \ref{scale_drivers}.
-%riferimento equazione
 
 \begin{description}
-\item[Precedentedness:] points out the previous experience of the team with the organization and development of large scale projects. Since the team members are new to most of the notions concerning the project, the precedentedness is low.
-\item[Development flexibility:] reflects the level of flexibility in the development process with respect to given specifications and requirements. Since the project is bounded to a prescribed process, but a certain degree of flexibility is allowed in the definition of the requirements, the development flexibility is nominal.
-\item[Risk resolution:] reflects the level of awareness and responsiveness with respect to risks. A rather detailed risk analysis, followed by possible countermeasures, is offered in Chapter \ref{risk_man}. Therefore, the risk resolution driver is set to high.
-\item[Team cohesion:] indicates how good is the relationship among the team members and how well the development team work together. Since the team is effective and cohesive with no communication problems, the parameter is set to very high.
-\item[Process maturity:] by means of a set of levels, it describes how well the behaviors, practices and processes of an organization can reliably produce required outcomes. It is set to CMM Level 3, which corresponds to a defined level with respect to the software development process of our organization. At this level the organization has developed its own standard software process and has a greater attention to documentation, standardization and integration.
+\item[Precedentedness:] points out the previous experience of the team with the organization and development of large scale projects. Since the team members are new to most of the notions concerning this kind of projects, the Precedentedness is \textit{LOW}.
+\item[Development Flexibility:] reflects the level of flexibility in the development process with respect to the given specifications and requirements. Since the project is bounded to a set of prescribed specifications, but a certain degree of flexibility is allowed in the definition of the requirements, the Development Flexibility is \textit{NOMINAL}.
+\item[Risk Resolution:] reflects the level of awareness and responsiveness with respect to risks. A rather detailed risk analysis, followed by possible countermeasures, is offered in Section \ref{risk_man}. Therefore, the Risk Resolution driver is set to \textit{HIGH}.
+\item[Team Cohesion:] indicates how good the relationship among the team members is and how well the development team works together. Since the team is effective and cohesive with no communication problems, the parameter is set to \textit{VERY HIGH}.
+\item[Process Maturity:] by means of a set of levels, it describes how well the behaviours, practices and processes of an organization can reliably produce required outcomes. It is set to \textit{CMM Level 3,} which corresponds to a defined level with respect to the software development process of our organization. At this level the organization has developed its own standard software process and has a greater attention to documentation, standardization and integration. In the COCOMO II model, this corresponds to a level of \textit{HIGH}.
 \end{description}
 
 \begin{table}[H]
@@ -20,13 +18,13 @@ Some of the most important factors contributing to a project's duration and cost
         \hline
         Precedentedness (PREC) & Low & 4.96 \\
         \hline
-        Development flexibility (FLEX) & Nominal & 3.04 \\
+        Development Flexibility (FLEX) & Nominal & 3.04 \\
         \hline
-        Risk resolution (RESL) & High & 2.83 \\
+        Risk Resolution (RESL) & High & 2.83 \\
         \hline
-        Team cohesion (TEAM) & Very High & 1.10 \\
+        Team Cohesion (TEAM) & Very High & 1.10 \\
         \hline
-        Process maturity (PMAT) & High & 3.12 \\
+        Process Maturity (PMAT) & High & 3.12 \\
         \hline
         \textbf{Total} & $E=0.91 + 0.01 \times \sum_{i}SF_i$ & 1.0605 \\
         \hline
@@ -36,4 +34,25 @@ Some of the most important factors contributing to a project's duration and cost
 \end{table}
 
 \section{Cost Drivers}
-Cost Drivers appear as parameters of the effort equation reflecting characteristics of the developing process and acting as multiplicators on the effort needed to carry out the said project.
+Cost Drivers appear as parameters of the effort equation reflecting characteristics of the developing process and acting as multiplication factors on the effort needed to carry out said project.
+
+Since this effort analysis is carried out at the beginning of the life-cycle of the project, the point-of-view will be that of the \textit{early design} version of the COCOMO II model.
+
+%PERS
+%RCPX
+%RUSE
+%PDIF
+%PREX
+%FCIL
+%SCED
+\begin{description}
+\item[Personnel Capability:] describes the overall capabilities of the team members in terms of problem-solving, actual implementation skills and ratings of personnel turnover. It derives from the conjunction of the Analyst Capability (ACAP) factor, the Programmer Capability (PCAP) factor and the Personnel Continuity (PCON) factor.
+
+
+\item[Product Reliability and Complexity:]
+\item[Re-usability:]
+\item[Platform Difficulty:]
+\item[Personnel Experience:]
+\item[Facilities:]
+\item[Required Development Schedule:]
+\end{description}

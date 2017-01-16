@@ -1,6 +1,7 @@
 This chapter is devoted to the Function Point Analysis for the \textit{PowerEnJoy} project, aimed at obtaining a reasonable estimate of the size of the project, which will be later used within the COCOMO II estimation model to compute an average effort factor for the development process.
 
-\section{Internal Logic Files (ILFs)}
+\section{Function Points Analysis}
+\subsection{Internal Logic Files (ILFs)}
 Internal Logic Files are defined as follows~\cite{cocomo-manual}:
 \begin{quotation}
 \textit{"Internal Logic Files count each major logical group of user data or control information in the software system as a logical internal file type. They include each logical file (e.g., each logical group of data) that is generated, used, or maintained by the software system."}
@@ -9,18 +10,16 @@ Internal Logic Files are defined as follows~\cite{cocomo-manual}:
 In practice, they can be identified as a homogeneous set of data used and managed by the application itself.
 
 The identified ILFs for the application are:
-\begin{itemize}
-\item User
-\item Car
-\item Payment
-\item Reservation
-\item Ride
-\item AlternativeChargesSituation
-\item SafeArea
-\item PowerGridStation
-\end{itemize}
+\begin{description}
+\item[ILF1 - User data:] %info account, info pagamenti, info posizione, reservation history, alto numero istanze, molti attributi --> HIGH
+\item[ILF2] Car data 	%info stato macchina, info posizione, numero istanze molto stabile e di qualche ord grand inferiore risp a utenti, numero considerevole di attributi ma non moltissimi --> LOW
+\item[ILF3] Payment data	%info pagamento semplici, solo mantenuto, pochi attributi, numero istanze elevato --> LOW
+\item[ILF4] Reservation data	%info reservation, info macchina, info utente, info fee, molte istanze, pochi attributi --> AVG
+\item[ILF5] Ride data	%info ride, info reservation collegata, info pagamento, info alt charges sits, molte istanze, pochi attributi --> AVG
+\item[ILF6] Safe Area data	%info boundaries, info charging spots, pochi attributi, numero istanze basso e molto stabile --> LOW
+\end{description}
 
-\section{External Interface Files (EIFs)}
+\subsection{External Interface Files (EIFs)}
 External Interface Files are defined as follows~\cite{cocomo-manual}:
 \begin{quotation}
 \textit{"Files passed or shared between software systems should be counted as External Interface File types within each system."}
@@ -28,13 +27,13 @@ External Interface Files are defined as follows~\cite{cocomo-manual}:
 In practice, they can be identified as a homogeneous set of data used by the application, but generated and maintained by other applications.
 
 The identified EIFs for the application are:
-\begin{itemize}
-\item Payment records in the Payment Handlers databases
-\item Maintenance intervention records in the Maintenance System database
-\item The data streams related to the \textit{Google Maps} service
-\end{itemize}
+\begin{description}
+\item[EIF1] Payment records data in the Payment Handlers databases %LOW - complessità informazioni bassa, dati semplici non aggregati, quantità abbastanza abbondanti
+\item[EIF2] Maintenance intervention records data in the Maintenance System database %LOW - complessità informazioni bassa, dati semplici non aggregati, quantità piuttosto scarsa
+\item[EIF3] The data streams related to the \textit{Google Maps} service %AVG - informazioni vaste e più complesse, spesso aggregate, in quantità considerevole
+\end{description}
 
-\section{External Inputs (EIs)}
+\subsection{External Inputs (EIs)}
 External Inputs are defined as follows~\cite{cocomo-manual}:
 \begin{quotation}
 \textit{"External Inputs count each unique user data or user control input type that enters the external boundary of the software system being measured."}
@@ -42,18 +41,17 @@ External Inputs are defined as follows~\cite{cocomo-manual}:
 In practice, they can be identified as elementary operations to elaborate data coming from the external environment.
 
 The identified EIs for the application are:
-\begin{itemize}
-\item The registration process
-\item The login process
-\item The update process for user profiles
-\item Data streams from the sensors and equipment of cars
-\item Data about the availability of cars
-\item The car reservation process
-\item The car unlocking process
-\item The user authentication process for the rides
-\end{itemize}
+\begin{description}
+\item[EI1] The registration procedure %LOW - solo operazioni elementari di inserimento dati, op relative a un solo ILF
+\item[EI2] The login procedure %LOW - solo operazioni elementari di lettura dati, op relative a un solo ILF
+\item[EI3] The update procedure for user profiles %LOW - solo operazioni elementari di modifica dati, op relative a un solo ILF
+\item[EI4] Data streams from the sensors and equipment of cars %HIGH - operazioni molto diversificate, sia per car status che per car availability che per alt charges sits detection, relative a più ILF  (Ride con alternative charges, Safe Area, Payment)
+\item[EI5] The car reservation procedure %AVG - operazioni diverse in base a condizioni di utente, op non complesse, coinvolge più ILF (User, Reservation)
+\item[EI6] The car unlocking procedure %AVG - operazioni molto essenziali di lettura e matching di dati, coinvolge più ILF (User, Car, Reservation)
+\item[EI7] The user authentication procedure for the rides %LOW - operazione semplice singola di matching tra ILF Reservation e User
+\end{description}
 
-\section{External Outputs (EOs)}
+\subsection{External Outputs (EOs)}
 External Outputs are defined as follows~\cite{cocomo-manual}:
 \begin{quotation}
 \textit{"External Outputs count each unique user data or control output type that leaves the external boundary of the software system being measured."}
@@ -61,12 +59,14 @@ External Outputs are defined as follows~\cite{cocomo-manual}:
 In practice, they can be identified as elementary operations that generate data for the external environment.
 
 The identified EOs for the application are:
-\begin{itemize}
-\item E-mail notifications
-\item User notifications
-\end{itemize}
+\begin{description}
+\item[EO1] The e-mail notification procedure %LOW - the procedure does not need great elaboration of information, basically everything in order to report simple and rough data about the "event" that triggered the e-mail generation, coinvolgono pochi ILF (o pagamento o utente)
+\item[EO2] The user notification procedure %AVG - vd sopra, ancora più basic, corrispondono o ad errori o a conferme di successo nell'elaborare dati inseriti/detected, possono riguardare tanti ILF
+\item[EO3] The procedure for the retrieval of available cars upon user research %AVG - usa dati esterni (EIF) ed interni (ILF) da matchare tra loro, reperiti da molte entità dati
+\item[EO4] The procedure for the retrieval of final charges after user rides %LOW - frutto di semplice rielaborazione di pochi dati della (ILF) Ride (durata, condizioni alternative)
+\end{description}
 
-\section{External Inquiries (EQs)}
+\subsection{External Inquiries (EQs)}
 External Inquiries are defined as follows~\cite{cocomo-manual}:
 \begin{quotation}
 \textit{"External Inquiries count each unique input-output combination, where input causes and generates an immediate output."}
@@ -74,13 +74,15 @@ External Inquiries are defined as follows~\cite{cocomo-manual}:
 In practice, they can be identified as elementary operation that involve input and output, without significant elaboration of data from logic files.
 
 The identified EQs for the application are:
-\begin{itemize}
-\item The visualization of user profile data by the user him/herself
-\item The detection of alternative charges situation during rides
-\end{itemize}
+\begin{description}
+\item[EQ1] The visualization of user profile data by the user him/herself %LOW - semplice presentazione di dati, coinvolge un solo ILF
+\item[EQ2] The visualization of the Safe Area boundaries and the positions of Power Grid Stations %LOW - semplice presentazione di dati, coinvolge un solo ILF
+\end{description}
 
-\section{Weights of FPs}
-%INTRODUZIONE?
+\section{Function Points Weights}
+Given the Function Points computation of the previous sections, the analysis can continue with the final estimate of the average number of \textit{Unadjusted Function Points (UFPs)}.
+
+The assignments of weights to the different types of Function Points, based on their individual complexity, follows the table below:
 
 \begin{table}[H]
     \centering
@@ -88,7 +90,7 @@ The identified EQs for the application are:
         \hline
         \multirow{2}{*}{\textbf{Function Type}} & \multicolumn{3}{c}{\textbf{Weight}} \\
         \cline{2-4}
-        & Simple & Medium & Complex \\
+        & Low & Average & High \\
         \hline
         \hline
         External Input          & 3     & 4     & 6     \\
@@ -102,6 +104,15 @@ The identified EQs for the application are:
         External Interface File & 5     & 7     & 10    \\
         \hline
     \end{tabular}
-    \caption{caption.}
+    \caption{A summary of the association of different weights to the individual Function Point type. The weights differ based on the level of complexity of the single Function Point.}
     \label{fps_weights}
 \end{table}
+
+%tabella conclusiva: singolo FP - categoria - complessità - computo del contributo agli UFP
+
+\section{Function Points Estimation Results}
+Based on the considered parameters, the final value for the UFPs of this project is: %UFPs
+
+%Hence, the conversion in SLOC is:
+
+%corrispondenza in SLOC
