@@ -18,9 +18,9 @@ The identified ILFs for the application are:
 %info pagamento semplici, solo mantenuto, pochi attributi, numero istanze elevato --> LOW
 \item[ILF3] \textbf{Payment data}: identifies data related to payments as simple payment characteristics. As this group of data is only maintained by the application and not used if not in combination with other data, the ILF is quite simpler than the two listed before. Moreover, the high number of potential instances will not increase the complexity, due to the very clean and simple description provided by the few possible data attributes, and thus the Function Point complexity will be set to \textit{LOW}.
 %info reservation, info macchina, info utente, info fee, molte istanze, pochi attributi --> AVG
-\item[ILF4] \textbf{Reservation data}: identifies and groups all information related to reservations: reservation times and details, reserved car information, information about users performing actual reservations, information about eventual fees to be paid for reservation expiration. Although the data might appear complex in structure, the straightforward nature of most of its not-so-many attributes decreases its overall complexity. Since, however, the number of instances will probably be an order of magnitude greater than the user instances, the complexity of this Function Point will be set to \textit{AVERAGE}.
+\item[ILF4] \textbf{Reservation data}: identifies and groups all information related to reservations: reservation times and details, reserved car information, information about users performing actual reservations, information about eventual fees to be paid for reservation expiration. In this context, data is quite complex in structure, and the considerable number of attributes raises the complexity of the role of this ILF. Moreover, since the number of instances will probably be an order of magnitude greater than the user instances, the complexity of this Function Point will be set to \textit{HIGH}.
 %info ride, info reservation collegata, info pagamento, info alt charges sits, molte istanze, pochi attributi --> AVG
-\item[ILF5] \textbf{Ride data}: identifies and groups all data involving rides: ride status and times, linked reservation information, information about the related payment, information detailing the eventual alternative charges situations detected during a ride. Similarly to what has been said about \textbf{Reservation data}, the great number of possible instances is balanced by the simple structure of the potential data attributes. Hence, the Function Point complexity will be set as \textit{AVERAGE}.
+\item[ILF5] \textbf{Ride data}: identifies and groups all data involving rides: ride status and times, linked reservation information, information about the related payment, information detailing the eventual alternative charges situations detected during a ride. Similarly to what has been said about \textbf{Reservation data}, the great number of possible instances combines with the complexity of the potential data attributes and increases the overall complexity for the ILF. Hence, the Function Point complexity will be set as \textit{HIGH} as well.
 %info boundaries, info charging spots, pochi attributi, numero istanze basso e molto stabile --> LOW
 \item[ILF6] \textbf{Safe Area data}: identifies a simple set of data involving the Safe Area: essentially boundaries and the positions of power grid stations. The number of potential instances for this data group is really low and stable, and the number of possible attributes is quite small. For these reasons, the Function Point complexity will be set to \textit{LOW}.
 \end{description}
@@ -35,11 +35,11 @@ In practice, they can be identified as a homogeneous set of data used by the app
 The identified EIFs for the application are:
 \begin{description}
 %LOW - complessità informazioni bassa, dati semplici non aggregati, quantità abbastanza abbondanti
-\item[EIF1] \textbf{Payment records data in the Payment Handlers databases}: the data used by the application and managed by the Payment Handlers systems consist of the recorded transactions corresponding to the payments for using the services of \textit{PowerEnJoy}. The complexity of said pieces of data is low, since the information is simple and not aggregated; data in this group is quite abundant, but being it so simple in structure the Function Point complexity will be classified as \textit{LOW}.
+\item[EIF1] \textbf{Payment records data in the Payment Handlers databases}: the data used by the application and managed by the Payment Handlers systems consist of the recorded transactions corresponding to the payments for using the services of \textit{PowerEnJoy}. The complexity of said pieces of data is low, since the information is simple and must not be elaborated in any way to be utilized; data in this group is quite abundant, but being it so simple in structure the Function Point complexity will be classified as \textit{LOW}.
 %LOW - complessità informazioni bassa, dati semplici non aggregati, quantità piuttosto scarsa
-\item[EIF2] \textbf{Intervention records in the Maintenance System database}: As for the previous point, information about the maintenance interventions is quite simple and not aggregated, but in this case it is not wrong to suppose that data in this group in quite scarce. Hence, the complexity of this Function Point will be set to \textit{LOW} as well.
+\item[EIF2] \textbf{Intervention records in the Maintenance System database}: As for the previous point, information about the maintenance interventions is quite simple and not must not be elaborated, but in this case it is not wrong to suppose that data in this group is quite scarce in number. Hence, the complexity of this Function Point will be set to \textit{LOW} as well.
 %AVG - informazioni vaste e più complesse, spesso aggregate, in quantità considerevole
-\item[EIF3] \textbf{The data streams related to the \textit{Google Maps} service}: data coming from the interaction with the external maps software is substantially different from the groups indicated in the previous points: information is often aggregated and, even when simple, usually more vast and complex. Moreover, the quantity of data exchanged is quite considerable; because of these reasons, the complexity of this Function Point is set to \textit{AVERAGE}.
+\item[EIF3] \textbf{The data streams related to the \textit{Google Maps} service}: data coming from the interaction with the external maps software is substantially different from the groups indicated in the previous points: information is often in need of pre-processing before becoming usable and, even when simple, usually more vast and complex if compared to what stated in the previous points. Moreover, the quantity of data exchanged is quite considerable; because of these reasons, the complexity of this Function Point is set to \textit{AVERAGE}.
 \end{description}
 
 \subsection{External Inputs (EIs)}
@@ -52,19 +52,19 @@ In practice, they can be identified as elementary operations to elaborate data c
 The identified EIs for the application are:
 \begin{description}
 %LOW - solo operazioni elementari di inserimento dati, op relative a un solo ILF
-\item[EI1] \textbf{The registration procedure}: registration procedures only consist of simple insertions of data elements related to a single ILF (\textbf{User data}). For this reason, the corresponding EI complexity will be set to \textit{LOW}.
+\item[EI1] \textbf{Registration procedure}: registration procedures only consist of simple insertions of data elements related to a single ILF (\textbf{User data}). For this reason, the corresponding EI complexity will be set to \textit{LOW}.
 %LOW - solo operazioni elementari di lettura dati, op relative a un solo ILF
-\item[EI2] \textbf{The login procedure}: similarly, login procedure only imply simple reading operations, and these operations are still only related to the \textbf{User data} ILF. The complexity of this Function Point will hence be set to \textit{LOW}. 
+\item[EI2] \textbf{Login procedure}: similarly, login procedure only imply simple reading operations, and these operations are still only related to the \textbf{User data} ILF. The complexity of this Function Point will hence be set to \textit{LOW}. 
 %LOW - solo operazioni elementari di modifica dati, op relative a un solo ILF
-\item[EI3] \textbf{The update procedure for user profiles}: as already seen for the previous EIs, the procedures needed to update profile data make use of elementary update operations on data which is part of the \textbf{User data} ILF, and for this reason the associated complexity will be set to \textit{LOW} as well.
+\item[EI3] \textbf{Update procedure for user profiles}: as already seen for the previous EIs, the procedures needed to update profile data and delete profiles make use of elementary update operations on data which is part of the \textbf{User data} ILF, and for this reason the associated complexity will be set to \textit{LOW} as well; since the distinct operations for the FP are two, this will be counted twice.
 %HIGH - operazioni molto diversificate, sia per car status che per car availability che per alt charges sits detection, relative a più ILF  (Ride con alternative charges, Safe Area, Payment)
 \item[EI4] \textbf{Data streams from the sensors and equipment of cars}: radically different are the operations related to the streams of information from sensors and vehicle equipment, representing useful data to be processed by the application. Said information is associated with the car availability updates, with the car monitoring, with the detection of alternative charges situations. Since the referred ILFs are many (\textbf{Ride data}, \textbf{Safe Area data} and \textbf{Payment data}) and the variety of operations is actually wide, the complexity of the Function Point will be classified as \textit{HIGH}.
 %AVG - operazioni diverse in base a condizioni di utente, op non complesse, coinvolge più ILF (User, Reservation)
-\item[EI5] \textbf{The car reservation procedure}: the procedure used to reserve cars implies different operations based on the conditions in which the input is provided by the user: the regular reservation procedure and the alternative procedure in case a reservation is already active; both operations are not complex in any way since they only refer a couple of ILFs (\textbf{User data} and \textbf{Reservation data}) and include combinations of reading operations and insertions or reading operations and update ones. Based on these considerations, a reasonable classification for the complexity of this Function Point is \textit{AVERAGE}.
+\item[EI5] \textbf{Car reservation procedure}: the procedure used to reserve cars implies different operations based on the conditions in which the input is provided by the user: in fact, the EI includes both the operations involved with a reservation in itself and those involving the release of an active one; in both cases, the necessary operations are not complex in any way since they only refer a couple of ILFs (\textbf{User data} and \textbf{Reservation data}) and include combinations of reading operations and insertions or reading operations and update ones. Based on these considerations, a reasonable classification for the complexity of this Function Point is \textit{LOW}, and this will be counted as two FPs because of the distinct tasks involved with the operation.
 %AVG - operazioni molto essenziali di lettura e matching di dati, coinvolge più ILF (User, Car, Reservation)
-\item[EI6] \textbf{The car unlocking procedure}: although it only implies basic read-and-compare sequences of operations in order to check the conformity of users and the reservation information about who reserved a car, the car unlocking procedure refers at least to three ILFs (\textbf{User data}, \textbf{Car data} and \textbf{Reservation data}): for this reason it will be classified as \textit{AVERAGE} in terms of complexity.
+\item[EI6] \textbf{Car unlocking procedure}: similarly to what stated for the previous point, the car unlocking procedures must be subdivided in two different operations: one that uses a vehicle-specific code and one that relies on the user's position. This procedure refers at least to three ILFs (\textbf{User data}, \textbf{Car data} and \textbf{Reservation data}): since, however, the two operations only imply simple reading and matching elementary operations, they will be classified as \textit{LOW} in terms of complexity, and counted twice as for the previous EI.
 %LOW - operazione semplice singola di matching tra ILF Reservation e User
-\item[EI7] \textbf{The user authentication procedure for the rides}: the procedure is very similar to the one described in the previous point, but only two ILFs are referred (\textbf{User data} and \textbf{Reservation data}). In general, this kind of operation is quite simpler than the car unlocking one, since it does not imply and cross-matching between more than two data entities. For this reason, the complexity of this Function Point can be estimated as \textit{LOW}.
+\item[EI7] \textbf{User authentication procedure for the rides}: the procedure is very similar to the one described in the previous point, but only two ILFs are referred (\textbf{User data} and \textbf{Reservation data}). In general, this kind of operation is quite simpler than the car unlocking one, since it does not imply and cross-matching between more than two data entities. For this reason, the complexity of this Function Point can be estimated as \textit{LOW}.
 \end{description}
 
 \subsection{External Outputs (EOs)}
@@ -77,13 +77,13 @@ In practice, they can be identified as elementary operations that generate data 
 The identified EOs for the application are:
 \begin{description}
 %LOW - the procedure does not need great elaboration of information, basically everything in order to report simple and rough data about the "event" that triggered the e-mail generation, coinvolgono pochi ILF (o pagamento o utente)
-\item[EO1] \textbf{The e-mail notification procedure}: the output procedure required to generate e-mail notification does not need great elaboration of data apart from the essential operations used to read the information related to the event that must trigger an e-mail notification. The involved ILFs are at most one or two (\textbf{Payment data} or \textbf{User data}), and for this reason the complexity of this Function Point will be set to \textit{LOW}.
+\item[EO1] \textbf{E-mail notification procedure}: the output procedure required to generate e-mail notification does not need great elaboration of data apart from the essential operations used to read the information related to the event that must trigger an e-mail notification. The involved ILFs are at most one or two (\textbf{Payment data} or \textbf{User data}), and for this reason the complexity of this Function Point will be set to \textit{LOW}.
 %AVG - vd sopra, ancora più basic, corrispondono o ad errori o a conferme di successo nell'elaborare dati inseriti/detected, possono riguardare tanti ILF
-\item[EO2] \textbf{The user notification procedure}: general-purpose notifications are even simpler than what stated for the e-mail-based ones, since they correspond to errors or confirmations caused by failure or success of data detection/insertion/update/deletion. They however differ from the previous classified notifications since they can refer, in general, to almost every ILF defined in the dedicated section above. For this reason, the complexity can be set to \textit{AVERAGE}.
-%AVG - usa dati esterni (EIF) ed interni (ILF) da matchare tra loro, reperiti da molte entità dati
-\item[EO3] \textbf{The procedure for the retrieval of available cars}: the procedure is used to perform matches between internal and external data, namely the information about cars and their availability and the address position information from \textit{Google Maps}; since the operations themselves are not complex but imply reading data from both internal and external data source, the overall complexity of the Function Point can be estimated as \textit{AVERAGE}.
-%LOW - frutto di semplice rielaborazione di pochi dati della (ILF) Ride (durata, condizioni alternative)
-\item[EO4] \textbf{The procedure for the retrieval of final charges}: this last output procedure is based on the simple elaboration of pieces of data from the \textbf{Ride data} ILF, namely information about ride duration and alternative charges conditions. This procedure only implies simple arithmetical operations, and will hence be classified as \textit{LOW} in terms of complexity.
+\item[EO2] \textbf{User notification procedure}: general-purpose notifications are even simpler than what stated for the e-mail-based ones, since they correspond to errors or confirmations caused by failure or success of data detection/insertion/update/deletion. They however differ from the previous classified notifications since they can refer, in general, to almost every ILF defined in the dedicated section above. For this reason, the complexity can be set to \textit{AVERAGE}.
+%HIGH - usa dati esterni (EIF) ed interni (ILF) da matchare tra loro, reperiti da molte entità dati
+\item[EO3] \textbf{Procedure for the retrieval of available cars}: the procedure is used to perform matches between internal and external data, namely the information about cars and their availability and the address position information from \textit{Google Maps}; since the operations themselves are not complex but imply reading data from both internal (ILFs: \textbf{Car data}, \textbf{User data}) and external (EIFs: \textbf{Google Maps}) data sources, the overall complexity of the Function Point can be estimated as \textit{HIGH}.
+%AVERAGE - frutto di semplice rielaborazione di pochi dati della (ILF) Ride (durata, condizioni alternative)
+\item[EO4] \textbf{Procedure for the retrieval of final charges}: this last output procedure is based on the simple elaboration of pieces of data from the \textbf{Ride data} ILF, namely information about ride duration and alternative charges conditions. This procedure implies simple arithmetical operations combined with more complex operations involving data from internal sources, and will hence be classified as \textit{AVERAGE} in terms of complexity.
 \end{description}
 
 \subsection{External Inquiries (EQs)}
@@ -96,15 +96,19 @@ In practice, they can be identified as elementary operation that involve input a
 The identified EQs for the application are:
 \begin{description}
 %LOW - semplice presentazione di dati, coinvolge un solo ILF
-\item[EQ1] \textbf{The visualization of user profile data by the user him/herself}: this EQ only implies presentation of user data upon requests from users themselves. Since it only refers one ILF (\textbf{User data}), its complexity will be set to \textit{LOW}.
+\item[EQ1] \textbf{Visualization of user profile data by the user him/herself}: this EQ only implies presentation of user data upon requests from users themselves. Since it only refers one ILF (\textbf{User data}), its complexity will be set to \textit{LOW}.
 %LOW - semplice presentazione di dati, coinvolge un solo ILF
-\item[EQ2] \textbf{The visualization of the Safe Area boundaries/Power Grid Stations positions}: the same considerations taken for the previous Function Point can be made for this one, too. The presentation involves data related to the \textbf{Safe Area data} ILF, and the complexity will be set to \textit{LOW}.
+\item[EQ2] \textbf{Visualization of the Safe Area boundaries/Power Grid Stations positions}: the same considerations taken for the previous Function Point can be made for this one, too. The presentation involves data related to the \textbf{Safe Area data} ILF, and the complexity will be set to \textit{LOW}; the FP will be counted twice here, because the two procedures for retrieving, respectively, boundaries and power grids information are distinct.
+%LOW - come sopra
+\item[EQ3] \textbf{Retrieval of users' positions}: an analogous analysis can be performed for this last Function Point, since the only ILF involved is \textbf{User data}. Hence, the complexity level will be set once more to \textit{LOW}.
+%LOW - come sopra
+\item[EQ4] \textbf{Visualization of reservation information}: lastly, the same idea applies to the simple process of visualizing the informations about currently active reservations. Since, again, the involved ILF is only one (namely \textbf{Reservation data}), the complexity of the procedure will be set to \textit{LOW}.
 \end{description}
 
 \section{Function Points Weights}
 Given the Function Points computation of the previous sections, the analysis can continue with the final estimate of the number of \textit{Unadjusted Function Points (UFPs)}, as shown Table \ref{fps_final}.
 
-The assignments of weights to the different types of Function Points, based on their individual complexity, follows the Table \ref{fps_weights}.
+The assignments of weights to the different types of Function Points, based on their individual complexity, follows Table \ref{fps_weights}.
 
 \begin{table}[H]
     \centering
@@ -116,11 +120,11 @@ The assignments of weights to the different types of Function Points, based on t
         \multirow{6}{*}{\textbf{ILFs}} & ILF1 & High & 15 \\ \cline{2-4}
         							   & ILF2 & Low & 7 \\ \cline{2-4}
         							   & ILF3 & Low & 7 \\ \cline{2-4}
-        							   & ILF4 & Average & 10 \\ \cline{2-4}
-        							   & ILF5 & Average & 10 \\ \cline{2-4}
+        							   & ILF4 & High & 15 \\ \cline{2-4}
+        							   & ILF5 & High & 15 \\ \cline{2-4}
         							   & ILF6 & Low & 7 \\
         \hline
-        \textbf{ILF Subtotal} & \multicolumn{2}{c |}{} & \textbf{56} \\
+        \textbf{ILF Subtotal} & \multicolumn{2}{c |}{} & \textbf{66} \\
         \hline
         \multirow{3}{*}{\textbf{EIFs}} & EIF1 & Low & 5 \\ \cline{2-4}
         							   & EIF2 & Low & 5 \\ \cline{2-4}
@@ -130,28 +134,30 @@ The assignments of weights to the different types of Function Points, based on t
         \hline
         \multirow{7}{*}{\textbf{EIs}} & EI1 & Low & 3 \\ \cline{2-4}
         							  & EI2 & Low & 3 \\ \cline{2-4}
-        							  & EI3 & Low & 3 \\ \cline{2-4}
+        							  & EI3 & Low & $2 \times 3 = 6$ \\ \cline{2-4}
         							  & EI4 & High & 6 \\ \cline{2-4}
-        							  & EI5 & Average & 4 \\ \cline{2-4}
-        							  & EI6 & Average & 4 \\ \cline{2-4}
+        							  & EI5 & Low & $2 \times 3 = 6$ \\ \cline{2-4}
+        							  & EI6 & Low & $2 \times 3 = 6$ \\ \cline{2-4}
         							  & EI7 & Low & 3 \\
         \hline
-        \textbf{EI Subtotal} & \multicolumn{2}{c |}{} & \textbf{26} \\
+        \textbf{EI Subtotal} & \multicolumn{2}{c |}{} & \textbf{33} \\
         \hline
         \multirow{4}{*}{\textbf{EOs}} & EO1 & Low & 4 \\ \cline{2-4}
         							  & EO2 & Average & 5 \\ \cline{2-4}
-        							  & EO3 & Average & 5 \\ \cline{2-4}
-        							  & EO4 & Low & 4 \\
+        							  & EO3 & High & 7 \\ \cline{2-4}
+        							  & EO4 & Average & 5 \\
         \hline
-        \textbf{EO Subtotal} & \multicolumn{2}{c |}{} & \textbf{18} \\
+        \textbf{EO Subtotal} & \multicolumn{2}{c |}{} & \textbf{21} \\
         \hline
-         \multirow{2}{*}{\textbf{EQs}} & EQ1 & Low & 3 \\ \cline{2-4}
-        							   & EQ2 & Low & 3 \\
+         \multirow{4}{*}{\textbf{EQs}} & EQ1 & Low & 3 \\ \cline{2-4}
+        							   & EQ2 & Low & $2 \times 3 = 6$ \\ \cline{2-4}
+        							   & EQ3 & Low & 3 \\ \cline{2-4}
+        							   & EQ4 & Low & 3 \\
         \hline
-        \textbf{EQ Subtotal} & \multicolumn{2}{c |}{} & \textbf{6} \\
+        \textbf{EQ Subtotal} & \multicolumn{2}{c |}{} & \textbf{15} \\
         \hline
         \hline
-        \textbf{Total UFPs} & \multicolumn{2}{c |}{} & \textbf{123} \\
+        \textbf{Total UFPs} & \multicolumn{2}{c |}{} & \textbf{152} \\
         \hline
     \end{tabular}
     \caption{Computed weights for all the detected function points.}
@@ -183,7 +189,17 @@ The assignments of weights to the different types of Function Points, based on t
 \end{table}
 
 \section{Function Points Estimation Results}
-Based on the considered parameters, the final value for the UFPs of this project is: %UFPs
+Based on the considered parameters, the final value for the UFPs of this project is: \textbf{146}.
 
-UFPs are used to estimate the Lines of Code of a software project depending on the average number of LOC per FP for a given language. Assuming JEE will be the programming language taken into account to develop this project, the average language-dependent multiplicative factor is \textbf{46}~\cite{qsm}.
+UFPs are used to estimate the Lines of Code of a software project depending on the average number of SLOC per FP for a given language. Assuming JEE will be the programming language taken into account to develop this project, the average multiplicative factor is \textbf{46}~\cite{qsm}; an upper-bound to the estimate can be calculated using an appropriate multiplicative factor, which for JEE is defined as \textbf{67}~\cite{qsm}.
+\newline
+\newline
+The final computation for the average number of SLOC for the project is:
+\begin{equation}
+\# SLOC := UFPs \times MULT\_ FACTOR_{avg} = 152 \times 46 = 6992 \textbf{ SLOC}
+\end{equation}
 
+The value of the mentioned upper-bound for the number of SLOC estimate is:
+\begin{equation}
+\# SLOC := UFPs \times MULT\_ FACTOR_{high} = 152 \times 67 = 10184 \textbf{ SLOC}
+\end{equation}
