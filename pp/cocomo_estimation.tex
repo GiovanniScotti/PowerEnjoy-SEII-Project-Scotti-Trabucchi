@@ -1,5 +1,5 @@
 \section{Scale Drivers}
-Some of the most important factors contributing to a project's duration and cost are the Scale Drivers. Each of the said drivers describes the project itself and determines the exponent used in the Effort Equation. More precisely, the Scale Drivers reflect the non-linearity of the effort with relation to the number of SLOC. Each scale driver has a range of rating levels from \textit{Very Low} to \textit{Extra High}. The result of the evaluation is summed up in Table \ref{scale_drivers}.
+Some of the most important factors contributing to the duration and cost of a project are the Scale Drivers. Each of said drivers describes the project itself and determines the exponent used in the Effort Equation. More precisely, the Scale Drivers reflect the non-linearity of the effort with relation to the number of SLOC. Each scale driver has a range of rating levels from \textit{Very Low} to \textit{Extra High}. The result of the evaluation is summed up in Table \ref{scale_drivers}.
 
 \begin{description}
 \item[Precedentedness:] points out the previous experience of the team with the organization and development of large scale projects. Since the team members are new to most of the notions concerning this kind of projects, the Precedentedness is \textit{LOW}.
@@ -36,7 +36,7 @@ Some of the most important factors contributing to a project's duration and cost
 \section{Cost Drivers}
 Cost Drivers appear as parameters of the effort equation reflecting characteristics of the developing process and acting as multiplication factors on the effort needed to carry out said project.
 
-Since this effort analysis is carried out at the beginning of the life-cycle of the project, before the writing of the RASD~\cite{rasd} and the DD~\cite{dd}, the point-of-view will be that of the \textit{early design} version of the COCOMO II model. Clear information about the architecture are not still available and the team is exploring and evaluating different architectural alternatives.
+Since this effort analysis is carried out at the beginning of the life-cycle of the project, before the writing of the RASD~\cite{rasd} and the DD~\cite{dd}, the point-of-view will be that of the \textit{early design} version of the COCOMO II model. Clear information about the architecture are still not available and the team is exploring and evaluating different architectural alternatives.
 
 In order to conduct the analysis of said cost drivers, guidelines given by the COCOMO Model Definition Manual~\cite{cocomo-manual} have been followed.
 
@@ -50,7 +50,7 @@ Each cost driver of the post-architecture approach has a rating that is consider
 %FCIL
 %SCED
 \begin{description}
-\item[Personnel Capability:] describes the overall capabilities of the team members in terms of problem-solving, actual implementation skills and ratings of personnel turnover. It derives from the conjunction of the Analyst Capability (ACAP) factor, the Programmer Capability (PCAP) factor and the Personnel Continuity (PCON) factor. In details, the ACAP factor expresses the analysis and design ability of the team members, as well as the ability to communicate and cooperate. It is set to Nominal (3) since the team members have not previous experience in finding requirements, but  communication and cooperation is very high. Also PCAP is set to Nominal (3) because the programming abilities of the team is in the average. PCON is instead set at Very High (5) since the turnover is totally absent.
+\item[Personnel Capability:] describes the overall capabilities of the team members in terms of problem-solving, actual implementation skills and ratings of personnel turnover. It derives from the conjunction of the Analyst Capability (ACAP) factor, the Programmer Capability (PCAP) factor and the Personnel Continuity (PCON) factor. In detail, the ACAP factor expresses the analysis and design ability of the team members, as well as the ability to communicate and cooperate. It is set to Nominal (3) since the team members have no previous experience in finding requirements, but communication and cooperation is very high. PCAP is set to Nominal (3) too, because the programming abilities of the team is in the average. PCON is instead set to Very High (5) since the turnover is totally absent.
 
 The PERS factor is set to High according to the following table:
 
@@ -71,7 +71,7 @@ The PERS factor is set to High according to the following table:
     \end{adjustwidth}
 \end{table}
 
-\item[Product Reliability and Complexity:] this Early Design cost driver depends on the characteristics of the product under development and combines the following four Post-Architecture cost drivers: Required software reliability (RELY), Database size (DATA), Product complexity (CPLX), and Documentation match to life-cycle needs (DOCU). RELY is set to Nominal (3) since a software failure brings moderate financial losses, but there is no risk to human life. DATA instead is set to Very High (5) since the size of the testing database is assumed to be 100MB while the number of SLOC has been computed in the Section about FPs. All this leads to a $D/P$ parameter that is grater than 1000. CPLX is set to Nominal (3) because no complex algorithm are involved and I/O processing includes status checking and error processing. Moreover, the user interface will be of a medium complexity as no complicated widgets are planned to be used. Also DOCU is set to Nominal (3) since the team does not want to spend excessive time on documentation, but a right-sized one is very important to reduce system maintenance costs and improve the software understanding.
+\item[Product Reliability and Complexity:] this Early Design cost driver depends on the characteristics of the product under development and combines the following four Post-Architecture cost drivers: Required Software Reliability (RELY), Database Size (DATA), Product Complexity (CPLX), and Documentation Match to Life-cycle Needs (DOCU). RELY is set to Nominal (3) since a software failure brings moderate financial losses, but there is no risk to human life. DATA instead is set to Very High (5) since the size of the testing database can be estimated to be 100MB while the number of SLOC has been computed in the Section about FPs. All this leads to a $D/P$ parameter (Test Database Size over SLOC ratio) that is grater than 1000~\cite{cocomo-guide}. CPLX is set to Nominal (3) because no complex algorithm are involved and I/O processing includes status checking and error processing. Moreover, the user interface will be of a medium complexity as no complicated widgets are planned to be used. DOCU is set to Nominal (3) too, since the team does not want to spend excessive time on documentation, but a right-sized one is very important to reduce system maintenance costs and improve the software understanding.
 
 The RCPX factor is set to High according to the following table:
 
@@ -92,7 +92,7 @@ The RCPX factor is set to High according to the following table:
     \end{adjustwidth}
 \end{table}
 
-\item[Re-usability:] this cost driver points out the additional effort needed to construct components intended for reuse on current or future projects. A Nominal value is set because re-usability is actually limited to the project itself and no similar projects are planned for the future. 
+\item[Re-usability:] this cost driver points out the additional effort needed to construct components intended to be reused on current or future projects. A Nominal value is set because re-usability is actually limited to the project itself and no similar projects are planned for the future. 
 
 \begin{table}[H]
 	\begin{adjustwidth}{-.5in}{-.5in}
@@ -110,7 +110,7 @@ The RCPX factor is set to High according to the following table:
     \end{adjustwidth}
 \end{table}
 
-\item[Platform Difficulty:] the three Post-Architecture cost drivers TIME, STOR and PVOL are here combined together. TIME is a measure of the execution time constraints imposed upon a software system. Since \emph{PowerEnJoy} will offer a service that is expected to be extensively and frequently used by a large customer base, TIME is set to High (4). STOR represents the usage of the available storage offered by the system. As said before, the service provided by the system is supposed to be repeatedly and regularly used. On the other hand, modern technologies can offer a lot of storage capacity in order to prevent saturation, therefore STORE is set to High (4). The PVOL driver expresses the platform volatility. The system will not require frequent major updates, but minor changes, patches and bug fixes are planned to be release constantly in time. Therefore, PVOL is set to Low (2).
+\item[Platform Difficulty:] the three Post-Architecture cost drivers TIME, STOR and PVOL are here combined together to express the intrinsic complexity of the platform. TIME is a measure of the execution time constraints imposed upon a software system. Since \emph{PowerEnJoy} will offer a service that is expected to be extensively and frequently used by a large customer base, TIME is set to High (4). STOR represents the usage of the available storage offered by the system. As said before, the service provided by the system is supposed to be repeatedly and regularly used. On the other hand, modern technologies can offer a lot of storage capacity in order to prevent saturation, therefore STORE is set to High (4). The PVOL driver expresses the platform volatility. The system will not require frequent major updates, but minor changes, patches and bug fixes are planned to be release constantly in time. Therefore, PVOL is set to Low (2).
 
 The PDIF factor is set to High according to the following table:
 
@@ -131,7 +131,7 @@ The PDIF factor is set to High according to the following table:
     \end{adjustwidth}
 \end{table}
 
-\item[Personnel Experience:] combines the three Post-Architecture cost drivers APEX, PLEX and LTEX. APEX expresses the level of experience of the project development team. Since the team members have some experience with Java, but never used JEE, the driver is set to Low (2). PLEX describes the productivity influence of the platform experience. As said above, the development team has no experience with technologies supporting JEE, but has some experience with databases and networking. Therefore, PLEX is set to Low (2). Also LTEX is set to Low (2) for the reasons expressed above and because the team members have little experience of tools of requirements modeling and analysis.
+\item[Personnel Experience:] combines the three Post-Architecture cost drivers APEX, PLEX and LTEX. APEX expresses the level of experience of the project development team. Since the team members have some experience with Java, but never used JEE, the driver is set to Low (2). PLEX describes the productivity influence of the platform experience. As said above, the development team has no experience with technologies supporting JEE, but has some experience with databases and networking. Therefore, PLEX is set to Low (2). LTEX is set to Low (2) too, for the same reasons expressed above, but it must be pointed out that the team members have some basic experience of tools aimed to support requirements modelling and analysis.
 
 The PREX factor is set to Very Low according to the following table:
 
@@ -152,7 +152,7 @@ The PREX factor is set to Very Low according to the following table:
     \end{adjustwidth}
 \end{table}
 
-\item[Facilities:] the use of software tools (TOOL) and the multisite development (SITE) drivers are combined together. Software tools that will be used in the project are capable, mature, integrated and able to manage the life cycle of the software-to-be, therefore the rating level is set to High (4). The team members usually collaborates residing in the same city. Moreover, internet services (chat, email, video conference...) are frequently used, therefore SITE is set to Very High (5).
+\item[Facilities:] the use of software tools (TOOL) and the multi-site development (SITE) drivers are combined together to express how the infrastructure and tools influences the project. Software tools that will be used in the project are capable, mature, integrated and able to manage the life cycle of the software-to-be, therefore the rating level is set to High (4). The team members usually collaborate residing in the same city. Moreover, internet services (chat, email, video conference...) are frequently used, therefore SITE is set to Very High (5).
 
 The FCIL factor is set to Very High according to the following table:
 
@@ -173,7 +173,7 @@ The FCIL factor is set to Very High according to the following table:
     \end{adjustwidth}
 \end{table}
 
-\item[Required Development Schedule:] measures the schedule constraints imposed on the project team developing the system -to-be. It is set to Nominal since deadlines are not so flexible and effort must be equally distributed over the given development time.
+\item[Required Development Schedule:] measures the schedule constraints imposed on the project team developing the system-to-be. It is set to Nominal since deadlines are not so flexible and effort must be equally distributed over the given development time.
 
 \begin{table}[H]
 	\begin{adjustwidth}{-.5in}{-.5in}
@@ -213,11 +213,11 @@ The overall results of the analysis of the cost drivers are summarized by the fo
         \hline
         Personnel Experience (PREX) & Very Low & 1.33 \\
         \hline
-        Facilities (FCIL) & High & 0.87 \\
+        Facilities (FCIL) & High & 0.73 \\
         \hline
         Required Development Schedule (SCED) & Nominal & 1.00 \\
         \hline
-        \textbf{Total}  & $EAF=\prod_i C_i$ & 1.6477 \\
+        \textbf{Total}  & $EAF=\prod_i C_i$ & 1.3826 \\
         \hline
     \end{tabular}
 \end{table}
@@ -238,9 +238,7 @@ Where the parameters have the following meanings:
     \item $A=2.94$
 \end{itemize}
 
-The total effort results in \textbf{38.1} person-months.
-
-%Aggiungere l'upper bound
+The total effort results in \textbf{31.97} person-months using the value obtained with \ref{avg_e}; the result is of \textbf{47.64} person-months in case the upper-bound estimate \ref{upbound_e} is used.
 
 \section{Schedule Estimation}
 The duration of the project is calculated using Equation \ref{duration}.
@@ -251,10 +249,20 @@ The duration of the project is calculated using Equation \ref{duration}.
 \end{equation}
 
 \noindent
-where B is equal to 0.91 for COCOMO II and PM is the effort calculated by Equation \ref{effort}. The exponent E depends on the scale drivers analyzed above.
+where B is equal to 0.91 for COCOMO II and PM is the effort calculated by Equation \ref{effort}. The exponent E depends on the scale drivers analysed above.
 
-%Aggiungere valore upper bound
+Using the value of PM obtained with the average estimate of SLOC, the duration results in 10.747 months, corresponding to 2.97 developers.
+\noindent
+Using the value of PM obtained with the upper-bound estimate of SLOC, the duration results in 12.162 months, corresponding to 3.9 developers.
 
-The duration results in 11.3 months, that corresponds to 3.4 developers. Since our team is composed only by two people, the estimated development time would be:
+Since our team is composed only by two people, the estimated development time would be:
 
-\[\frac{38.1\textrm{ pm}}{2 \textrm{ people}}=19\textrm{ months}\]
+\[\frac{31.97\textrm{ pm}}{2 \textrm{ people}}=15.9\textrm{ months}\]
+
+\noindent
+or, as upper-bound estimate:
+
+\[\frac{47.64\textrm{ pm}}{2 \textrm{ people}}=23.8\textrm{ months}\]
+
+\noindent
+so, the project overall time will be around 16 months, and most probably not greater than 24 months.

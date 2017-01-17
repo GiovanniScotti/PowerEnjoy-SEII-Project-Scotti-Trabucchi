@@ -39,7 +39,7 @@ The identified EIFs for the application are:
 %LOW - complessità informazioni bassa, dati semplici non aggregati, quantità piuttosto scarsa
 \item[EIF2] \textbf{Intervention records in the Maintenance System database}: As for the previous point, information about the maintenance interventions is quite simple and not must not be elaborated, but in this case it is not wrong to suppose that data in this group is quite scarce in number. Hence, the complexity of this Function Point will be set to \textit{LOW} as well.
 %AVG - informazioni vaste e più complesse, spesso aggregate, in quantità considerevole
-\item[EIF3] \textbf{The data streams related to the \textit{Google Maps} service}: data coming from the interaction with the external maps software is substantially different from the groups indicated in the previous points: information is often in need of pre-processing before becoming usable and, even when simple, usually more vast and complex if compared to what stated in the previous points. Moreover, the quantity of data exchanged is quite considerable; because of these reasons, the complexity of this Function Point is set to \textit{AVERAGE}.
+\item[EIF3] \textbf{Data streams related to the \textit{Google Maps} service}: data coming from the interaction with the external maps software is substantially different from the groups indicated in the previous points: information is often in need of pre-processing before becoming usable and, even when simple, usually more vast and complex if compared to what stated in the previous points. Moreover, the quantity of data exchanged is quite considerable; because of these reasons, the complexity of this Function Point is set to \textit{AVERAGE}.
 \end{description}
 
 \subsection{External Inputs (EIs)}
@@ -197,9 +197,11 @@ UFPs are used to estimate the Lines of Code of a software project depending on t
 The final computation for the average number of SLOC for the project is:
 \begin{equation}
 \# SLOC := UFPs \times LDF_{avg} = 152 \times 46 = 6992 \textbf{ SLOC}
+\label{avg_e}
 \end{equation}
 
 The value of the mentioned upper-bound for the number of SLOC estimate is:
 \begin{equation}
 \# SLOC := UFPs \times LDF_{high} = 152 \times 67 = 10184 \textbf{ SLOC}
+\label{upbound_e}
 \end{equation}
