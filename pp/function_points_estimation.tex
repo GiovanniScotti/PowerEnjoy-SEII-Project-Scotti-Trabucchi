@@ -113,6 +113,30 @@ The assignments of weights to the different types of Function Points, based on t
 \begin{table}[H]
     \centering
     \begin{tabular}{ l | l | l | l }
+        \hline
+        \multirow{2}{*}{\textbf{Function Type}} & \multicolumn{3}{c}{\textbf{Weight}} \\
+        \cline{2-4}
+        & Low & Average & High \\
+        \hline
+        \hline
+        External Input          & 3     & 4     & 6     \\
+        \hline
+        External Output         & 4     & 5     & 7     \\
+        \hline
+        External Inquiry        & 3     & 4     & 6     \\
+        \hline
+        Internal Logic File     & 7     & 10    & 15    \\
+        \hline
+        External Interface File & 5     & 7     & 10    \\
+        \hline
+    \end{tabular}
+    \caption{A summary of the association of different weights to the individual Function Point type. The weights differ based on the level of complexity of the single Function Point.}
+    \label{fps_weights}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ l | l | l | l }
 		\hline
 		\textbf{Type} & \textbf{Function Point} & \textbf{Complexity} & \textbf{Weight} \\
 		\hline
@@ -164,42 +188,18 @@ The assignments of weights to the different types of Function Points, based on t
     \label{fps_final}
 \end{table}
 
-\begin{table}[H]
-    \centering
-    \begin{tabular}{ l | l | l | l }
-        \hline
-        \multirow{2}{*}{\textbf{Function Type}} & \multicolumn{3}{c}{\textbf{Weight}} \\
-        \cline{2-4}
-        & Low & Average & High \\
-        \hline
-        \hline
-        External Input          & 3     & 4     & 6     \\
-        \hline
-        External Output         & 4     & 5     & 7     \\
-        \hline
-        External Inquiry        & 3     & 4     & 6     \\
-        \hline
-        Internal Logic File     & 7     & 10    & 15    \\
-        \hline
-        External Interface File & 5     & 7     & 10    \\
-        \hline
-    \end{tabular}
-    \caption{A summary of the association of different weights to the individual Function Point type. The weights differ based on the level of complexity of the single Function Point.}
-    \label{fps_weights}
-\end{table}
-
 \section{Function Points Estimation Results}
-Based on the considered parameters, the final value for the UFPs of this project is: \textbf{146}.
+Based on the considered parameters, the final value for the UFPs of this project is: \textbf{152}.
 
 UFPs are used to estimate the Lines of Code of a software project depending on the average number of SLOC per FP for a given language. Assuming JEE will be the programming language taken into account to develop this project, the average multiplicative factor is \textbf{46}~\cite{qsm}; an upper-bound to the estimate can be calculated using an appropriate multiplicative factor, which for JEE is defined as \textbf{67}~\cite{qsm}.
 \newline
 \newline
 The final computation for the average number of SLOC for the project is:
 \begin{equation}
-\# SLOC := UFPs \times MULT\_ FACTOR_{avg} = 152 \times 46 = 6992 \textbf{ SLOC}
+\# SLOC := UFPs \times LDF_{avg} = 152 \times 46 = 6992 \textbf{ SLOC}
 \end{equation}
 
 The value of the mentioned upper-bound for the number of SLOC estimate is:
 \begin{equation}
-\# SLOC := UFPs \times MULT\_ FACTOR_{high} = 152 \times 67 = 10184 \textbf{ SLOC}
+\# SLOC := UFPs \times LDF_{high} = 152 \times 67 = 10184 \textbf{ SLOC}
 \end{equation}
