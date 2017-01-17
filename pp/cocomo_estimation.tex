@@ -71,10 +71,24 @@ The PERS factor is set to High according to the following table:
     \end{adjustwidth}
 \end{table}
 
-\item[Product Reliability and Complexity:] this Early Design cost driver depends on the characteristics of the product under development and combines the following four Post-Architecture cost drivers: Required
-software reliability (RELY), Database size (DATA), Product complexity (CPLX), and
-Documentation match to life-cycle needs (DOCU).
-RELY is set to Nominal (3) since a software failure brings moderate financial losses, but there is no risk to human life.
+\item[Product Reliability and Complexity:] this Early Design cost driver depends on the characteristics of the product under development and combines the following four Post-Architecture cost drivers: Required software reliability (RELY), Database size (DATA), Product complexity (CPLX), and Documentation match to life-cycle needs (DOCU). RELY is set to Nominal (3) since a software failure brings moderate financial losses, but there is no risk to human life.
+
+\begin{table}[H]
+	\begin{adjustwidth}{-.5in}{-.5in}
+    \centering
+    \begin{tabular}{p{4cm}|p{1cm}|p{1cm}|p{1cm}|p{1.5cm}|p{1cm}|p{1cm}|p{1cm}}
+        \hline
+        Sum of RELY, DATA, CPLX, DOCU Ratings & 5,6 & 7,8 & 9-11 & 12 & 12-15 & 16-18 & 19-21 \\
+        \hline
+        \hline
+        Rating Levels & Extra Low & Very Low & Low & Nominal & High & Very High & Extra High \\
+        \hline
+        Effort Multipliers & 0.49 & 0.60 & 0.83 & 1.00 & 1.33 & 1.91 & 2.72 \\
+        \hline
+    \end{tabular}
+    \caption{RCPX cost driver.}
+    \end{adjustwidth}
+\end{table}
 
 \item[Re-usability:] this cost driver points out the additional effort needed to construct components intended for reuse on current or future projects. A Nominal value is set because re-usability is actually limited to the project itself and no similar projects are planned for the future. 
 
@@ -94,9 +108,63 @@ RELY is set to Nominal (3) since a software failure brings moderate financial lo
     \end{adjustwidth}
 \end{table}
 
-\item[Platform Difficulty:]
-\item[Personnel Experience:]
-\item[Facilities:]
+\item[Platform Difficulty:] the three Post-Architecture cost drivers TIME, STOR and PVOL are here combined together.
+
+\begin{table}[H]
+	\begin{adjustwidth}{-.5in}{-.5in}
+    \centering
+    \begin{tabular}{p{4cm}|p{1cm}|p{1.5cm}|p{1cm}|p{1cm}|p{1cm}}
+        \hline
+        Sum of TIME, STOR, PVOL Ratings & 8 & 9 & 10-12 & 13-15 & 16-17 \\
+        \hline
+        \hline
+        Rating Levels & Low & Nominal & High & Very High & Extra High \\
+        \hline
+        Effort Multipliers & 0.87 & 1.00 & 1.29 & 1.81 & 2.61 \\
+        \hline
+    \end{tabular}
+    \caption{PDIF cost driver.}
+    \end{adjustwidth}
+\end{table}
+
+\item[Personnel Experience:] combines the three Post-Architecture cost drivers APEX, PLEX and LTEX.
+
+\begin{table}[H]
+	\begin{adjustwidth}{-.5in}{-.5in}
+    \centering
+    \begin{tabular}{p{4cm}|p{1cm}|p{1cm}|p{1cm}|p{1.5cm}|p{1cm}|p{1cm}|p{1cm}}
+        \hline
+        Sum of APEX, PLEX, LTEX Ratings & 3,4 & 5,6 & 7,8 & 9 & 10,11 & 12,13 & 14,15 \\
+        \hline
+        \hline
+        Rating Levels & Extra Low & Very Low & Low & Nominal & High & Very High & Extra High \\
+        \hline
+        Effort Multipliers & 1.59 & 1.33 & 1.22 & 1.00 & 0.87 & 0.74 & 0.62 \\
+        \hline
+    \end{tabular}
+    \caption{PREX cost driver.}
+    \end{adjustwidth}
+\end{table}
+
+\item[Facilities:] the use of software tools (TOOL) and the multisite development (SITE) drivers are combined together.
+
+\begin{table}[H]
+	\begin{adjustwidth}{-.5in}{-.5in}
+    \centering
+    \begin{tabular}{p{4cm}|p{1cm}|p{1cm}|p{1cm}|p{1.5cm}|p{1cm}|p{1cm}|p{1cm}}
+        \hline
+        Sum of TOOL, SITE Ratings & 2 & 3 & 4,5 & 6 & 7,8 & 9,10 & 11 \\
+        \hline
+        \hline
+        Rating Levels & Extra Low & Very Low & Low & Nominal & High & Very High & Extra High \\
+        \hline
+        Effort Multipliers & 1.43 & 1.30 & 1.10 & 1.00 & 0.87 & 0.73 & 0.62 \\
+        \hline
+    \end{tabular}
+    \caption{FCIL cost driver.}
+    \end{adjustwidth}
+\end{table}
+
 \item[Required Development Schedule:] measures the schedule constraints imposed on the project team developing the system -to-be. It is set to Nominal since deadlines are not so flexible and effort must be equally distributed over the given development time.
 
 \begin{table}[H]
