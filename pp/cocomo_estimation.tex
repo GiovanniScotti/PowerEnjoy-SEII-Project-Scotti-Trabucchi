@@ -40,7 +40,7 @@ Since this effort analysis is carried out at the beginning of the life-cycle of 
 
 In order to conduct the analysis of said cost drivers, guidelines given by the COCOMO Model Definition Manual~\cite{cocomo-manual} have been followed.
 
-Each cost driver of the post-architecture approach has a rating that is considered as a numerical value during the early design analysis (Very Low = 1, Extra High = 6).
+Each cost driver of the post-architecture approach has a rating that is considered as a numerical value during the early design analysis (Very Low = 1, Extra High = 6). Ratings related to the Post-Architecture cost drivers corresponding to an Early Design one will be summed and converted into rating levels using the provided tables.
 
 %PERS
 %RCPX
@@ -71,7 +71,9 @@ The PERS factor is set to High according to the following table:
     \end{adjustwidth}
 \end{table}
 
-\item[Product Reliability and Complexity:] this Early Design cost driver depends on the characteristics of the product under development and combines the following four Post-Architecture cost drivers: Required software reliability (RELY), Database size (DATA), Product complexity (CPLX), and Documentation match to life-cycle needs (DOCU). RELY is set to Nominal (3) since a software failure brings moderate financial losses, but there is no risk to human life.
+\item[Product Reliability and Complexity:] this Early Design cost driver depends on the characteristics of the product under development and combines the following four Post-Architecture cost drivers: Required software reliability (RELY), Database size (DATA), Product complexity (CPLX), and Documentation match to life-cycle needs (DOCU). RELY is set to Nominal (3) since a software failure brings moderate financial losses, but there is no risk to human life. DATA instead is set to Very High (5) since the size of the testing database is assumed to be 100MB while the number of SLOC has been computed in the Section about FPs. All this leads to a $D/P$ parameter that is grater than 1000. CPLX is set to Nominal (3) because no complex algorithm are involved and I/O processing includes status checking and error processing. Moreover, the user interface will be of a medium complexity as no complicated widgets are planned to be used. Also DOCU is set to Nominal (3) since the team does not want to spend excessive time on documentation, but a right-sized one is very important to reduce system maintenance costs and improve the software understanding.
+
+The RCPX factor is set to High according to the following table:
 
 \begin{table}[H]
 	\begin{adjustwidth}{-.5in}{-.5in}
@@ -108,7 +110,9 @@ The PERS factor is set to High according to the following table:
     \end{adjustwidth}
 \end{table}
 
-\item[Platform Difficulty:] the three Post-Architecture cost drivers TIME, STOR and PVOL are here combined together.
+\item[Platform Difficulty:] the three Post-Architecture cost drivers TIME, STOR and PVOL are here combined together. TIME is a measure of the execution time constraints imposed upon a software system. Since \emph{PowerEnJoy} will offer a service that is expected to be extensively and frequently used by a large customer base, TIME is set to High (4). STOR represents the usage of the available storage offered by the system. As said before, the service provided by the system is supposed to be repeatedly and regularly used. On the other hand, modern technologies can offer a lot of storage capacity in order to prevent saturation, therefore STORE is set to High (4). The PVOL driver expresses the platform volatility. The system will not require frequent major updates, but minor changes, patches and bug fixes are planned to be release constantly in time. Therefore, PVOL is set to Low (2).
+
+The PDIF factor is set to High according to the following table:
 
 \begin{table}[H]
 	\begin{adjustwidth}{-.5in}{-.5in}
@@ -127,7 +131,9 @@ The PERS factor is set to High according to the following table:
     \end{adjustwidth}
 \end{table}
 
-\item[Personnel Experience:] combines the three Post-Architecture cost drivers APEX, PLEX and LTEX.
+\item[Personnel Experience:] combines the three Post-Architecture cost drivers APEX, PLEX and LTEX. APEX expresses the level of experience of the project development team. Since the team members have some experience with Java, but never used JEE, the driver is set to Low (2). PLEX describes the productivity influence of the platform experience. As said above, the development team has no experience with technologies supporting JEE, but has some experience with databases and networking. Therefore, PLEX is set to Low (2). Also LTEX is set to Low (2) for the reasons expressed above and because the team members have little experience of tools of requirements modeling and analysis.
+
+The PREX factor is set to Very Low according to the following table:
 
 \begin{table}[H]
 	\begin{adjustwidth}{-.5in}{-.5in}
@@ -146,7 +152,9 @@ The PERS factor is set to High according to the following table:
     \end{adjustwidth}
 \end{table}
 
-\item[Facilities:] the use of software tools (TOOL) and the multisite development (SITE) drivers are combined together.
+\item[Facilities:] the use of software tools (TOOL) and the multisite development (SITE) drivers are combined together. Software tools that will be used in the project are capable, mature, integrated and able to manage the life cycle of the software-to-be, therefore the rating level is set to High (4). The team members usually collaborates residing in the same city. Moreover, internet services (chat, email, video conference...) are frequently used, therefore SITE is set to Very High (5).
+
+The FCIL factor is set to Very High according to the following table:
 
 \begin{table}[H]
 	\begin{adjustwidth}{-.5in}{-.5in}
@@ -195,21 +203,21 @@ The overall results of the analysis of the cost drivers are summarized by the fo
     	Cost Driver & Factor & Value \\
         \hline
         \hline
-        Personnel Capability (PERS) & & \\
+        Personnel Capability (PERS) & High & 0.83 \\
         \hline
-        Reliability and Complexity (RCPX) & & \\
+        Reliability and Complexity (RCPX) & High & 1.33 \\
         \hline
-        Re-usability (RUSE) & & \\
+        Re-usability (RUSE) & Nominal & 1.00 \\
         \hline
-        Platform Difficulty (PDIF) & & \\
+        Platform Difficulty (PDIF) & High & 1.29 \\
         \hline
-        Personnel Experience (PREX) & & \\
+        Personnel Experience (PREX) & Very Low & 1.33 \\
         \hline
-        Facilities (FCIL) & & \\
+        Facilities (FCIL) & High & 0.87 \\
         \hline
-        Required Development Schedule (SCED) & & \\
+        Required Development Schedule (SCED) & Nominal & 1.00 \\
         \hline
-        \textbf{Total}  & $EAF=\prod_i C_i$ & \\
+        \textbf{Total}  & $EAF=\prod_i C_i$ & 1.6477 \\
         \hline
     \end{tabular}
 \end{table}
@@ -230,4 +238,23 @@ Where the parameters have the following meanings:
     \item $A=2.94$
 \end{itemize}
 
+The total effort results in \textbf{38.1} person-months.
+
+%Aggiungere l'upper bound
+
 \section{Schedule Estimation}
+The duration of the project is calculated using Equation \ref{duration}.
+
+\begin{equation}
+    \textrm{Duration} = 3.67 \times (PM)^{0.28+0.2 \times (E-B)}
+    \label{duration}
+\end{equation}
+
+\noindent
+where B is equal to 0.91 for COCOMO II and PM is the effort calculated by Equation \ref{effort}. The exponent E depends on the scale drivers analyzed above.
+
+%Aggiungere valore upper bound
+
+The duration results in 11.3 months, that corresponds to 3.4 developers. Since our team is composed only by two people, the estimated development time would be:
+
+\[\frac{38.1\textrm{ pm}}{2 \textrm{ people}}=19\textrm{ months}\]
