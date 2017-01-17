@@ -12,7 +12,7 @@ In practice, they can be identified as a homogeneous set of data used and manage
 The identified ILFs for the application are:
 \begin{description}
 %info account, info pagamenti, info posizione, reservation history, alto numero istanze, molti attributi --> HIGH
-\item[ILF1] \textbf{User data}: identifies and groups all data pieces about users: information about user accounts, lists of user payments, positional information, reservation histories. The Function Point complexity can be set to \textit{HIGH}, since user-related entities will be generated and used by the application in great number and the level of detail of said data pieces will be considerable (attributes for involved data structures will be many).
+\item[ILF1] \textbf{User data}: identifies and groups all data pieces about users: information about user accounts, lists of user payments, positional information, reservation histories. The Function Point complexity can be set to \textit{HIGH}, since user-related entities will be generated and used by the application in great number and the level of detail of said data pieces will be considerable: attributes for involved data structures will be many.
 %info stato macchina, info posizione, numero istanze molto stabile e di qualche ord grand inferiore risp a utenti, numero considerevole di attributi ma non moltissimi --> LOW
 \item[ILF2] \textbf{Car data}:	identifies and groups all data about the application-managed vehicles: car status and availability, positional information. The number of instances related to this data group will be much more contained in number when compared with those of the \textbf{User data} group, and will also include a smaller number of attributes; hence, the complexity level can be set to \textit{LOW}.
 %info pagamento semplici, solo mantenuto, pochi attributi, numero istanze elevato --> LOW
@@ -102,9 +102,61 @@ The identified EQs for the application are:
 \end{description}
 
 \section{Function Points Weights}
-Given the Function Points computation of the previous sections, the analysis can continue with the final estimate of the average number of \textit{Unadjusted Function Points (UFPs)}.
+Given the Function Points computation of the previous sections, the analysis can continue with the final estimate of the number of \textit{Unadjusted Function Points (UFPs)}, as shown Table \ref{fps_final}.
 
-The assignments of weights to the different types of Function Points, based on their individual complexity, follows the table below:
+The assignments of weights to the different types of Function Points, based on their individual complexity, follows the Table \ref{fps_weights}.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ l | l | l | l }
+		\hline
+		\textbf{Type} & \textbf{Function Point} & \textbf{Complexity} & \textbf{Weight} \\
+		\hline
+		\hline
+        \multirow{6}{*}{\textbf{ILFs}} & ILF1 & High & 15 \\ \cline{2-4}
+        							   & ILF2 & Low & 7 \\ \cline{2-4}
+        							   & ILF3 & Low & 7 \\ \cline{2-4}
+        							   & ILF4 & Average & 10 \\ \cline{2-4}
+        							   & ILF5 & Average & 10 \\ \cline{2-4}
+        							   & ILF6 & Low & 7 \\
+        \hline
+        \textbf{ILF Subtotal} & \multicolumn{2}{c |}{} & \textbf{56} \\
+        \hline
+        \multirow{3}{*}{\textbf{EIFs}} & EIF1 & Low & 5 \\ \cline{2-4}
+        							   & EIF2 & Low & 5 \\ \cline{2-4}
+        							   & EIF3 & Average & 7 \\
+        \hline
+        \textbf{EIF Subtotal} & \multicolumn{2}{c |}{} & \textbf{17} \\
+        \hline
+        \multirow{7}{*}{\textbf{EIs}} & EI1 & Low & 3 \\ \cline{2-4}
+        							  & EI2 & Low & 3 \\ \cline{2-4}
+        							  & EI3 & Low & 3 \\ \cline{2-4}
+        							  & EI4 & High & 6 \\ \cline{2-4}
+        							  & EI5 & Average & 4 \\ \cline{2-4}
+        							  & EI6 & Average & 4 \\ \cline{2-4}
+        							  & EI7 & Low & 3 \\
+        \hline
+        \textbf{EI Subtotal} & \multicolumn{2}{c |}{} & \textbf{26} \\
+        \hline
+        \multirow{4}{*}{\textbf{EOs}} & EO1 & Low & 4 \\ \cline{2-4}
+        							  & EO2 & Average & 5 \\ \cline{2-4}
+        							  & EO3 & Average & 5 \\ \cline{2-4}
+        							  & EO4 & Low & 4 \\
+        \hline
+        \textbf{EO Subtotal} & \multicolumn{2}{c |}{} & \textbf{18} \\
+        \hline
+         \multirow{2}{*}{\textbf{EQs}} & EQ1 & Low & 3 \\ \cline{2-4}
+        							   & EQ2 & Low & 3 \\
+        \hline
+        \textbf{EQ Subtotal} & \multicolumn{2}{c |}{} & \textbf{6} \\
+        \hline
+        \hline
+        \textbf{Total UFPs} & \multicolumn{2}{c |}{} & \textbf{123} \\
+        \hline
+    \end{tabular}
+    \caption{Computed weights for all the detected function points.}
+    \label{fps_final}
+\end{table}
 
 \begin{table}[H]
     \centering
@@ -130,11 +182,8 @@ The assignments of weights to the different types of Function Points, based on t
     \label{fps_weights}
 \end{table}
 
-%tabella conclusiva: singolo FP - categoria - complessità - computo del contributo agli UFP
-
 \section{Function Points Estimation Results}
 Based on the considered parameters, the final value for the UFPs of this project is: %UFPs
 
-%Hence, the conversion in SLOC is:
+UFPs are used to estimate the Lines of Code of a software project depending on the average number of LOC per FP for a given language. Assuming JEE will be the programming language taken into account to develop this project, the average language-dependent multiplicative factor is \textbf{46}~\cite{qsm}.
 
-%corrispondenza in SLOC
