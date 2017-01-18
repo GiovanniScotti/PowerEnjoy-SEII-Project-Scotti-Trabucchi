@@ -42,13 +42,6 @@ In order to conduct the analysis of said cost drivers, guidelines given by the C
 
 Each cost driver of the post-architecture approach has a rating that is considered as a numerical value during the early design analysis (Very Low = 1, Extra High = 6). Ratings related to the Post-Architecture cost drivers corresponding to an Early Design one will be summed and converted into rating levels using the provided tables.
 
-%PERS
-%RCPX
-%RUSE
-%PDIF
-%PREX
-%FCIL
-%SCED
 \begin{description}
 \item[Personnel Capability:] describes the overall capabilities of the team members in terms of problem-solving, actual implementation skills and ratings of personnel turnover. It derives from the conjunction of the Analyst Capability (ACAP) factor, the Programmer Capability (PCAP) factor and the Personnel Continuity (PCON) factor. In detail, the ACAP factor expresses the analysis and design ability of the team members, as well as the ability to communicate and cooperate. It is set to Nominal (3) since the team members have no previous experience in finding requirements, but communication and cooperation is very high. PCAP is set to Nominal (3) too, because the programming abilities of the team is in the average. PCON is instead set to Very High (5) since the turnover is totally absent.
 
@@ -59,12 +52,12 @@ The PERS factor is set to High according to the following table:
     \centering
     \begin{tabular}{p{4cm}|p{1cm}|p{1cm}|p{1cm}|p{1.5cm}|p{1cm}|p{1cm}|p{1cm}}
         \hline
-        Sum of ACAP, PCAP, PCON Ratings & 3,4 & 5,6 & 7,8 & 9 & 10,11 & 12,13 & 14,15 \\
+        Sum of ACAP, PCAP, PCON Ratings & 3,4 & 5,6 & 7,8 & 9 & \textbf{10,11} & 12,13 & 14,15 \\
         \hline
         \hline
-        Rating Levels & Extra Low & Very Low & Low & Nominal & High & Very High & Extra High \\
+        Rating Levels & Extra Low & Very Low & Low & Nominal & \textbf{High} & Very High & Extra High \\
         \hline
-        Effort Multipliers & 2.12 & 1.62 & 1.26 & 1.00 & 0.83 & 0.63 & 0.50 \\
+        Effort Multipliers & 2.12 & 1.62 & 1.26 & 1.00 & \textbf{0.83} & 0.63 & 0.50 \\
         \hline
     \end{tabular}
     \caption{PERS cost driver.}
@@ -78,14 +71,14 @@ The RCPX factor is set to High according to the following table:
 \begin{table}[H]
 	\begin{adjustwidth}{-.5in}{-.5in}
     \centering
-    \begin{tabular}{p{4cm}|p{1cm}|p{1cm}|p{1cm}|p{1.5cm}|p{1cm}|p{1cm}|p{1cm}}
+    \begin{tabular}{p{4cm}|p{1cm}|p{1cm}|p{1cm}|p{1.5cm}|p{1.2cm}|p{1cm}|p{1cm}}
         \hline
-        Sum of RELY, DATA, CPLX, DOCU Ratings & 5,6 & 7,8 & 9-11 & 12 & 12-15 & 16-18 & 19-21 \\
+        Sum of RELY, DATA, CPLX, DOCU Ratings & 5,6 & 7,8 & 9-11 & 12 & \textbf{12-15} & 16-18 & 19-21 \\
         \hline
         \hline
-        Rating Levels & Extra Low & Very Low & Low & Nominal & High & Very High & Extra High \\
+        Rating Levels & Extra Low & Very Low & Low & Nominal & \textbf{High} & Very High & Extra High \\
         \hline
-        Effort Multipliers & 0.49 & 0.60 & 0.83 & 1.00 & 1.33 & 1.91 & 2.72 \\
+        Effort Multipliers & 0.49 & 0.60 & 0.83 & 1.00 & \textbf{1.33} & 1.91 & 2.72 \\
         \hline
     \end{tabular}
     \caption{RCPX cost driver.}
@@ -97,13 +90,13 @@ The RCPX factor is set to High according to the following table:
 \begin{table}[H]
 	\begin{adjustwidth}{-.5in}{-.5in}
     \centering
-    \begin{tabular}{p{3.8cm}|p{1cm}|p{1cm}|p{1.5cm}|p{1.6cm}|p{1.5cm}|p{2cm}}
+    \begin{tabular}{p{3.8cm}|p{1cm}|p{1cm}|p{1.7cm}|p{1.6cm}|p{1.5cm}|p{2cm}}
     	\hline
-        RUSE Descriptors: & & none & across project & across program & across product line & across multiple product lines \\
+        RUSE Descriptors: & & none & \textbf{across project} & across program & across product line & across multiple product lines \\
         \hline
-        Rating Levels & Very Low & Low & Nominal & High & Very High & Extra High \\
+        Rating Levels & Very Low & Low & \textbf{Nominal} & High & Very High & Extra High \\
         \hline
-        Effort Multipliers & n/a & 0.95 & 1.00 & 1.07 & 1.15 & 1.24 \\
+        Effort Multipliers & n/a & 0.95 & \textbf{1.00} & 1.07 & 1.15 & 1.24 \\
         \hline
     \end{tabular}
     \caption{RUSE cost driver.}
@@ -117,21 +110,21 @@ The PDIF factor is set to High according to the following table:
 \begin{table}[H]
 	\begin{adjustwidth}{-.5in}{-.5in}
     \centering
-    \begin{tabular}{p{4cm}|p{1cm}|p{1.5cm}|p{1cm}|p{1cm}|p{1cm}}
+    \begin{tabular}{p{4cm}|p{1cm}|p{1.5cm}|p{1.2cm}|p{1cm}|p{1cm}}
         \hline
-        Sum of TIME, STOR, PVOL Ratings & 8 & 9 & 10-12 & 13-15 & 16-17 \\
+        Sum of TIME, STOR, PVOL Ratings & 8 & 9 & \textbf{10-12} & 13-15 & 16-17 \\
         \hline
         \hline
-        Rating Levels & Low & Nominal & High & Very High & Extra High \\
+        Rating Levels & Low & Nominal & \textbf{High} & Very High & Extra High \\
         \hline
-        Effort Multipliers & 0.87 & 1.00 & 1.29 & 1.81 & 2.61 \\
+        Effort Multipliers & 0.87 & 1.00 & \textbf{1.29} & 1.81 & 2.61 \\
         \hline
     \end{tabular}
     \caption{PDIF cost driver.}
     \end{adjustwidth}
 \end{table}
 
-\item[Personnel Experience:] combines the three Post-Architecture cost drivers APEX, PLEX and LTEX. APEX expresses the level of experience of the project development team. Since the team members have some experience with Java, but never used JEE, the driver is set to Low (2). PLEX describes the productivity influence of the platform experience. As said above, the development team has no experience with technologies supporting JEE, but has some experience with databases and networking. Therefore, PLEX is set to Low (2). LTEX is set to Low (2) too, for the same reasons expressed above, but it must be pointed out that the team members have some basic experience of tools aimed to support requirements modelling and analysis.
+\item[Personnel Experience:] combines the three Post-Architecture cost drivers APEX, PLEX and LTEX. APEX expresses the level of experience of the project development team. Since the team members have some experience with Java, C and C++, but never used JEE, the driver is set to Low (2). PLEX describes the productivity influence of the platform experience. As said above, the development team has no experience with technologies supporting JEE, but has some experience with databases and networking. Therefore, PLEX is set to Low (2). LTEX is set to Low (2) too, for the same reasons expressed above, but it must be pointed out that the team members have some basic experience of tools aimed to support requirements modelling and analysis.
 
 The PREX factor is set to Very Low according to the following table:
 
@@ -140,12 +133,12 @@ The PREX factor is set to Very Low according to the following table:
     \centering
     \begin{tabular}{p{4cm}|p{1cm}|p{1cm}|p{1cm}|p{1.5cm}|p{1cm}|p{1cm}|p{1cm}}
         \hline
-        Sum of APEX, PLEX, LTEX Ratings & 3,4 & 5,6 & 7,8 & 9 & 10,11 & 12,13 & 14,15 \\
+        Sum of APEX, PLEX, LTEX Ratings & 3,4 & \textbf{5,6} & 7,8 & 9 & 10,11 & 12,13 & 14,15 \\
         \hline
         \hline
-        Rating Levels & Extra Low & Very Low & Low & Nominal & High & Very High & Extra High \\
+        Rating Levels & Extra Low & \textbf{Very Low} & Low & Nominal & High & Very High & Extra High \\
         \hline
-        Effort Multipliers & 1.59 & 1.33 & 1.22 & 1.00 & 0.87 & 0.74 & 0.62 \\
+        Effort Multipliers & 1.59 & \textbf{1.33} & 1.22 & 1.00 & 0.87 & 0.74 & 0.62 \\
         \hline
     \end{tabular}
     \caption{PREX cost driver.}
@@ -161,12 +154,12 @@ The FCIL factor is set to Very High according to the following table:
     \centering
     \begin{tabular}{p{4cm}|p{1cm}|p{1cm}|p{1cm}|p{1.5cm}|p{1cm}|p{1cm}|p{1cm}}
         \hline
-        Sum of TOOL, SITE Ratings & 2 & 3 & 4,5 & 6 & 7,8 & 9,10 & 11 \\
+        Sum of TOOL, SITE Ratings & 2 & 3 & 4,5 & 6 & 7,8 & \textbf{9,10} & 11 \\
         \hline
         \hline
-        Rating Levels & Extra Low & Very Low & Low & Nominal & High & Very High & Extra High \\
+        Rating Levels & Extra Low & Very Low & Low & Nominal & High & \textbf{Very High} & Extra High \\
         \hline
-        Effort Multipliers & 1.43 & 1.30 & 1.10 & 1.00 & 0.87 & 0.73 & 0.62 \\
+        Effort Multipliers & 1.43 & 1.30 & 1.10 & 1.00 & 0.87 & \textbf{0.73} & 0.62 \\
         \hline
     \end{tabular}
     \caption{FCIL cost driver.}
@@ -178,13 +171,13 @@ The FCIL factor is set to Very High according to the following table:
 \begin{table}[H]
 	\begin{adjustwidth}{-.5in}{-.5in}
     \centering
-    \begin{tabular}{p{3.6cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1cm}}
+    \begin{tabular}{p{3.6cm}|p{1.5cm}|p{1.5cm}|p{1.7cm}|p{1.5cm}|p{1.5cm}|p{1cm}}
     	\hline
-        SCED Descriptors: & 75\% of nominal & 85\% of nominal & 100\% of nominal & 130\% of nominal & 160\% of nominal & \\
+        SCED Descriptors: & 75\% of nominal & 85\% of nominal & \textbf{100\% of nominal} & 130\% of nominal & 160\% of nominal & \\
         \hline
-        Rating Levels & Very Low & Low & Nominal & High & Very High & Extra High \\
+        Rating Levels & Very Low & Low & \textbf{Nominal} & High & Very High & Extra High \\
         \hline
-        Effort Multipliers & 1.43 & 1.14 & 1.00 & 1.00 & 1.00 & n/a \\
+        Effort Multipliers & 1.43 & 1.14 & \textbf{1.00} & 1.00 & 1.00 & n/a \\
         \hline
     \end{tabular}
     \caption{SCED cost driver.}

@@ -85,8 +85,10 @@ Activities on the same row represent activities executed in parallel. If the sam
         \hline
         \hline
         \multirow{4}{*}{\textbf{$3_{rd}$ week}} & Initial requirements draft & Initial requirements draft \\ \cline{2-3}
-        & Initial use-case draft & Refinement of goals and assumptions \\ \cline{2-3}
-        & Specific Requirements & Final writing of Overall Description \\ \cline{2-3}
+        & Initial use-case draft & Refinement of goals and \\
+        & & assumptions \\ \cline{2-3}
+        & Specific Requirements & Final writing of \\
+        & & Overall Description \\ \cline{2-3}
         & Specific Requirements & Specific Requirements \\
         \hline
         \hline
@@ -174,34 +176,66 @@ Activities on the same row represent activities executed in parallel. If the sam
         & Database initialization & Database initialization \\ \cline{2-3}
         \hline
         \hline
-         \multirow{7}{*}{\textbf{Month 3-4-5}} & External components study & Application logic structuring \\ \cline{2-3}
-        & Application logic structuring & User management logic development \\ \cline{2-3}
+         \multirow{11}{*}{\textbf{Month 3-4-5}} & External components study & Application logic structuring \\ \cline{2-3}
+        & Application logic structuring & User management logic \\
+        & & development \\ \cline{2-3}
         & Car reservation logic development & Car reservation logic development \\ \cline{2-3}
-        & Interface logic for external systems & Alternative charges situations computation algorithms \\ \cline{2-3}
+        & Interface logic for external systems & Alternative charges situations \\
+        & & computation algorithms \\ \cline{2-3}
         & Internal payment logic & Interface logic for external systems \\ \cline{2-3}
         & Interface logic for clients & Interface logic for database \\ \cline{2-3}
         & Unit tests for internal logic & Unit tests for internal logic \\ \cline{2-3}
-        & Code inspection and documentation & Code inspection and documentation \\ 
+        & Code inspection and & Code inspection and \\
+        & documentation & documentation \\
         \hline
         \hline
-        \multirow{3}{*}{\textbf{Month 6-7}} & Web server tuning & Web server presentation logic \\ \cline{2-3}
+        \multirow{5}{*}{\textbf{Month 6-7}} & Web server tuning & Web server presentation logic \\ \cline{2-3}
         & Website development & External maps service study \\ \cline{2-3}
         & Unit tests for web server logic & Website development \\ \cline{2-3}
-        & Code inspection and documentation & Code inspection and documentation \\
+        & Code inspection and & Code inspection and \\
+        & documentation & documentation \\
         \hline
         \hline
-        \multirow{3}{*}{\textbf{Month 8-9}} & On-board devices study & Mobile application structuring \\ \cline{2-3}
-        & On-board application development & Mobile application development \\ \cline{2-3}
+        \multirow{6}{*}{\textbf{Month 8-9}} & On-board devices study & Mobile application structuring \\ \cline{2-3}
+        & On-board application & Mobile application development \\ 
+        & development & \\ \cline{2-3}
         & Testing on physical devices & Testing on physical devices \\ \cline{2-3}
-        & Code inspection and documentation & Code inspection and documentation \\
+        & Code inspection and & Code inspection and \\
+        & documentation & documentation \\
         \hline
         \hline
-        \multirow{3}{*}{\textbf{Month 10}} & Code inspection & Code inspection \\ \cline{2-3}
+        \multirow{4}{*}{\textbf{Month 10}} & Code inspection & Code inspection \\ \cline{2-3}
         & Code refinement & Code refinement \\ \cline{2-3}
-        & Documentation check and refinement & Documentation check and refinement \\
+        & Documentation check and & Documentation check and \\
+        & refinement & refinement \\
         \hline
     \end{tabular}
     \caption{Resource allocation for the Implementation task.}
-    \label{rasd_allocation}
+    \label{impl_allocation}
+    \end{adjustwidth}
+\end{table}
+
+\begin{table}[H]
+	\begin{adjustwidth}{-.5in}{-.5in}
+    \centering
+    \begin{tabular}{p{0.18\textwidth} | p{0.48\textwidth} | p{0.48\textwidth}}
+    	\hline
+    	& \multicolumn{1}{c |}{\textbf{Giovanni}} & \multicolumn{1}{c}{\textbf{Marco}} \\
+    	\hline
+		\hline
+        \multirow{2}{*}{\textbf{$1_{st}$ month}} & Testing Business - Data integration & Test Database creation \\ \cline{2-3}
+        & Testing Business - Data integration & Testing Business - Data integration \\
+        \hline
+        \hline
+         \multirow{3}{*}{\textbf{$2_{nd}$ month}} & Testing Business - External Systems & Testing Business - Web Server \\
+        & integration & integration \\ \cline{2-3}
+        & Testing Web Server - Browser & Testing Business - Mobile App. \\
+        \hline
+        \hline
+        \multirow{1}{*}{\textbf{$3_{rd}$ month}} & Testing Business - On-board App. & Testing Business - Mobile App. \\
+        \hline
+    \end{tabular}
+    \caption{Resource allocation for Integration Testing.}
+    \label{int_testing}
     \end{adjustwidth}
 \end{table}
