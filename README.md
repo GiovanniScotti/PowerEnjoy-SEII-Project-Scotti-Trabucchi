@@ -5,8 +5,8 @@ This is the repository of Giovanni Scotti and Marco Trabucchi for the project of
 1. **RASD**: [download the latest version here](https://github.com/GiovanniScotti/PowerEnjoy-SEII-Project-Scotti-Trabucchi/tree/master/DELIVERIES/RASD_15012017_v3.pdf)
 2. **DD**: [download the latest version here](https://github.com/GiovanniScotti/PowerEnjoy-SEII-Project-Scotti-Trabucchi/tree/master/DELIVERIES/DD_15012017_v2.pdf)
 3. **ITPD**: [download the latest version here](https://github.com/GiovanniScotti/PowerEnjoy-SEII-Project-Scotti-Trabucchi/tree/master/DELIVERIES/ITPD_15012017_v1.pdf)
-4. **PPD**: [download the latest version here](https://github.com/GiovanniScotti/PowerEnjoy-SEII-Project-Scotti-Trabucchi/tree/master/DELIVERIES/PPD_22012017_v1.pdf)
-5. **Code Inspection**: [download the latest version here](https://github.com/GiovanniScotti/PowerEnjoy-SEII-Project-Scotti-Trabucchi/tree/master/DELIVERIES/ID_05022017_v1.pdf)
+4. **PPD**:
+5. **Code Inspection**:
 
 ## Team members
 * Giovanni Scotti
