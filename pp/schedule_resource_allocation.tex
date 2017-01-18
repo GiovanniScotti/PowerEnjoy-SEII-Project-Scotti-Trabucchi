@@ -1,12 +1,14 @@
 \section{Tasks and Schedule}
 The main tasks of which the \textit{PowerEnJoy} project is composed of are the following:
 \begin{enumerate}
+\item \textbf{Meetings with customer} - meet the customer to find out the requirements and goals for the required application;
 \item \textbf{Requirements Analysis and Specification Document (RASD)} delivery - deliver a document containing the description of all goals, domain assumptions, functional and non-functional requirements for the project;
 \item \textbf{Design Document (DD)} delivery - deliver a document describing the architectural design of the software system to be produced;
 \item \textbf{Integration Test Plan Document (ITPD)} delivery - deliver a document containing the strategy to perform integration testing on the components of the system;
 \item \textbf{Project Plan Document (PPD)} delivery - deliver a document containing the description of the schedule and tasks for the project and an estimation of the effort and size of the project itself, as well as an analysis of the risks that the project could face during its life-cycle;
 \item \textbf{Implementation} - implement the software product and thoroughly write unit tests for all the code;
 \item \textbf{Integration testing} - test the integration of all the software components of the project;
+\item \textbf{Presentation and Deployment} - prepare a presentation for the customer to show the final product and the functionalities available for the first official release and deploy the new system in the target area.
 \end{enumerate}
 
 During the project life-cycle, some of these task can not begin if others are not completed yet. To illustrate the precedence constraints of the case, a \textbf{dependency graph} is provided in Figure \ref{dep_dag}.
@@ -20,17 +22,26 @@ Note that, however, since a software project is highly subject to change in requ
 		\label{dep_dag}
 \end{center}
 \end{figure}
+\newpage
 \noindent
 The following is a Gantt chart to describe the chosen schedule for the project:
-
-%gantt chart here
+\newline
+\begin{figure}[H]
+\begin{center}
+		\centerline{\includegraphics[width=1.3\textwidth]{./pictures/gantt_chart.png}}
+		\caption{Gantt chart for the \textit{PowerEnJoy} project.
+		\newline
+		\textbf{(*)} = 3 weeks are the actual work-time, but the time period includes 10-15 days of Christmas break.}
+		\label{dep_dag}
+\end{center}
+\end{figure}
 
 \section{Resource Allocation}
 Given the tasks defined above, the allocation of human resources of the team to the single tasks and their sub-parts is going to be defined in this section. Since the team is only composed of two members, the granularity of the activities composing the tasks is quite rough: this is to avoid a pointless level of detail in favour of an easier-to-understand allocation of macro-activities.
 
 Note that most activities involve contribution from both team members, either in a parallel fashion or in a cooperative way. This is done in order to increase the awareness of the team with respect to the single tasks of the project, so that all the members can be work on any part of the system in case of necessity, without spending too much time understanding it; this also reduces the risk of misunderstandings between team members and increases the efficiency of cooperative work sessions.
 
-The following tables describe in detail the subdivision of every task in different activities, as well as the allocation of team members to the single activities themselves. The duration of tasks and activities is structured based on the considerations and conclusions expressed in the sections above.
+The following tables describe in detail the subdivision of every task in different activities, as well as the allocation of team members to the single activities themselves. The duration of tasks and activities is structured based on the considerations and conclusions expressed in the sections above. No tables are provided for the \textit{"Meetings with customer"} and \textit{"Presentation and Deployment"} since the tasks are composed of a single activity, carried out together by the whole team.
 
 Activities on the same row represent activities executed in parallel. If the same activity is marked twice on the same row, that activity is executed in cooperation by both team members.
 
@@ -150,4 +161,47 @@ Activities on the same row represent activities executed in parallel. If the sam
     \end{adjustwidth}
 \end{table}
 
-% MANCANO TABELLE PER IMPLEMENTATION E INTEGRATION TESTING
+\begin{table}[H]
+    \begin{adjustwidth}{-.5in}{-.5in}
+    \centering
+    \begin{tabular}{ p{0.2\textwidth} | p{0.45\textwidth} | p{0.45\textwidth} }
+    	\hline
+    	& \multicolumn{1}{c |}{\textbf{Giovanni}} & \multicolumn{1}{c}{\textbf{Marco}} \\
+    	\hline
+		\hline
+        \multirow{3}{*}{\textbf{Months 1-2}} & Database servers initialization & Database structuring \\ \cline{2-3}
+        & Database structuring & Database engine tuning \\ \cline{2-3}
+        & Database initialization & Database initialization \\ \cline{2-3}
+        \hline
+        \hline
+         \multirow{7}{*}{\textbf{Month 3-4-5}} & External components study & Application logic structuring \\ \cline{2-3}
+        & Application logic structuring & User management logic development \\ \cline{2-3}
+        & Car reservation logic development & Car reservation logic development \\ \cline{2-3}
+        & Interface logic for external systems & Alternative charges situations computation algorithms \\ \cline{2-3}
+        & Internal payment logic & Interface logic for external systems \\ \cline{2-3}
+        & Interface logic for clients & Interface logic for database \\ \cline{2-3}
+        & Unit tests for internal logic & Unit tests for internal logic \\ \cline{2-3}
+        & Code inspection and documentation & Code inspection and documentation \\ 
+        \hline
+        \hline
+        \multirow{3}{*}{\textbf{Month 6-7}} & Web server tuning & Web server presentation logic \\ \cline{2-3}
+        & Website development & External maps service study \\ \cline{2-3}
+        & Unit tests for web server logic & Website development \\ \cline{2-3}
+        & Code inspection and documentation & Code inspection and documentation \\
+        \hline
+        \hline
+        \multirow{3}{*}{\textbf{Month 8-9}} & On-board devices study & Mobile application structuring \\ \cline{2-3}
+        & On-board application development & Mobile application development \\ \cline{2-3}
+        & Testing on physical devices & Testing on physical devices \\ \cline{2-3}
+        & Code inspection and documentation & Code inspection and documentation \\
+        \hline
+        \hline
+        \multirow{3}{*}{\textbf{Month 10}} & Code inspection & Code inspection \\ \cline{2-3}
+        & Code refinement & Code refinement \\ \cline{2-3}
+        & Documentation check and refinement & Documentation check and refinement \\
+        \hline
+    \end{tabular}
+    \caption{Resource allocation for the Implementation task.}
+    \label{rasd_allocation}
+    \end{adjustwidth}
+\end{table}
