@@ -18,3 +18,4 @@ This is the repository of Giovanni Scotti and Marco Trabucchi for the project of
 * ITPD submission deadline 15/01/2017
 * PPD submission deadline 22/01/2017
 * Code Inspection submission deadline 5/02/2017
+* Project presentation 10/03/2017
